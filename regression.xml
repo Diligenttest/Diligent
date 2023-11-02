@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">  
+<suite name="Dashboard Execution">
+ <!--  <parameter name="qa" value="qa.properties"/>  -->
+  <test name="regression Execution">  
+    <classes>  
+      <class name="CucumberOptions.Regression"/>  
+    </classes>  
+  </test> <!-- Test -->  
+</suite> <!-- Suite -->  

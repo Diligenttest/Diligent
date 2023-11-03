@@ -17,6 +17,7 @@ import io.cucumber.java.ParameterType;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 
 public class Hooks {
 	
@@ -34,8 +35,8 @@ public class Hooks {
     public void setupStepDef()throws Throwable{
         webtestbase.start(webTestContext);
     }
-
-    @And("^Close the browser$")
+    
+    @When("I Close the browser")
     public void tearDownWebStepDef()throws Throwable{
         webtestbase.teardown(webTestContext);
     }

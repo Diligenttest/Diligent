@@ -3,6 +3,7 @@ package StepDefinations;
 import java.io.IOException;
 import java.util.List;
 
+import com.TestContext.ScenarioContext;
 import com.TestContext.WebTestContext;
 
 import genericFunctions.ReusableMethods;
@@ -15,10 +16,12 @@ import web.pages.QueuePage;
 public class QueuePageSteps {
 
 	private WebTestContext webTestContext;
+	private ScenarioContext scenarioContext;
 	private QueuePage getQueuePage;
 
-	public QueuePageSteps(WebTestContext webTestContext) {
+	public QueuePageSteps(WebTestContext webTestContext,ScenarioContext scenarioContext) {
 		this.webTestContext = webTestContext;
+		this.scenarioContext=scenarioContext;
 		getQueuePage = this.webTestContext.getWebPageObject().getQueuePage();
 
 	}
@@ -69,6 +72,11 @@ public class QueuePageSteps {
 	    getQueuePage.clickEntityInformationButton();
 	}
 	
+	@When("I click on <Connected Party & Screening> tab in the onborading screen")
+	public void i_click_on_connected_party_screening_tab_in_the_onborading_screen() {
+		getQueuePage.clickConnectedPartyScreeningButton();
+	}
+	
 	@Then("I should validate fields under {string}")
 	public void i_should_validate_fields_under(String tabName) throws Exception {
 		switch(tabName)
@@ -89,7 +97,73 @@ public class QueuePageSteps {
 			getQueuePage.validateOtherInformation_Fields();
 			break;
 			
-		}
-	    
+		}    
+	}
+	
+	@When("I enter all the information under <Internal Information> section")
+	public void i_enter_all_the_information_under_internal_information_section() {
+		getQueuePage.enterInternalInformationSectionInfo(scenarioContext);
+	}
+	
+	@When("I click on Save & Proceed button")
+	public void i_click_on_save_proceed_button() {
+		getQueuePage.clickSaveAndProceedButton();
+	}
+	
+	@When("I click on <Internal Information> tab in the onborading screen")
+	public void i_click_on_internal_information_tab_in_the_onborading_screen() throws InterruptedException {
+	    getQueuePage.clickInternalInformationButton();
+	}
+	
+	@Then("I should validate data is saved in internal information section")
+	public void i_should_validate_data_is_saved_in_internal_information_section() {
+		getQueuePage.validateInternalInformationInfo(scenarioContext);
+	}
+	
+	@When("I click on Save & Exit button")
+	public void i_click_on_save_exit_button() {
+	    getQueuePage.clickSaveAndExitButton(scenarioContext);
+	}
+	
+	@Then("I should validate page is navigated to <Entity Information> screen")
+	public void i_should_validate_page_is_navigated_to_entity_information_screen() throws Exception {
+	    getQueuePage.validateCII_Fields();
+	}
+	
+	@Then("I should validate File Status is displayed as selected")
+	public void i_should_validate_file_status_is_displayed_as_selected() {
+	   getQueuePage.validateFileStatus(scenarioContext);
+	}
+
+
+	@Then("I should validate tabs under connected pary screening")
+	public void i_should_validate_tabs_under_connected_pary_screening() {
+		getQueuePage.validateConnectedPartyLinks();
+	}
+	
+	@Then("I should validate fields under <Beneficial Owner Identification>")
+	public void i_should_validate_fields_under_beneficial_owner_identification() throws Exception {
+	    getQueuePage.validateBeneficialOwnerIdentificationFields();
+	}
+	
+	@When("I click on <Customer and Connected Parties> link")
+	public void i_click_on_customer_and_connected_parties_link() {
+	    getQueuePage.clickCustomerAndConnectedParties_Link();
+	}
+	@Then("I should validate tabs under <Customer and Connected Parties>")
+	public void i_should_validate_tabs_under_customer_and_connected_parties() {
+	    getQueuePage.validateTabs_CustomerAndConnectedParties();
+	}
+	@Then("I should validate fields under {string} under Customer and Connected Parties")
+	public void i_should_validate_fields_under_under_customer_and_connected_parties(String tabName) {
+	   switch (tabName) {
+	case "Customer":
+		getQueuePage.validateButtons_Label_CustomerTab();
+		break;
+
+	case "Individual":
+		getQueuePage.validateButtons_Label_IndividualTab();
+		break;
+	}
 	}
 }

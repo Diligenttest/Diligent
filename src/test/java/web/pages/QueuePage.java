@@ -1,6 +1,7 @@
 package web.pages;
 
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.TestContext.ScenarioContext;
+
 import genericFunctions.Constant;
+import genericFunctions.FieldNames;
 import genericFunctions.ReusableMethods;
 
 public class QueuePage {
@@ -40,6 +44,9 @@ public class QueuePage {
 	public WebElement Makers_Button;
 
 	// ***********Internal Information Fields************************
+	@FindBy(xpath = "//div[contains(text(),'Internal Information')]")
+	public WebElement InternalInformation_Tab;
+	
 	@FindBy(xpath = "//input[@placeholder='Core Banking ID']")
 	public WebElement CoreBanking_ID_TextField;
 
@@ -54,6 +61,12 @@ public class QueuePage {
 
 	@FindBy(xpath = "//input[@placeholder='Date of Customer Visit']")
 	public WebElement DateofCustomerVisit_TextField;
+	
+	@FindBy(xpath = "//button[@aria-label='Open calendar']")
+	public WebElement CalenderOpen_Button;
+	
+	@FindBy(xpath = "//td[contains(@class,'calendar-body-active')]")
+	public WebElement SelectDate;
 
 	@FindBy(xpath = "//input[@placeholder='Transparency']")
 	public WebElement Transparency_TextField;
@@ -118,13 +131,121 @@ public class QueuePage {
 	@FindBy(xpath = "//textarea[@placeholder='Mandatory Document']")
 	public WebElement MandatoryDocument_TextArea;
 
-	// ************************************************************
+	// *********************Connected Party & Screening***************************************
+	
+	@FindBy(xpath = "//div[contains(text(),'Connected Party & Screening')]")
+	public WebElement ConnectedParty_Screening_Tab;
+	
+	@FindBy(xpath = "//mat-card[@class='mat-card mat-focus-indicator']//mat-label")
+	public List<WebElement> BO_Labels;
+	
+	@FindBy(xpath = "//a[contains(text(),'Beneficial Owner Identification')]")
+	public WebElement BeneficialOwnerIdentification_Link;
+	
+	@FindBy(xpath = "//a[contains(text(),'Customer & Connected Parties')]")
+	public WebElement CustomerConnected_Parties_link;
+	
+	@FindBy(xpath = "//input[@formcontrolname='boName']")
+	public WebElement CustomerName_Link;
+	
+	@FindBy(xpath = "//mat-select[@formcontrolname='coiListId']")
+	public WebElement CountryOfCorpation_Drpdown;
+	
+	@FindBy(xpath = "//mat-select[@formcontrolname='ownerTypeId']")
+	public WebElement RelationShipType_Drpdown;
+	
+	@FindBy(xpath = "//input[@placeholder='Registration Number']")
+	public WebElement Registration_TextField;
+	
+	@FindBy(xpath = "//mat-select[@formcontrolname='multipleBookingLocations']")
+	public WebElement BookingLocation_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@formcontrolname='riskRatingId']")
+	public WebElement RiskRating_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@formcontrolname='unwrappingSource']")
+	public WebElement UnwrappingSource_Dropdown;
+	
+	@FindBy(xpath = "(//div[@class='mat-tab-label-content']//a[contains(text(),'Customer')])[2]")
+	public WebElement Customer_Tab;
+	
+	@FindBy(xpath = "(//div[@class='mat-tab-label-content']//a[contains(text(),'Individual')])[1]")
+	public WebElement Individual_Tab;
+	
+	@FindBy(xpath = "//div[@class='mat-tab-label-content']//a[contains(text(),'Non-Individual')]")
+	public WebElement NonIndividual_Tab;
+	
+	//**************************Customer Tab Field****************************
+	
+	@FindBy(xpath = "//span[@class='mat-content']/mat-panel-title")
+	public WebElement CustomerName_Label;
+	
+	@FindBy(xpath = "(//span[@class='mat-content']//label[@class='mat-checkbox-layout'])[1]")
+	public WebElement NameScreening_Label_And_Checkbox;
+	
+	@FindBy(xpath = "//button//span[contains(text(),'Name Screening')]")
+	public WebElement NameScreening_Button;
+	
+	//**************************Individual Tab Field****************************
+	@FindBy(xpath = "//input[@ng-reflect-name='custName']")
+	public WebElement Individual_CustomerName_Field;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-name='nationalitySelect']")
+	public WebElement Individual_Nationality_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-name='corSelect']")
+	public WebElement Individual_CountryOfResidence_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-name='bookingLoc']")
+	public WebElement Individual_BookingLocations_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-name='relationshipWithCustomer']")
+	public WebElement Individual_RelationWithCustomer_Dropdown;
+	
+	@FindBy(xpath = "//span[contains(text(),'Get Fields')]/parent::button")
+	public WebElement Individual_GetFields_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Remove Related Party')]/parent::button")
+	public WebElement Individual_RemoveRelatedParty_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Name Screening')]/parent::button")
+	public WebElement Individual_NameScreening_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Add Related Party')]/parent::button")
+	public WebElement Individual_AddParty_Button;
+	
+	//**************************Non Individual Tab Field****************************
+	
+	
+	
+	//***************************************************************************
 
 	@FindBy(xpath = "//span[contains(text(),'Save & Proceed')]")
 	public WebElement Save_Proceed_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Save & Exit')]")
+	public WebElement Save_Exit_Button;
+	
+	@FindBy(xpath = "//div[@class='mat-select-trigger']")
+	public WebElement FileStatus_Dropdown;
 
 	@FindBy(xpath = "//span[contains(text(),'Cancel ')]")
 	public WebElement Cancel_Button;
+	
+	@FindBy(xpath = "//div[contains(@class,'mat-dialog-content')]//span[contains(text(),'Save ')]")
+	public WebElement Save_Dialog_Button;
+	
+	public  WebElement fileStatusValue(int number)
+	{
+		return driver.findElement(By.xpath("(//mat-option//span[@class='mat-option-text'])["+number+"]"));
+	}
+	
+	public  WebElement getFileStatusValue(String value)
+	{
+		return driver.findElement(By.xpath("//mat-cell[contains(text(),'"+value+"')]"));
+	}
+	
+	//**********************************************************************
 
 	public void validateQueueUrl(String url) {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
@@ -171,10 +292,21 @@ public class QueuePage {
 		Assert.assertTrue(ReusableMethods.isDisplayed(Cancel_Button), "Cancel Button is missing");
 
 	}
+	
+	public void clickInternalInformationButton() throws InterruptedException {
+		ReusableMethods.Sleep(6);
+		ReusableMethods.waitForElementToBeClickable(driver,Save_Proceed_Button);
+		ReusableMethods.click(driver, InternalInformation_Tab);
+	}
 
 	public void clickEntityInformationButton() {
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
 		ReusableMethods.click(driver, EntityInformation_Tab);
+	}
+	
+	public void clickConnectedPartyScreeningButton() {
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver, ConnectedParty_Screening_Tab);
 	}
 
 	public void validateCII_Fields() throws Exception {
@@ -219,5 +351,104 @@ public class QueuePage {
 		ReusableMethods.click(driver, OtherInformation_Link);
 		Assert.assertTrue(ReusableMethods.isDisplayed(MandatoryDocument_TextArea),
 				"Mandatory Document Text area is missing");
+	}
+	
+	public void enterInternalInformationSectionInfo(ScenarioContext scenarioContext)
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button,30, driver);
+		scenarioContext.addTestData(FieldNames.CoreBankingID.toString(),ReusableMethods.generateRandomValues("alphaNumeric", 10));	
+		ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField, scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
+		scenarioContext.addTestData(FieldNames.CustomerSourceThrough.toString(),ReusableMethods.generateRandomValues("alphaNumeric", 10));	
+		ReusableMethods.ClearAndEnterValue(driver, CustomerSourcedThrough_TextField, scenarioContext.getTestData(FieldNames.CustomerSourceThrough.toString()));
+		scenarioContext.addTestData(FieldNames.BussinessSegment.toString(),ReusableMethods.generateRandomValues("alphaNumeric", 10));	
+		ReusableMethods.ClearAndEnterValue(driver, BusinessSegment_TextField, scenarioContext.getTestData(FieldNames.BussinessSegment.toString()));
+		scenarioContext.addTestData(FieldNames.RMName.toString(),ReusableMethods.generateRandomValues("alphaNumeric", 10));	
+		ReusableMethods.ClearAndEnterValue(driver, RMName_TextField, scenarioContext.getTestData(FieldNames.RMName.toString()));
+		ReusableMethods.click(driver, CalenderOpen_Button);
+		ReusableMethods.click(driver, SelectDate);
+		scenarioContext.addTestData(FieldNames.DateOfCutomerVisit.toString(),ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "Text"));
+		scenarioContext.addTestData(FieldNames.Tranparency.toString(),ReusableMethods.generateRandomValues("alphaNumeric", 10));	
+		ReusableMethods.ClearAndEnterValue(driver, Transparency_TextField, scenarioContext.getTestData(FieldNames.Tranparency.toString()));
+	}
+	
+	public void validateInternalInformationInfo(ScenarioContext scenarioContext)
+	{
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"), scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CustomerSourcedThrough_TextField, "value"), scenarioContext.getTestData(FieldNames.CustomerSourceThrough.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(BusinessSegment_TextField, "value"), scenarioContext.getTestData(FieldNames.BussinessSegment.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"), scenarioContext.getTestData(FieldNames.RMName.toString()));
+		//Assert.assertEquals(ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "value"), scenarioContext.getTestData(FieldNames.DateOfCutomerVisit.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Transparency_TextField, "value"), scenarioContext.getTestData(FieldNames.Tranparency.toString()));
+	}
+	
+	public void clickSaveAndProceedButton()
+	{
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		ReusableMethods.click(driver, Save_Proceed_Button);
+	}
+	
+	public void clickSaveAndExitButton(ScenarioContext scenarioContext)
+	{
+		ReusableMethods.waitForElement(driver, Save_Exit_Button);
+		ReusableMethods.click(driver, Save_Exit_Button);
+		Random random = new Random();
+		int randomNum = random.nextInt(5) + 1;
+		ReusableMethods.click(driver, FileStatus_Dropdown);
+		scenarioContext.addTestData(FieldNames.FileStatus.toString(), ReusableMethods.GetTextData(fileStatusValue(randomNum)));
+		ReusableMethods.click(driver, fileStatusValue(randomNum));
+		ReusableMethods.click(driver, Save_Dialog_Button);
+	}
+	
+	public void validateFileStatus(ScenarioContext scenarioContext)
+	{
+		ReusableMethods.waitForElement(driver, ApplicationID);
+		Assert.assertTrue(ReusableMethods.isDisplayed(getFileStatusValue(scenarioContext.getTestData(FieldNames.FileStatus.toString()))));
+	}
+	
+	public void validateConnectedPartyLinks()
+	{
+		ReusableMethods.waitForElement(driver, CustomerConnected_Parties_link);
+		Assert.assertTrue(ReusableMethods.isDisplayed(BeneficialOwnerIdentification_Link));
+		Assert.assertTrue(ReusableMethods.isDisplayed(CustomerConnected_Parties_link));
+	}
+	
+	public void validateBeneficialOwnerIdentificationFields() throws Exception
+	{
+		ReusableMethods.compareList(BO_Labels, Constant.BENEFICIALOWNERIDENTIAL_LABELS);
+	}
+	
+	public void clickCustomerAndConnectedParties_Link()
+	{
+		ReusableMethods.waitForElement(driver, CustomerConnected_Parties_link);
+		ReusableMethods.click(driver, CustomerConnected_Parties_link);
+	}
+	
+	public void validateTabs_CustomerAndConnectedParties()
+	{
+		ReusableMethods.waitForElement(driver, CustomerConnected_Parties_link);
+		ReusableMethods.click(driver, CustomerConnected_Parties_link);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Customer_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_Tab));
+	}
+	
+	public void validateButtons_Label_CustomerTab()
+	{
+		Assert.assertTrue(ReusableMethods.isDisplayed(CustomerName_Label));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NameScreening_Label_And_Checkbox));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NameScreening_Button));
+	}
+	
+	public void validateButtons_Label_IndividualTab()
+	{
+		ReusableMethods.click(driver, Individual_Tab);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_CustomerName_Field));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_Nationality_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_CountryOfResidence_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_BookingLocations_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_RelationWithCustomer_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_GetFields_Button));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_RemoveRelatedParty_Button));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_NameScreening_Button));
 	}
 }

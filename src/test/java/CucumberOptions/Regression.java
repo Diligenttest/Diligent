@@ -20,14 +20,13 @@ import io.cucumber.testng.CucumberOptions;
 //plugin = {"pretty", "html:target/HtmlReports/report.html" } dryRun=true,
 
 public class Regression extends AbstractTestNGCucumberTests {
-	static String filePath = "/src/test/resources/GlobalTestData/";
 	
-	@Override
-	@DataProvider(parallel = true)
-	public Object[][] scenarios() {
-		return super.scenarios();
-	}
-	
+//	@Override
+//	@DataProvider(parallel = true)
+//	public Object[][] scenarios() {
+//		return super.scenarios();
+//	}
+//	
 //	@Parameters({"qa"}) 
 //	@BeforeSuite
 //	public static FileInputStream getFilePath(String value)

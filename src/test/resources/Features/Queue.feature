@@ -30,7 +30,7 @@ Feature: Onboarding Validation
     And I should validate buttons in the onboarding screen
     When I Close the browser
 
-  @regression 
+  @regression
   Scenario: Validate Entity Information fields ,button and tabs
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -42,8 +42,8 @@ Feature: Onboarding Validation
     And I should validate fields under "Contact Information"
     And I should validate fields under "Other Information"
     When I Close the browser
-    
-    @regression
+
+  @regression
   Scenario: Validate Connected Party screen fields ,button and tabs for Beneficial Owner
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -52,30 +52,62 @@ Feature: Onboarding Validation
     Then I should validate tabs under connected pary screening
     And I should validate fields under <Beneficial Owner Identification>
     When I Close the browser
-    
-    @regression @test
+
+  @regression
   Scenario: Validate Customer section fields under Customer and Connected Parties
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
     And I click on any existing Application ID
     And I click on <Connected Party & Screening> tab in the onborading screen
-   	And I click on <Customer and Connected Parties> link
-   	Then I should validate tabs under <Customer and Connected Parties>
-   	And I should validate fields under "Customer" under Customer and Connected Parties
+    And I click on <Customer and Connected Parties> link
+    Then I should validate tabs under <Customer and Connected Parties>
+    And I should validate fields under "Customer" under Customer and Connected Parties
     When I Close the browser
-    
-     @regression @test
+
+  @regression
   Scenario: Validate Individual section fields under Customer and Connected Parties
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
     And I click on any existing Application ID
     And I click on <Connected Party & Screening> tab in the onborading screen
-   	And I click on <Customer and Connected Parties> link
-   	Then I should validate tabs under <Customer and Connected Parties>
-   	And I should validate fields under "Individual" under Customer and Connected Parties
+    And I click on <Customer and Connected Parties> link
+    Then I should validate tabs under <Customer and Connected Parties>
+    And I should validate fields under "Individual" under Customer and Connected Parties
     When I Close the browser
-    
-    @regression 
+
+  @regression
+  Scenario: Validate Non Individual section fields under Customer and Connected Parties
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Connected Party & Screening> tab in the onborading screen
+    And I click on <Customer and Connected Parties> link
+    Then I should validate tabs under <Customer and Connected Parties>
+    And I should validate fields under "Non-Individual" under Customer and Connected Parties
+    When I Close the browser
+
+  @regression 
+  Scenario: Validate Due Diligence for Specilized Due Degilicence corportation
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Due Diligence> tab in the onborading screen
+    Then I should validate tabs under <Due Diligence>
+    And I should validate fields under <Specilized Due Diligence> section
+    When I Close the browser
+
+  @regression @test
+  Scenario: Validate Due Diligence for Mandatory Due Degilicence corportation
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Due Diligence> tab in the onborading screen
+    And I click on <Mandatory Due Diligence> tab
+    Then I should validate fields under "Customer" section under Pep (corp)
+    Then I should validate fields under "Non-Individual" section under Pep (corp)
+    When I Close the browser
+
+  @regression
   Scenario: Validate Data is saved in Internal Information
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -86,8 +118,8 @@ Feature: Onboarding Validation
     When I click on <Internal Information> tab in the onborading screen
     Then I should validate data is saved in internal information section
     When I Close the browser
-    
-    @regression
+
+  @regression
   Scenario: Validate Save & Exit Functionality File Upload status
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard

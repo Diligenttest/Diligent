@@ -1,5 +1,7 @@
 package web.pages;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -215,8 +217,112 @@ public class QueuePage {
 	public WebElement Individual_AddParty_Button;
 	
 	//**************************Non Individual Tab Field****************************
+	@FindBy(xpath = "//mat-select[@ng-reflect-name='relationshipWithCustomer']")
+	public WebElement Relationshipwithcustomer_Dropdown;
 	
+	@FindBy(xpath = "//input[@placeholder='Legal Name']")
+	public WebElement NonIndividual_LegalName_TextField;
 	
+	@FindBy(xpath = "//p[contains(text(),'Nature of Business')]")
+	public WebElement NonIndividual_NatureOfBussiness_Header;
+	
+	@FindBy(xpath = "//textarea[@placeholder='Purpose of Account Opening']")
+	public WebElement NonIndividual_PurposeOfAccountOpening_TextArea;
+	
+	@FindBy(xpath = "//div[contains(text(),'Principal Office address (if different from Registered address)')]//mat-label")
+	public List<WebElement> NonIndividual_PrinicipalOfficeAddress_TextFields;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-message='Industry']")
+	public WebElement NonIndividual_Industry_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-message='Industry']")
+	public WebElement NonIndividual_Products_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-placeholder='Currency']")
+	public WebElement NonIndividual_Currency_Dropdown;
+	
+	@FindBy(xpath = "//input[@placeholder='Contact Person Name']")
+	public WebElement NonIndividual_ContactPersonName_TextField;
+	
+	@FindBy(xpath = "//input[@placeholder='Date of Incorporation']")
+	public WebElement NonIndividual_DateOfIncorporation_TextField;
+	
+	@FindBy(xpath = "//textarea[@placeholder='Mandatory Document']")
+	public WebElement NonIndividual_Mandatory_TextField;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-placeholder='Country of Incorporation']")
+	public WebElement NonIndividual_CountryOfInCorporation_Dropdown;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-placeholder='Countries of Operation']")
+	public WebElement NonIndividual_CountriesOfCorporation_Dropdown;
+	
+	@FindBy(xpath = "//input[@placeholder='Contact Person Number']")
+	public WebElement NonIndividual_ContactPersonNumber_TextField;
+	
+	@FindBy(xpath = "//div[contains(text(),'Registered Address')]//mat-label")
+	public List<WebElement> NonIndividual_RegisteredAddress_TextFields;
+	
+	@FindBy(xpath = "//span[contains(text(),'Remove Related Party')]/parent::button")
+	public WebElement NonIndividual_RemoveRelatedParty_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Name Screening')]/parent::button")
+	public WebElement NonIndividual_NameScreening_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Add')]/parent::button")
+	public WebElement NonIndividual_Add_Button;
+	
+	//****************************Due Diligence************************
+	
+	@FindBy(xpath = "//div[contains(text(),'Due Diligence')]")
+	public WebElement DueDiligence_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Specialized Due Diligence (Corp)')]")
+	public WebElement Diligence_SpecilizedDueDiligence_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Mandatory Due Diligence (Corp)')]")
+	public WebElement Diligence_MandatoryDueDiligence_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Add / Remove Industry Standard Due Diligence')]")
+	public WebElement Diligence_AddRemoveIndustryStandard_Tab;
+	
+	@FindBy(xpath = "//mat-select[@aria-label='Add/ Remove Industry Standard Due Diligence']")
+	public WebElement Diligence_AddRemoveIndustryStandard_Dropdown;
+	
+	@FindBy(xpath = "//span[contains(text(),'Add/Remove Industry Standard Due Diligence')]/parent::button")
+	public WebElement Diligence_AddRemoveIndustryStandard_Button;
+	
+	@FindBy(xpath = "//span[contains(text(),'Cancel')]/parent::button")
+	public WebElement Diligence_Cancel_Button;
+	
+	@FindBy(xpath = "//a[contains(text(),'PEP (Corp)')]")
+	public WebElement Diligence_PEP_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Customer')]")
+	public WebElement Diligence_Customer_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Non-Individual')]")
+	public WebElement Diligence_NonIndividual_Tab;
+	
+	@FindBy(xpath = "//mat-panel-title")
+	public WebElement Diligence_Customer_Title_Label;
+	
+	@FindBy(xpath = "(//mat-radio-button)[1]//div[@class='mat-radio-outer-circle']")
+	public WebElement Diligence_PEPComplete_Yes_RadioButton;
+	
+	@FindBy(xpath = "(//mat-radio-button)[2]//div[@class='mat-radio-outer-circle']")
+	public WebElement Diligence_PEPComplete_No_RadioButton;
+	
+	@FindBy(xpath = "//div[contains(text(),'Refinitiv screening outcome')]")
+	public WebElement Diligence_RefinitivScreeningOutcome_Header;
+	
+	@FindBy(xpath = "//mat-select[@ng-reflect-name='riskRating']")
+	public WebElement Diligence_RiskRating_Dropdown;
+	
+	@FindBy(xpath = "//textarea[@ng-reflect-name='comments']")
+	public WebElement Diligence_Comments_TextField;
+	
+	@FindBy(xpath = "//b[contains(text(),'Controllers (Non-Individual),')]")
+	public WebElement Diligence_Controllers_Label;
 	
 	//***************************************************************************
 
@@ -244,6 +350,8 @@ public class QueuePage {
 	{
 		return driver.findElement(By.xpath("//mat-cell[contains(text(),'"+value+"')]"));
 	}
+	
+	
 	
 	//**********************************************************************
 
@@ -450,5 +558,82 @@ public class QueuePage {
 		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_GetFields_Button));
 		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_RemoveRelatedParty_Button));
 		Assert.assertTrue(ReusableMethods.isDisplayed(Individual_NameScreening_Button));
+	}
+	
+	public void validateButtons_Label_NonIndividualTab() throws Exception
+	{
+		ReusableMethods.click(driver, NonIndividual_Tab);
+		ReusableMethods.Sleep(3);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Relationshipwithcustomer_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_LegalName_TextField));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_NatureOfBussiness_Header));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_PurposeOfAccountOpening_TextArea));
+		ReusableMethods.ScrollToElement_JavScript(driver, NonIndividual_Industry_Dropdown);
+		//ReusableMethods.compareList(NonIndividual_PrinicipalOfficeAddress_TextFields, Constant.NONINDIVIDUAL_PRINICIPALOFFICEADDRESS);
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_Industry_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_Products_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_Currency_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_Add_Button));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_DateOfIncorporation_TextField));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_ContactPersonName_TextField));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_Mandatory_TextField));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_CountryOfInCorporation_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_CountriesOfCorporation_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_ContactPersonNumber_TextField));
+		//ReusableMethods.compareList(NonIndividual_PrinicipalOfficeAddress_TextFields, Constant.ADDRESSFIELDS);
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_RemoveRelatedParty_Button));
+		Assert.assertTrue(ReusableMethods.isDisplayed(NonIndividual_NameScreening_Button));
+	}
+	
+	public void clickDiligenceTab()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver, DueDiligence_Tab);
+	}
+	
+	public void clickMandatoryDiligenceTab()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Diligence_MandatoryDueDiligence_Tab, 10, driver);
+		ReusableMethods.click(driver, Diligence_MandatoryDueDiligence_Tab);
+	}
+	
+	
+	public void validateDueDiligenceTabs()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Diligence_Cancel_Button, 20, driver);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_SpecilizedDueDiligence_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_MandatoryDueDiligence_Tab));
+		
+	}
+	
+	public void validateSpecilizedDiligenceSection()
+	{
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_AddRemoveIndustryStandard_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_AddRemoveIndustryStandard_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_AddRemoveIndustryStandard_Button));
+	}
+	
+	public void validateMandatoryDiligence_Customer()
+	{
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_Customer_Title_Label));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_PEPComplete_Yes_RadioButton));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_PEPComplete_No_RadioButton));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_RefinitivScreeningOutcome_Header));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_RiskRating_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_Comments_TextField));
+	}
+	
+	public void validateMandatoryDiligence_NonIndividual()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Diligence_NonIndividual_Tab, 10, driver);
+		ReusableMethods.click(driver,Diligence_NonIndividual_Tab);
+		ReusableMethods.waitForElementToBeDisplayed(Diligence_Customer_Title_Label, 10, driver);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_Customer_Title_Label));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_Controllers_Label));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_PEPComplete_Yes_RadioButton));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_PEPComplete_No_RadioButton));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_RefinitivScreeningOutcome_Header));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_RiskRating_Dropdown));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_Comments_TextField));
 	}
 }

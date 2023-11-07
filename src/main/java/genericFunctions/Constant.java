@@ -11,4 +11,6 @@ public class Constant {
 	public static List<String> BUSSINESSINFORMATIONDROPDOWNS=Arrays.asList("Industry","Countries of Operation","Countries of Principal Suppliers");
 	public static List<String> CONTACTINFORMATION_ADDRESSFIELDS=Arrays.asList("Line 1","Line 2","Street","Area","City","State","Country","Pincode","Contact Person Name","Contact Person Number");
 	public static List<String> 	BENEFICIALOWNERIDENTIAL_LABELS=Arrays.asList("Customer Name","Country of Incorporation","Relationship Type","Registration Number","Booking Location(s)","Risk Rating","Unwrapping Source");
+	public static List<String> NONINDIVIDUAL_PRINICIPALOFFICEADDRESS=Arrays.asList("Line 1","Line 2","Street","Area","City","State","Country","Pincode");
+
 }

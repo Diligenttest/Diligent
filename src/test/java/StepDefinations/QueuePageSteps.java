@@ -203,4 +203,51 @@ public class QueuePageSteps {
 			break;
 		}
 	}
+	
+	@When("I click on <Documentation> tab in the onborading screen")
+	public void i_click_on_documentation_tab_in_the_onborading_screen() {
+		getQueuePage.clickDocumentationTab();
+	}
+	@Then("I should validate tabs under <Documentation> section")
+	public void i_should_validate_tabs_under_documentation_section() {
+	   getQueuePage.validateDocumentationTabs();
+	}
+	@Then("I should validate tabs under <ID&V Documentation> section")
+	public void i_should_validate_tabs_under_id_v_documentation_section() {
+	    getQueuePage.validateIDVDocumentationTabs();
+	}
+	@Then("I should validate tabs labels, headers and table data under {string} section")
+	public void i_should_validate_tabs_labels_headers_and_table_data_under_section(String tabType) throws Exception {
+		getQueuePage.validateDocument_Customer_NonIndividual_Section(tabType);
+	}
+	
+	@When("I click on <Document Tracking< tab under Documentation")
+	public void i_click_on_document_tracking_tab_under_documentation() {
+		getQueuePage.clickDocumentTrackingTab();
+	}
+	@Then("I should validate label, headers and button for {string} under Document Tracking section")
+	public void i_should_validate_label_headers_and_button_for_under_document_tracking_section(String tabType) throws Exception {
+	    getQueuePage.validateDocument_Customer_NonIndividual_DocumentTrackingSection(tabType);
+	}
+	
+	@When("I click on Add Icon button")
+	public void i_click_on_add_icon_button() {
+	    getQueuePage.clickAddIcon_Document();
+	}
+	@Then("I should validate Save & Proceed button is {string}")
+	public void i_should_validate_save_proceed_button_is(String value) {
+	    getQueuePage.validateSaveAndProceedButton(value);
+	}
+	@When("I enter <DocumentName> ,<Mandatory> and certification requirement")
+	public void i_enter_document_name_mandatory_and_certification_requirement() {
+	    getQueuePage.enterOtherDocuments_Info();
+	}
+	@Then("I click on Remove Icon button")
+	public void i_click_on_remove_icon_button() {
+	    getQueuePage.clickRemoveIcon_Document();
+	}
+	@Then("I should validate section is disappeared under other documents sections")
+	public void i_should_validate_section_is_disappeared_under_other_documents_sections() {
+	   getQueuePage.validateOtherDocumentFieldDisapper();
+	}
 }

@@ -324,7 +324,74 @@ public class QueuePage {
 	@FindBy(xpath = "//b[contains(text(),'Controllers (Non-Individual),')]")
 	public WebElement Diligence_Controllers_Label;
 	
-	//***************************************************************************
+	//************************Documentation*****************************
+	@FindBy(xpath = "//div[contains(text(),'Documentation')]")
+	public WebElement Documentation_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'ID & V Documentation')]")
+	public WebElement Doc_IDV_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Document Tracking')]")
+	public WebElement Doc_DocumentTracking_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Customer')]")
+	public WebElement Doc_Customer_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Non-Individual')]")
+	public WebElement Doc_NonIndividual_Tab;
+	
+	@FindBy(xpath = "//mat-panel-title")
+	public WebElement Doc_ApplicationTitle_Label;
+	
+	@FindBy(xpath = "(//b[contains(text(),'Doc selection Completed')]/../..//div[@class='mat-radio-outer-circle'])[1]")
+	public WebElement Doc_DocSelectionCompleted_Yes_RadioButton;
+	
+	@FindBy(xpath = "(//b[contains(text(),'Doc selection Completed')]/../..//div[@class='mat-radio-outer-circle'])[2]")
+	public WebElement Doc_DocSelectionCompleted_No_RadioButton;
+	
+	@FindBy(xpath = "//label[contains(text(),'Selected documents satisfy verification requirement')]")
+	public WebElement Doc_SelectedDocuments_Header;
+	
+	@FindBy(xpath = "//label[contains(text(),'List of Documents which can be submitted for Verification')]")
+	public WebElement Doc_ListOfDocuments_Header;
+	
+	@FindBy(xpath = "//div[@class='table-responsive']//th")
+	public List<WebElement> Doc_Table_Header;
+	
+	@FindBy(xpath = "//div[@class='table-responsive']//span[2]")
+	public List<WebElement> Doc_Table_Data;
+	
+	@FindBy(xpath = "//h2[contains(text(),'Other Document(s)')]")
+	public WebElement Doc_OtherDocuments_Header;
+	
+	@FindBy(xpath = "//div[contains(text(),'- Mandatory, P - Primary, S - Secondary')]")
+	public WebElement Doc_OtherDocuments_Note;
+	
+	@FindBy(xpath = "//b[contains(text(),'Controllers (Non-Individual),')]")
+	public WebElement Doc_NonIndividualControllers_Label;
+	
+	@FindBy(xpath = "//div[contains(text(),'- Mandatory, P - Primary, S - Secondary')]")
+	public WebElement Doc_Add_Icon;
+	
+	@FindBy(xpath = "//a[@ng-reflect-message='Remove Document']")
+	public WebElement Doc_Remove_Icon;
+	
+	@FindBy(xpath = "//div[contains(text(),'Agreed / Need to submit document(s) are not required.')]")
+	public WebElement Doc_SubmitDocuments_Note;
+	
+	@FindBy(xpath = "//input[@placeholder='Document Name']")
+	public WebElement Doc_DocumentName_TextField;
+	
+	@FindBy(xpath = "//textarea[@placeholder='Certification Requirements']")
+	public WebElement Doc_CertificationRequirment_TextField;
+	
+	@FindBy(xpath = "//mat-select[@aria-label='Mandatory']")
+	public WebElement Doc_Mandatory_Dropdown;
+	
+	@FindBy(xpath = "//span[@class='mat-option-text' and contains(text(),'No')]")
+	public WebElement Doc_Mandatory_Selection_Dropdown;
+	
+	//********************************************************************
 
 	@FindBy(xpath = "//span[contains(text(),'Save & Proceed')]")
 	public WebElement Save_Proceed_Button;
@@ -635,5 +702,115 @@ public class QueuePage {
 		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_RefinitivScreeningOutcome_Header));
 		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_RiskRating_Dropdown));
 		Assert.assertTrue(ReusableMethods.isDisplayed(Diligence_Comments_TextField));
+	}
+	
+	public void clickDocumentationTab()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver, Documentation_Tab);
+	}
+	
+	public void validateDocumentationTabs()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_IDV_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_DocumentTracking_Tab));
+	}
+	
+	public void validateIDVDocumentationTabs()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_Customer_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_NonIndividual_Tab));
+	}
+	
+	public void validateDocument_Customer_NonIndividual_Section(String tabType) throws Exception
+	{
+		if(tabType.equals("Non Individual"))
+		{
+			ReusableMethods.click(driver, Doc_NonIndividual_Tab);
+			ReusableMethods.waitForElement(driver, Doc_NonIndividualControllers_Label);
+		}
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_ApplicationTitle_Label));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_DocSelectionCompleted_Yes_RadioButton));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_DocSelectionCompleted_No_RadioButton));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_SelectedDocuments_Header));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_ListOfDocuments_Header));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_OtherDocuments_Header));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_OtherDocuments_Note));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_Add_Icon));
+
+		switch(tabType)
+		{
+		case "Customer":
+			Assert.assertFalse(ReusableMethods.isDisplayed(Doc_NonIndividualControllers_Label));
+			ReusableMethods.compareList(Doc_Table_Header, Constant.DOC_CUSTOMER_TABLE_HEADER);
+			Assert.assertNotNull(ReusableMethods.getListofElementsCount(Doc_Table_Data));
+			  break;
+			  
+		case "Non Individual":
+			Assert.assertTrue(ReusableMethods.isDisplayed(Doc_NonIndividualControllers_Label));
+			ReusableMethods.compareList(Doc_Table_Header, Constant.DOC_NONINDIVIDUAL_TABLE_HEADER);
+			Assert.assertNotNull(ReusableMethods.getListofElementsCount(Doc_Table_Data));
+		      break;
+		}				
+	}
+	
+	public void clickDocumentTrackingTab()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver, Doc_DocumentTracking_Tab);
+	}
+	
+	public void validateDocument_Customer_NonIndividual_DocumentTrackingSection(String tabType) throws Exception
+	{
+		if(tabType.equals("Non Individual"))
+		{
+			ReusableMethods.click(driver, Doc_NonIndividual_Tab);
+			ReusableMethods.waitForElement(driver, Doc_NonIndividualControllers_Label);
+			Assert.assertTrue(ReusableMethods.isDisplayed(Doc_NonIndividualControllers_Label));
+		}
+		
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_ApplicationTitle_Label));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_SubmitDocuments_Note));
+	}
+	
+	public void clickAddIcon_Document()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver,Doc_Add_Icon);
+	}
+	
+	public void clickRemoveIcon_Document()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver,Doc_Remove_Icon);
+	}
+	
+	public void enterOtherDocuments_Info()
+	{
+		ReusableMethods.waitForElement(driver, Doc_DocumentName_TextField);
+		ReusableMethods.EnterValue(driver, Doc_DocumentName_TextField,ReusableMethods.generateRandomValues("alphabets", 5));
+		ReusableMethods.EnterValue(driver, Doc_CertificationRequirment_TextField,ReusableMethods.generateRandomValues("alphabets", 16));
+	    ReusableMethods.click(driver, Doc_Mandatory_Dropdown);
+	    ReusableMethods.click(driver, Doc_Mandatory_Selection_Dropdown);
+	}
+	
+	public void validateSaveAndProceedButton(String value)
+	{
+		if(value.equals("Enable"))
+		{
+			Assert.assertTrue(ReusableMethods.isEnabled(Save_Proceed_Button));
+		}
+		else
+		{
+			Assert.assertFalse(ReusableMethods.isEnabled(Save_Proceed_Button));
+		}
+	}
+	
+	public void validateOtherDocumentFieldDisapper()
+	{
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_DocumentName_TextField));
+		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_CertificationRequirment_TextField));
 	}
 }

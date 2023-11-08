@@ -96,7 +96,7 @@ Feature: Onboarding Validation
     And I should validate fields under <Specilized Due Diligence> section
     When I Close the browser
 
-  @regression @test
+  @regression
   Scenario: Validate Due Diligence for Mandatory Due Degilicence corportation
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -106,6 +106,49 @@ Feature: Onboarding Validation
     Then I should validate fields under "Customer" section under Pep (corp)
     Then I should validate fields under "Non-Individual" section under Pep (corp)
     When I Close the browser
+    
+    @regression
+  Scenario: Validate Documentation field labels,button for IDV & V Documentation with Customer tab
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Documentation> tab in the onborading screen
+    Then I should validate tabs under <Documentation> section
+    And I should validate tabs under <ID&V Documentation> section
+    And I should validate tabs labels, headers and table data under "Customer" section
+    When I Close the browser
+    
+    @regression
+  Scenario: Validate Documentation field labels,button for IDV & V Documentation with Non Individual tab
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Documentation> tab in the onborading screen
+    And I should validate tabs labels, headers and table data under "Non Individual" section
+    When I Close the browser
+    
+    @regression 
+  Scenario: Validate Document Tracking section under Documentation for Customer and Non Individual tabs
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Documentation> tab in the onborading screen
+    And I click on <Document Tracking< tab under Documentation
+    Then I should validate label, headers and button for "Customer" under Document Tracking section
+    And I should validate label, headers and button for "Non Individual" under Document Tracking section
+    
+    @regression @test
+  Scenario: Validate Add Icon under Documentation section
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Documentation> tab in the onborading screen
+    And I click on Add Icon button 
+    Then I should validate Save & Proceed button is "Disable"
+    When I enter <DocumentName> ,<Mandatory> and certification requirement 
+    Then I should validate Save & Proceed button is "Enable"
+    And I click on Remove Icon button
+    Then I should validate section is disappeared under other documents sections
 
   @regression
   Scenario: Validate Data is saved in Internal Information

@@ -391,6 +391,55 @@ public class QueuePage {
 	@FindBy(xpath = "//span[@class='mat-option-text' and contains(text(),'No')]")
 	public WebElement Doc_Mandatory_Selection_Dropdown;
 	
+	//************************Risk Assessment*****************************
+	
+	@FindBy(xpath = "//div[contains(text(),'Risk Assessment')]")
+	public WebElement RiskAssessment_Tab;
+	
+	@FindBy(xpath = "//div[contains(text(),'Risk Based Assessment')]/parent::div/following-sibling::div")
+	public List<WebElement> RiskAssesment_Labels_Headers;
+	
+	@FindBy(xpath = "//span[contains(text(),'Save & Submit')]/parent::button")
+	public WebElement Save_Submit_Button;
+	
+	//************************Profile Summary*****************************
+	
+	@FindBy(xpath = "//div[contains(text(),'Profile Summary')]")
+	public WebElement ProfileSummary_Tab;
+	
+	@FindBy(xpath = "//div[contains(text(),'Profile Details')]")
+	public WebElement ProfileDetails_Tab;
+	
+	@FindBy(xpath = "//div[contains(text(),'Profile History')]")
+	public WebElement ProfileHistory_Tab;
+	
+	@FindBy(xpath = "//div[contains(text(),'Customer Information Summary')]")
+	public WebElement Profile_CustomerInformation_Header;
+	
+	@FindBy(xpath = "//label[@class='heading']")
+	public List<WebElement> Profile_CustomerInformation_Labels;
+	
+	@FindBy(xpath = "//figure[@class='mat-figure']")
+	public List<WebElement> Profile_Customer_RiskSummary_Labels_Table;
+	
+	@FindBy(xpath = "//div[contains(text(),'Profile History')]")
+	public WebElement WaiverApplied_ToggleButton;
+	
+	@FindBy(xpath = "//label[contains(text(),'Waiver Applied:')]/parent::div//span[contains(@class,'sub-data')]")
+	public WebElement WaiverApplied_Text;
+	
+	@FindBy(xpath = "//span[contains(text(),'Save')]/parent::button")
+	public WebElement Profile_SaveButton;
+	
+	@FindBy(xpath = "//div[@class='table-data']//th")
+	public List<WebElement> ProfileHistory_TableHeaders;
+	
+	@FindBy(xpath = "//div[@class='table-data']//tbody//tr")
+	public List<WebElement> ProfileHistory_CustomerInfo;
+	
+	@FindBy(xpath = "//span[contains(text(),'Download')]/parent::button")
+	public WebElement ProfileHistory_Download_Button;
+	
 	//********************************************************************
 
 	@FindBy(xpath = "//span[contains(text(),'Save & Proceed')]")
@@ -411,6 +460,11 @@ public class QueuePage {
 	public  WebElement fileStatusValue(int number)
 	{
 		return driver.findElement(By.xpath("(//mat-option//span[@class='mat-option-text'])["+number+"]"));
+	}
+	
+	public  WebElement customerName(String name)
+	{
+		return driver.findElement(By.xpath(" //a[contains(text(),'"+name+"')]"));
 	}
 	
 	public  WebElement getFileStatusValue(String value)
@@ -442,6 +496,11 @@ public class QueuePage {
 	public void clickAnyExistingApplicationID() {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
 		ReusableMethods.click(driver, ApplicationID);
+	}
+	
+	public void clickExistingCustomerName(String name) {
+		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
+		ReusableMethods.click(driver, customerName(name));
 	}
 
 	public void validateOnboardingTabs() throws Exception {
@@ -812,5 +871,63 @@ public class QueuePage {
 	{
 		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_DocumentName_TextField));
 		Assert.assertTrue(ReusableMethods.isDisplayed(Doc_CertificationRequirment_TextField));
+	}
+	
+	public void clickRiskAssessmentTab()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver, RiskAssessment_Tab);
+	}
+	
+	public void validateRiskAssesmentSection() throws Exception
+	{
+		ReusableMethods.waitForElement(driver, Save_Submit_Button);
+		Assert.assertFalse(ReusableMethods.isEnabled(Save_Submit_Button));
+		ReusableMethods.compareList(RiskAssesment_Labels_Headers, Constant.RISKASSESMENT_LABELS_FIELDS);
+	}
+	
+	public void clickProfileSummaryTab()
+	{
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
+		ReusableMethods.click(driver, ProfileSummary_Tab);
+	}
+	
+	public void validateProfileSummaryTabs()
+	{
+		Assert.assertTrue(ReusableMethods.isDisplayed(ProfileDetails_Tab));
+		Assert.assertTrue(ReusableMethods.isDisplayed(ProfileHistory_Tab));
+	}
+	
+	public void validateCustomerInformationAndRiskSummary() throws Exception
+	{
+		ReusableMethods.waitForElement(driver, Profile_CustomerInformation_Header);
+		ReusableMethods.compareList(Profile_CustomerInformation_Labels, Constant.PROFILEDETAILS_LABELS);
+		ReusableMethods.compareList(Profile_Customer_RiskSummary_Labels_Table, Constant.PROFILEDETAILS_TABLEINFO);
+	}
+	
+	public void validateProfileDetailsSaveButton() throws InterruptedException
+	{
+		String value=ReusableMethods.GetTextData(WaiverApplied_Text);
+		
+		if(value.equals("Yes"))
+		{
+			Assert.assertFalse(ReusableMethods.isEnabled(Profile_SaveButton));
+		}
+		else
+		{
+			Assert.assertTrue(ReusableMethods.isEnabled(Profile_SaveButton));
+			ReusableMethods.click(driver, WaiverApplied_ToggleButton);
+			ReusableMethods.Sleep(2);
+			Assert.assertFalse(ReusableMethods.isEnabled(Profile_SaveButton));
+		}
+	}
+	
+	public void validateProfileHistory() throws Exception
+	{
+		ReusableMethods.click(driver,ProfileHistory_Tab);
+		ReusableMethods.waitForElement(driver, ProfileHistory_Download_Button);
+		Assert.assertTrue(ReusableMethods.isEnabled(ProfileHistory_Download_Button));
+		Assert.assertNotNull(ReusableMethods.getListofElementsCount(ProfileHistory_CustomerInfo));
+		ReusableMethods.compareList(ProfileHistory_TableHeaders,Constant.PROFILEHISTORY_TABLEHEADER);
 	}
 }

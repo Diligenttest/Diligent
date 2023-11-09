@@ -137,7 +137,7 @@ Feature: Onboarding Validation
     Then I should validate label, headers and button for "Customer" under Document Tracking section
     And I should validate label, headers and button for "Non Individual" under Document Tracking section
     
-    @regression @test
+    @regression
   Scenario: Validate Add Icon under Documentation section
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -171,3 +171,30 @@ Feature: Onboarding Validation
     And I click on Save & Exit button
     And I should validate File Status is displayed as selected
     When I Close the browser
+    
+    
+ @regression
+  Scenario: Validate Risk Assesment section in the onboaridng screen
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Risk Assessment> tab in the onborading screen
+    Then I should validate <Risk Assesment Section> under Risk Assessment
+    
+    @regression @test
+  Scenario: Validate Profile Summary Section and Profile Details in the onboard screen
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on existing customer as "Testing 01"
+    And I click on <Profile Summary> tab in the onborading screen
+    Then I should validate Tabs under <Profile Summary> Section
+    And I should validate <Customer> and  <Risk Assesment summary> information summary section
+    And I should validate profile save button for waiver applied section
+    
+    @regression 
+  Scenario: Validate Profile History section under Profile details in the onboard screen
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on existing customer as "Testing 01"
+    And I click on <Profile Summary> tab in the onborading screen
+    Then I should validate Profile History Section

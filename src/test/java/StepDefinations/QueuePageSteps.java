@@ -52,6 +52,11 @@ public class QueuePageSteps {
 	public void i_click_on_any_existing_application_id() {
 		getQueuePage.clickAnyExistingApplicationID();
 	}
+	
+	@When("I click on existing customer as {string}")
+	public void i_click_on_existing_customer_as(String customerName) {
+	    getQueuePage.clickExistingCustomerName(customerName);
+	}
 
 	@Then("I should validate tabs in the onboarding screen")
 	public void i_should_validate_tabs_in_the_onboarding_screen() throws Exception {
@@ -249,5 +254,37 @@ public class QueuePageSteps {
 	@Then("I should validate section is disappeared under other documents sections")
 	public void i_should_validate_section_is_disappeared_under_other_documents_sections() {
 	   getQueuePage.validateOtherDocumentFieldDisapper();
+	}
+	
+	@When("I click on <Risk Assessment> tab in the onborading screen")
+	public void i_click_on_risk_assessment_tab_in_the_onborading_screen() {
+	   getQueuePage.clickRiskAssessmentTab();
+	}
+	@Then("I should validate <Risk Assesment Section> under Risk Assessment")
+	public void i_should_validate_under_risk_assessment() throws Exception {
+		getQueuePage.validateRiskAssesmentSection();
+	}
+
+	@When("I click on <Profile Summary> tab in the onborading screen")
+	public void i_click_on_profile_summary_tab_in_the_onborading_screen() {
+	    getQueuePage.clickProfileSummaryTab();
+	}
+	@Then("I should validate Tabs under <Profile Summary> Section")
+	public void i_should_validate_tabs_under_profile_summary_section() {
+	   getQueuePage.validateProfileSummaryTabs();
+	}
+	@Then("I should validate <Customer> and  <Risk Assesment summary> information summary section")
+	public void i_should_validate_customer_and_risk_assesment_summary_information_summary_section() throws Exception {
+	   getQueuePage.validateCustomerInformationAndRiskSummary();
+	}
+
+	@Then("I should validate profile save button for waiver applied section")
+	public void i_should_validate_save_button_in_on_selecting_waiver_applier_as_yes() throws InterruptedException {
+	    getQueuePage.validateProfileDetailsSaveButton();
+	}
+
+	@Then("I should validate Profile History Section")
+	public void i_should_validate_profile_history_section() throws Exception {
+	   getQueuePage.validateProfileHistory();
 	}
 }

@@ -86,7 +86,7 @@ Feature: Onboarding Validation
     And I should validate fields under "Non-Individual" under Customer and Connected Parties
     When I Close the browser
 
-  @regression 
+  @regression
   Scenario: Validate Due Diligence for Specilized Due Degilicence corportation
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -106,8 +106,8 @@ Feature: Onboarding Validation
     Then I should validate fields under "Customer" section under Pep (corp)
     Then I should validate fields under "Non-Individual" section under Pep (corp)
     When I Close the browser
-    
-    @regression
+
+  @regression
   Scenario: Validate Documentation field labels,button for IDV & V Documentation with Customer tab
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -117,8 +117,8 @@ Feature: Onboarding Validation
     And I should validate tabs under <ID&V Documentation> section
     And I should validate tabs labels, headers and table data under "Customer" section
     When I Close the browser
-    
-    @regression
+
+  @regression
   Scenario: Validate Documentation field labels,button for IDV & V Documentation with Non Individual tab
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -126,8 +126,8 @@ Feature: Onboarding Validation
     And I click on <Documentation> tab in the onborading screen
     And I should validate tabs labels, headers and table data under "Non Individual" section
     When I Close the browser
-    
-    @regression 
+
+  @regression
   Scenario: Validate Document Tracking section under Documentation for Customer and Non Individual tabs
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -136,16 +136,16 @@ Feature: Onboarding Validation
     And I click on <Document Tracking< tab under Documentation
     Then I should validate label, headers and button for "Customer" under Document Tracking section
     And I should validate label, headers and button for "Non Individual" under Document Tracking section
-    
-    @regression
+
+  @regression
   Scenario: Validate Add Icon under Documentation section
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
     And I click on any existing Application ID
     And I click on <Documentation> tab in the onborading screen
-    And I click on Add Icon button 
+    And I click on Add Icon button
     Then I should validate Save & Proceed button is "Disable"
-    When I enter <DocumentName> ,<Mandatory> and certification requirement 
+    When I enter <DocumentName> ,<Mandatory> and certification requirement
     Then I should validate Save & Proceed button is "Enable"
     And I click on Remove Icon button
     Then I should validate section is disappeared under other documents sections
@@ -171,17 +171,17 @@ Feature: Onboarding Validation
     And I click on Save & Exit button
     And I should validate File Status is displayed as selected
     When I Close the browser
-    
-    
- @regression
+
+  @regression
   Scenario: Validate Risk Assesment section in the onboaridng screen
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
     And I click on any existing Application ID
     And I click on <Risk Assessment> tab in the onborading screen
     Then I should validate <Risk Assesment Section> under Risk Assessment
-    
-    @regression @test
+    When I Close the browser
+
+  @regression
   Scenario: Validate Profile Summary Section and Profile Details in the onboard screen
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
@@ -190,11 +190,62 @@ Feature: Onboarding Validation
     Then I should validate Tabs under <Profile Summary> Section
     And I should validate <Customer> and  <Risk Assesment summary> information summary section
     And I should validate profile save button for waiver applied section
-    
-    @regression 
+    When I Close the browser
+
+  @regression
   Scenario: Validate Profile History section under Profile details in the onboard screen
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard
     And I click on existing customer as "Testing 01"
     And I click on <Profile Summary> tab in the onborading screen
     Then I should validate Profile History Section
+    When I Close the browser
+
+  @regression
+  Scenario: Validate Makers button and comments field validation in onboarding/internal information tab
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on Maker comments button under internal information tab
+    Then I should validate Maker comments pop with comments,update and cancel button
+    When I enter comments and click on "Cancel" button
+    And I click on Maker comments button under internal information tab
+    Then I should validate the text is "Not Saved" in comments section
+    When I click on Maker comments button under internal information tab
+    And I enter comments and click on "Update" button
+    And I click on Maker comments button under internal information tab
+    Then I should validate the text is "Saved" in comments section
+    When I Close the browser
+
+  @regression 
+  Scenario Outline: Validate Field Characters should restrict to 50 characters <"FieldName">
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I enter more than 50 characters in <"FieldName">
+    And I click on Save & Proceed button
+    Then I should validate page is navigated to <Entity Information> screen
+    When I click on <Internal Information> tab in the onborading screen
+    Then I should validate only 50 characters should be saved in the field <"FieldName">
+    When I Close the browser
+
+    Examples: 
+      | FieldName              |
+      | CoreBankingID          |
+      | CustomerSourcedThrough |
+      | BussinessSegment       |
+      | RMName                 |
+      | Tranperency            |
+
+  @regression @test
+  Scenario: Validate Data is saved in Entity Information_CustomerIdentificationInformation
+    When I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any existing Application ID
+    And I click on <Entity Information> tab in the onborading screen
+    And I enter all the information under <Entity Information> section
+    And I click on Save & Proceed button
+    Then I should validate page is navigated to <Bussiness Information> tab screen
+    When I click on <Customer Identification> tab in the onborading screen
+    Then I should validate data is saved in Customer Identification section
+    When I Close the browser

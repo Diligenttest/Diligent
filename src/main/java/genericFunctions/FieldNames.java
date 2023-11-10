@@ -8,6 +8,15 @@ public enum FieldNames {
 	RMName,
 	Tranparency,
 	DateOfCutomerVisit,
-	FileStatus
+	FileStatus,
+	MakerComments,
+	LegalName,
+	FormarName,
+	RegisteredAddress,
+	Line1,
+	Line2,
+	Street,
+	City,
+	Pincode
 
 }

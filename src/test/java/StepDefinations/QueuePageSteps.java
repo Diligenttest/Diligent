@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.TestContext.ScenarioContext;
 import com.TestContext.WebTestContext;
+import com.aventstack.extentreports.gson.GsonExtentTypeAdapterBuilder;
 
 import genericFunctions.ReusableMethods;
 import io.cucumber.datatable.DataTable;
@@ -286,5 +287,48 @@ public class QueuePageSteps {
 	@Then("I should validate Profile History Section")
 	public void i_should_validate_profile_history_section() throws Exception {
 	   getQueuePage.validateProfileHistory();
+	}
+	
+	@When("I click on Maker comments button under internal information tab")
+	public void i_click_on_maker_comments_button_under_internal_information_tab() {
+	    getQueuePage.clickMakersButton();
+	}
+	@Then("I should validate Maker comments pop with comments,update and cancel button")
+	public void i_should_validate_maker_comments_pop_with_comments_update_and_cancel_button() {
+	   getQueuePage.validateMakersPopUp();
+	}
+	@When("I enter comments and click on {string} button")
+	public void i_enter_comments_and_click_on_button(String value) throws InterruptedException {
+	   getQueuePage.enterMakersComments(value, scenarioContext);
+	}
+	@Then("I should validate the text is {string} in comments section")
+	public void i_should_validate_the_text_is_in_comments_section(String value) {
+	  getQueuePage.validateMakerComments(value, scenarioContext);
+	}
+	
+	@When("I enter more than {int} characters in <{string}>")
+	public void i_enter_more_than_characters_in(Integer int1, String fieldName) {
+	   getQueuePage.enterMoreThan50Characeters(fieldName);
+	}
+	@Then("I should validate only {int} characters should be saved in the field <{string}>")
+	public void i_should_validate_only_characters_should_be_saved_in_the_field(Integer int1, String fieldName) {
+		 getQueuePage.validateFieldCharacterLimit(fieldName);
+	}
+	
+	@When("I enter all the information under <Entity Information> section")
+	public void i_enter_all_the_information_under_entity_information_section() {
+	   getQueuePage.enterCustomerIdentificationInformation(scenarioContext);
+	}
+	@Then("I should validate page is navigated to <Bussiness Information> tab screen")
+	public void i_should_validate_page_is_navigated_to_bussiness_information_tab_screen() {
+	    getQueuePage.validatePageNavigatedTOBI();
+	}
+	@When("I click on <Customer Identification> tab in the onborading screen")
+	public void i_click_on_customer_identification_tab_in_the_onborading_screen() throws InterruptedException {
+	   getQueuePage.clickCustomerIdentificationTab();
+	}
+	@Then("I should validate data is saved in Customer Identification section")
+	public void i_should_validate_data_is_saved_in_customer_identification_section() {
+	   getQueuePage.validateCIformationInfo(scenarioContext);
 	}
 }

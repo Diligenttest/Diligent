@@ -237,7 +237,7 @@ Feature: Onboarding Validation
       | RMName                 |
       | Tranperency            |
 
-  @regression @test
+  @regression
   Scenario: Validate Data is saved in Entity Information_CustomerIdentificationInformation
     When I click "Queue Config" in the left pane from Dashboard
     And I click on the "Corporate" subtab in the left pane from Dashboard

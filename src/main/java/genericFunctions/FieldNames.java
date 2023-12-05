@@ -17,6 +17,8 @@ public enum FieldNames {
 	Line2,
 	Street,
 	City,
-	Pincode
+	Pincode,
+	RecordID,
+	CustomerName
 
 }

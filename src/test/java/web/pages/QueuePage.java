@@ -38,6 +38,12 @@ public class QueuePage {
 
 	@FindBy(xpath = "(//mat-cell[contains(@class,'MY_QUEUE_LABEL_APPLICATION')])[1]")
 	public WebElement ApplicationID;
+	
+	@FindBy(xpath = "(//mat-cell[contains(@class,'MY_QUEUE_LABEL_APPLICATION')])/a")
+	public List<WebElement> GetRecordID;
+	
+	@FindBy(xpath = "//button[contains(@class,'navigation-next')]")
+	public WebElement NextPagination_Button;
 
 	@FindBy(xpath = "//a[contains(@class,'mat-tab-link mat')]//following-sibling::div")
 	public List<WebElement> Onboarding_Tabs;
@@ -60,13 +66,28 @@ public class QueuePage {
 	// ***********Internal Information Fields************************
 	@FindBy(xpath = "//div[contains(text(),'Internal Information')]")
 	public WebElement InternalInformation_Tab;
+	
+	@FindBy(xpath = "//div[@class='mat-form-field-infix']")
+	public List<WebElement> Get_InternalInformation_Fields;
 
 	@FindBy(xpath = "//input[@placeholder='Core Banking ID']")
 	public WebElement CoreBanking_ID_TextField;
 
 	@FindBy(xpath = "//input[@placeholder='Customer Sourced Through']")
 	public WebElement CustomerSourcedThrough_TextField;
-
+	
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Customer Sourced Through')]")
+	public WebElement DynamicCustomerSourcedThrough_Dropdown;
+	
+	@FindBy(xpath = "//mat-option//span[contains(text(),'Direct')]")
+	public WebElement DynamicCustomerSourcedThrough_Value;
+	
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Business Segment')]")
+	public WebElement DynamicBussinessSegment_Dropdown;
+	
+	@FindBy(xpath = "//span[contains(text(),'Commercial Banking')]/..//mat-pseudo-checkbox")
+	public WebElement DynamicBussinessSegment_Value;
+	
 	@FindBy(xpath = "//input[@placeholder='Business Segment']")
 	public WebElement BusinessSegment_TextField;
 
@@ -89,6 +110,9 @@ public class QueuePage {
 
 	@FindBy(xpath = "//div[contains(text(),'Entity Information')]")
 	public WebElement EntityInformation_Tab;
+	
+	@FindBy(xpath = "//a[contains(text(),'Customer Information')]")
+	public WebElement CustomerInformation_Tab;
 	
 	@FindBy(xpath = "//a[contains(text(),'Customer Identification Information')]")
 	public WebElement CustomerIdentification_Tab;
@@ -501,7 +525,12 @@ public class QueuePage {
 		return driver.findElement(By.xpath("//mat-cell[contains(text(),'" + value + "')]"));
 	}
 
-	// **********************************************************************
+	// *************************Dynamic RecordID*****************************
+	
+	public WebElement dynamicRecordID(String recordID) {
+		return driver.findElement(By.xpath("//mat-cell/a[contains(text(),'"+recordID+"')]"));
+	}
+	//*************************************************************************
 
 	public void validateQueueUrl(String url) {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
@@ -524,6 +553,22 @@ public class QueuePage {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
 		ReusableMethods.click(driver, ApplicationID);
 	}
+	
+	public void clickDynamicRecordID(String recordID) throws Exception {
+		List<String> getRecords=null;
+		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
+		getRecords=ReusableMethods.getListofElements(GetRecordID);
+		
+		while(!(getRecords.contains(recordID)))
+		{
+			ReusableMethods.ScrollToElement(driver, NextPagination_Button);
+			ReusableMethods.click(driver,NextPagination_Button);
+			getRecords=ReusableMethods.getListofElements(GetRecordID);
+		}
+		
+		ReusableMethods.click(driver, dynamicRecordID(recordID));
+	}
+
 
 	public void clickExistingCustomerName(String name) {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
@@ -556,7 +601,6 @@ public class QueuePage {
 
 	public void clickInternalInformationButton() throws InterruptedException {
 		ReusableMethods.Sleep(6);
-		ReusableMethods.waitForElementToBeClickable(driver, Save_Proceed_Button);
 		ReusableMethods.click(driver, InternalInformation_Tab);
 	}
 
@@ -1097,5 +1141,52 @@ public class QueuePage {
 		ReusableMethods.waitForElementToBeDisplayed(CustomerIdentification_Tab,30,driver);
 		ReusableMethods.Sleep(5);
 		ReusableMethods.click(driver, CustomerIdentification_Tab);
+	}
+	
+	public void validateFieldCount(String tabName,String sector )
+	{
+		if(tabName.equals("Internal Information") && (tabName.equals("Private")))
+		Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_InternalInformation_Fields), 5);
+		
+	}
+	
+	public void enterDynamicInternalInformationSectionInfo(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
+		scenarioContext.addTestData(FieldNames.CoreBankingID.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField,
+				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
+		ReusableMethods.click(driver, DynamicCustomerSourcedThrough_Dropdown);
+		ReusableMethods.click(driver, DynamicCustomerSourcedThrough_Value);
+		ReusableMethods.moveToElement(driver, CoreBanking_ID_TextField);
+		ReusableMethods.click(driver, DynamicBussinessSegment_Dropdown);
+		ReusableMethods.click(driver, DynamicBussinessSegment_Value);
+		ReusableMethods.moveToElement(driver, CoreBanking_ID_TextField);
+		scenarioContext.addTestData(FieldNames.RMName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, RMName_TextField,
+				scenarioContext.getTestData(FieldNames.RMName.toString()));
+		ReusableMethods.click(driver, CalenderOpen_Button);
+		ReusableMethods.click(driver, SelectDate);
+		scenarioContext.addTestData(FieldNames.DateOfCutomerVisit.toString(),
+				ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "Text"));
+	}
+	
+	public void validatePageNavigation(String tabName)
+	{
+		switch(tabName)
+		{
+			case "Entity Information":
+				ReusableMethods.waitForElement(driver, CustomerInformation_Tab);
+				Assert.assertTrue(ReusableMethods.isDisplayed(CustomerInformation_Tab));
+				break;
+		}
+	}
+	
+	public void validateDynamicInternalInformationInfo(ScenarioContext scenarioContext) {
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.RMName.toString()));
 	}
 }

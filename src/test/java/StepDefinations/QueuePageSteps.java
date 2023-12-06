@@ -7,6 +7,7 @@ import com.TestContext.ScenarioContext;
 import com.TestContext.WebTestContext;
 import com.aventstack.extentreports.gson.GsonExtentTypeAdapterBuilder;
 
+import genericFunctions.FieldNames;
 import genericFunctions.ReusableMethods;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
@@ -110,6 +111,12 @@ public class QueuePageSteps {
 	public void i_enter_all_the_information_under_internal_information_section() {
 		getQueuePage.enterInternalInformationSectionInfo(scenarioContext);
 	}
+	
+	@When("I enter all the information under <Dynamic Internal Information> section")
+	public void i_enter_all_the_information_under_Dynamic_internal_information_section() {
+		getQueuePage.enterDynamicInternalInformationSectionInfo(scenarioContext);
+	}
+
 
 	@When("I click on Save & Proceed button")
 	public void i_click_on_save_proceed_button() {
@@ -125,6 +132,11 @@ public class QueuePageSteps {
 	public void i_should_validate_data_is_saved_in_internal_information_section() {
 		getQueuePage.validateInternalInformationInfo(scenarioContext);
 	}
+	
+	@Then("I should validate data is saved in dynamic internal information section")
+	public void i_should_validate_data_is_saved_in_dynamic_internal_information_section() {
+		getQueuePage.validateDynamicInternalInformationInfo(scenarioContext);
+	}
 
 	@When("I click on Save & Exit button")
 	public void i_click_on_save_exit_button() {
@@ -134,6 +146,11 @@ public class QueuePageSteps {
 	@Then("I should validate page is navigated to <Entity Information> screen")
 	public void i_should_validate_page_is_navigated_to_entity_information_screen() throws Exception {
 		getQueuePage.validateCII_Fields();
+	}
+	
+	@Then("I should validate page is navigated to {string} screen")
+	public void i_should_validate_page_is_navigated_to_Dynamic_entity_information_screen(String tabName) throws Exception {
+		getQueuePage.validatePageNavigation(tabName);
 	}
 
 	@Then("I should validate File Status is displayed as selected")
@@ -330,5 +347,14 @@ public class QueuePageSteps {
 	@Then("I should validate data is saved in Customer Identification section")
 	public void i_should_validate_data_is_saved_in_customer_identification_section() {
 	   getQueuePage.validateCIformationInfo(scenarioContext);
+	}
+	
+	@When("I click on any created record through API")
+	public void i_click_on_any_created_record_through_api() throws Exception {
+	    getQueuePage.clickDynamicRecordID(scenarioContext.getTestData(FieldNames.RecordID.toString()));
+	}
+	@Then("I should validate fields count for {string} under {string} sector")
+	public void i_should_validate_fields_count_for_under_sector(String tabName, String orgnizationType) {
+		getQueuePage.validateFieldCount(tabName, orgnizationType);
 	}
 }

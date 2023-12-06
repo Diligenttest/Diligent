@@ -58,7 +58,8 @@ public class APISteps {
 	public void i_should_capture_patient_user_id() {
 		JsonPath jsonPathEvaluator = res.jsonPath();
 		scenarioContext.addTestData(FieldNames.RecordID.toString(),
-				jsonPathEvaluator.get("userUUId").toString());
+				jsonPathEvaluator.get("data[0].id").toString());
 		ExtentCucumberAdapter.addTestStepLog(scenarioContext.getTestData(FieldNames.RecordID.toString()));
+		System.out.println(jsonPathEvaluator.get("data[0].id").toString());
 	}
 }

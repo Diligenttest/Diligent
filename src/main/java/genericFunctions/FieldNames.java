@@ -19,6 +19,14 @@ public enum FieldNames {
 	City,
 	Pincode,
 	RecordID,
-	CustomerName
+	CustomerName,
+	CountryOfIncorporation,
+	TaxResidingStatus,
+	TaxReferenceNumber,
+	LegalStatus,
+	BankName,
+	Country,
+	RelationShiptype,
+	StockExchange
 
 }

@@ -38,10 +38,10 @@ public class QueuePage {
 
 	@FindBy(xpath = "(//mat-cell[contains(@class,'MY_QUEUE_LABEL_APPLICATION')])[1]")
 	public WebElement ApplicationID;
-	
+
 	@FindBy(xpath = "(//mat-cell[contains(@class,'MY_QUEUE_LABEL_APPLICATION')])/a")
 	public List<WebElement> GetRecordID;
-	
+
 	@FindBy(xpath = "//button[contains(@class,'navigation-next')]")
 	public WebElement NextPagination_Button;
 
@@ -66,7 +66,7 @@ public class QueuePage {
 	// ***********Internal Information Fields************************
 	@FindBy(xpath = "//div[contains(text(),'Internal Information')]")
 	public WebElement InternalInformation_Tab;
-	
+
 	@FindBy(xpath = "//div[@class='mat-form-field-infix']")
 	public List<WebElement> Get_InternalInformation_Fields;
 
@@ -75,19 +75,19 @@ public class QueuePage {
 
 	@FindBy(xpath = "//input[@placeholder='Customer Sourced Through']")
 	public WebElement CustomerSourcedThrough_TextField;
-	
+
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Customer Sourced Through')]")
 	public WebElement DynamicCustomerSourcedThrough_Dropdown;
-	
+
 	@FindBy(xpath = "//mat-option//span[contains(text(),'Direct')]")
 	public WebElement DynamicCustomerSourcedThrough_Value;
-	
+
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Business Segment')]")
 	public WebElement DynamicBussinessSegment_Dropdown;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Commercial Banking')]/..//mat-pseudo-checkbox")
 	public WebElement DynamicBussinessSegment_Value;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Business Segment']")
 	public WebElement BusinessSegment_TextField;
 
@@ -110,10 +110,10 @@ public class QueuePage {
 
 	@FindBy(xpath = "//div[contains(text(),'Entity Information')]")
 	public WebElement EntityInformation_Tab;
-	
+
 	@FindBy(xpath = "//a[contains(text(),'Customer Information')]")
 	public WebElement CustomerInformation_Tab;
-	
+
 	@FindBy(xpath = "//a[contains(text(),'Customer Identification Information')]")
 	public WebElement CustomerIdentification_Tab;
 
@@ -131,21 +131,49 @@ public class QueuePage {
 
 	@FindBy(xpath = "//div[contains(text(),'Registered Address')]//mat-label")
 	public List<WebElement> AddressFields;
-	
+
 	@FindBy(xpath = "//input[@placeholder=\"Line 1\"]")
 	public WebElement CI_Line1_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder=\"Line 2\"]")
 	public WebElement CI_Line2_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder=\"Street\"]")
 	public WebElement CI_Street_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder=\"City\"]")
 	public WebElement CI_City_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder=\"Pincode\"]")
 	public WebElement CI_Pincode_TextFIeld;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Country of Incorporation')]")
+	public WebElement CountryOfCorporation_Drp;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Tax Residency Status')]")
+	public WebElement TaxResidencyStatus_Drp;
+
+	@FindBy(xpath = "//input[@placeholder='GST/Tax Reference Number']")
+	public WebElement TaxReferenceNumber_TextField;
+
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Constitution/Legal Status')]")
+	public WebElement LegalStatus_Drp;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Bank Name')]")
+	public WebElement BankName_TextField;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Country')]")
+	public WebElement Country_TextField;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Relationship type')]")
+	public WebElement RelationShip_TextField;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Stock Exchange')]")
+	public WebElement StockExchange_Drp;
+
+	public WebElement GenericDropdwon(String value) {
+		return driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + value + "')]"));
+	}
 
 	// ***********Bussiness Information Fields************************
 
@@ -157,6 +185,9 @@ public class QueuePage {
 
 	@FindBy(xpath = "//div[@class='mat-form-field-infix']//mat-select//span")
 	public List<WebElement> BussinessInformation_Dropdowns;
+	
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Industry Type')]")
+	public WebElement IndustryType_Drp;
 
 	// ***********Product Information Fields************************
 
@@ -526,11 +557,11 @@ public class QueuePage {
 	}
 
 	// *************************Dynamic RecordID*****************************
-	
+
 	public WebElement dynamicRecordID(String recordID) {
-		return driver.findElement(By.xpath("//mat-cell/a[contains(text(),'"+recordID+"')]"));
+		return driver.findElement(By.xpath("//mat-cell/a[contains(text(),'" + recordID + "')]"));
 	}
-	//*************************************************************************
+	// *************************************************************************
 
 	public void validateQueueUrl(String url) {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
@@ -553,22 +584,20 @@ public class QueuePage {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
 		ReusableMethods.click(driver, ApplicationID);
 	}
-	
+
 	public void clickDynamicRecordID(String recordID) throws Exception {
-		List<String> getRecords=null;
+		List<String> getRecords = null;
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
-		getRecords=ReusableMethods.getListofElements(GetRecordID);
-		
-		while(!(getRecords.contains(recordID)))
-		{
+		getRecords = ReusableMethods.getListofElements(GetRecordID);
+
+		while (!(getRecords.contains(recordID))) {
 			ReusableMethods.ScrollToElement(driver, NextPagination_Button);
-			ReusableMethods.click(driver,NextPagination_Button);
-			getRecords=ReusableMethods.getListofElements(GetRecordID);
+			ReusableMethods.click(driver, NextPagination_Button);
+			getRecords = ReusableMethods.getListofElements(GetRecordID);
 		}
-		
+
 		ReusableMethods.click(driver, dynamicRecordID(recordID));
 	}
-
 
 	public void clickExistingCustomerName(String name) {
 		ReusableMethods.waitForElementToBeDisplayed(Cancel_Button, 10, driver);
@@ -702,6 +731,7 @@ public class QueuePage {
 	}
 
 	public void clickSaveAndProceedButton() {
+		ReusableMethods.ScrollToElement(driver, Save_Proceed_Button);
 		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
 		ReusableMethods.click(driver, Save_Proceed_Button);
 	}
@@ -1016,89 +1046,86 @@ public class QueuePage {
 					scenarioContext.getTestData(FieldNames.MakerComments.toString()));
 		ReusableMethods.click(driver, Makers_Cancel_Button);
 	}
-	
-	public void enterMoreThan50Characeters(String fieldName)
-	{
-		String word="i am from hyderabda listing entering dancing footba";
-		
-		switch(fieldName)
-		{
+
+	public void enterMoreThan50Characeters(String fieldName) {
+		String word = "i am from hyderabda listing entering dancing footba";
+
+		switch (fieldName) {
 		case "CoreBankingID":
-			 ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField, word);
+			ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField, word);
 			break;
-		case"CustomerSourcedThrough":
+		case "CustomerSourcedThrough":
 			ReusableMethods.ClearAndEnterValue(driver, CustomerSourcedThrough_TextField, word);
 			break;
-		case"BussinessSegment":
+		case "BussinessSegment":
 			ReusableMethods.ClearAndEnterValue(driver, BusinessSegment_TextField, word);
-		  break;
-		case"RMName":
+			break;
+		case "RMName":
 			ReusableMethods.ClearAndEnterValue(driver, RMName_TextField, word);
 			break;
-		case"Tranperency":
+		case "Tranperency":
 			ReusableMethods.ClearAndEnterValue(driver, Transparency_TextField, word);
 			break;
-		
+
 		}
 	}
-	
-	public void validateFieldCharacterLimit(String fieldName)
-	{
-		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button,30,driver);
-		String expectedword="i am from hyderabda listing entering dancing footb";
-		switch(fieldName)
-		{
+
+	public void validateFieldCharacterLimit(String fieldName) {
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
+		String expectedword = "i am from hyderabda listing entering dancing footb";
+		switch (fieldName) {
 		case "CoreBankingID":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"),expectedword);
+			Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"), expectedword);
 			break;
-		case"CustomerSourcedThrough":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(CustomerSourcedThrough_TextField, "value"),expectedword);
+		case "CustomerSourcedThrough":
+			Assert.assertEquals(ReusableMethods.GetValueByAttribute(CustomerSourcedThrough_TextField, "value"),
+					expectedword);
 			break;
-		case"BussinessSegment":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(BusinessSegment_TextField, "value"),expectedword);
-		  break;
-		case"RMName":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"),expectedword);
+		case "BussinessSegment":
+			Assert.assertEquals(ReusableMethods.GetValueByAttribute(BusinessSegment_TextField, "value"), expectedword);
 			break;
-		case"Tranperency":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(Transparency_TextField, "value"),expectedword);
+		case "RMName":
+			Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"), expectedword);
 			break;
-		
+		case "Tranperency":
+			Assert.assertEquals(ReusableMethods.GetValueByAttribute(Transparency_TextField, "value"), expectedword);
+			break;
+
 		}
 	}
-	
+
 	public void enterCustomerIdentificationInformation(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
 		scenarioContext.addTestData(FieldNames.LegalName.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, LegalName_TextField,
 				scenarioContext.getTestData(FieldNames.LegalName.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.FormarName.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, FormerName_TextField,
 				scenarioContext.getTestData(FieldNames.FormarName.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.Line1.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_Line1_TextFIeld,
 				scenarioContext.getTestData(FieldNames.Line1.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.Line2.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_Line2_TextFIeld,
 				scenarioContext.getTestData(FieldNames.Line2.toString()));
-			
+
 		scenarioContext.addTestData(FieldNames.Street.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_Street_TextFIeld,
 				scenarioContext.getTestData(FieldNames.Street.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.City.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_City_TextFIeld,
 				scenarioContext.getTestData(FieldNames.City.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.Pincode.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_Pincode_TextFIeld,
@@ -1109,47 +1136,44 @@ public class QueuePage {
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(LegalName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.LegalName.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(FormerName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.FormarName.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_Line1_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.Line1.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_Line2_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.Line2.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_Street_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.Street.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_City_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.City.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_Pincode_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.Pincode.toString()));
 	}
-	
-	public void validatePageNavigatedTOBI()
-	{
+
+	public void validatePageNavigatedTOBI() {
 		ReusableMethods.waitForElementToBeDisplayed(NatureOfBussiness_Header, 10, driver);
 		Assert.assertTrue(ReusableMethods.isDisplayed(NatureOfBussiness_Header));
 	}
-	
-	public void clickCustomerIdentificationTab() throws InterruptedException
-	{
+
+	public void clickCustomerIdentificationTab() throws InterruptedException {
 		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
-		ReusableMethods.waitForElementToBeDisplayed(CustomerIdentification_Tab,30,driver);
+		ReusableMethods.waitForElementToBeDisplayed(CustomerIdentification_Tab, 30, driver);
 		ReusableMethods.Sleep(5);
 		ReusableMethods.click(driver, CustomerIdentification_Tab);
 	}
-	
-	public void validateFieldCount(String tabName,String sector )
-	{
-		if(tabName.equals("Internal Information") && (tabName.equals("Private")))
-		Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_InternalInformation_Fields), 5);
-		
+
+	public void validateFieldCount(String tabName, String sector) {
+		if (tabName.equals("Internal Information") && (tabName.equals("Private")) || (tabName.equals("Public")))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_InternalInformation_Fields), 5);
+
 	}
-	
+
 	public void enterDynamicInternalInformationSectionInfo(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
 		scenarioContext.addTestData(FieldNames.CoreBankingID.toString(),
@@ -1171,22 +1195,120 @@ public class QueuePage {
 		scenarioContext.addTestData(FieldNames.DateOfCutomerVisit.toString(),
 				ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "Text"));
 	}
-	
-	public void validatePageNavigation(String tabName)
-	{
-		switch(tabName)
-		{
-			case "Entity Information":
-				ReusableMethods.waitForElement(driver, CustomerInformation_Tab);
-				Assert.assertTrue(ReusableMethods.isDisplayed(CustomerInformation_Tab));
-				break;
+
+	public void validatePageNavigation(String tabName) {
+		switch (tabName) {
+		case "Entity Information":
+			ReusableMethods.waitForElement(driver, CustomerInformation_Tab);
+			Assert.assertTrue(ReusableMethods.isDisplayed(CustomerInformation_Tab));
+			break;
+		case "Nature of Business and Business Activity":
+			ReusableMethods.waitForElement(driver, IndustryType_Drp);
+			Assert.assertTrue(ReusableMethods.isDisplayed(IndustryType_Drp));
+			break;
 		}
 	}
-	
+
 	public void validateDynamicInternalInformationInfo(ScenarioContext scenarioContext) {
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.RMName.toString()));
+	}
+	
+	public void enterFieldsData(ScenarioContext scenarioContext,String tabName)
+	{
+		switch(tabName)
+		{
+		case"Public-CustomerInformation":
+			public_CustomerInformation(scenarioContext);
+			break;
+		}
+	}
+	
+	public void clickTabs(String tabName) throws InterruptedException
+	{
+		ReusableMethods.Sleep(5);
+		switch(tabName)
+		{
+		case"Customer Information":
+			ReusableMethods.waitForElementToBeClickable(driver, CustomerInformation_Tab);
+			ReusableMethods.click(driver,CustomerInformation_Tab);
+			break;
+		}
+	}
+
+	public void public_CustomerInformation(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.CountryOfIncorporation.toString(), "Singapore");
+		scenarioContext.addTestData(FieldNames.TaxResidingStatus.toString(), "Resident in Singapore");
+		scenarioContext.addTestData(FieldNames.LegalStatus.toString(), "Private Limited Company");
+		scenarioContext.addTestData(FieldNames.StockExchange.toString(), "The Iceland Stock Exchange");
+		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
+		//Country of Corporation
+		ReusableMethods.click(driver, CountryOfCorporation_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountryOfIncorporation.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountryOfIncorporation.toString())));
+		// Tax Residing Dropdown
+		ReusableMethods.click(driver, TaxResidencyStatus_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.TaxResidingStatus.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.TaxResidingStatus.toString())));
+		// TaxReferenceNumber
+		scenarioContext.addTestData(FieldNames.TaxReferenceNumber.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, TaxReferenceNumber_TextField,
+				scenarioContext.getTestData(FieldNames.TaxReferenceNumber.toString()));
+		// LegalStatus
+		ReusableMethods.click(driver, LegalStatus_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.LegalStatus.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.LegalStatus.toString())));
+		// Banking
+		scenarioContext.addTestData(FieldNames.BankName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, BankName_TextField,
+				scenarioContext.getTestData(FieldNames.BankName.toString()));
+		// Country
+		scenarioContext.addTestData(FieldNames.Country.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, Country_TextField,
+				scenarioContext.getTestData(FieldNames.Country.toString()));
+
+		// RelationShipType
+		scenarioContext.addTestData(FieldNames.RelationShiptype.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, RelationShip_TextField,
+				scenarioContext.getTestData(FieldNames.RelationShiptype.toString()));
+
+		// StockExchange
+		ReusableMethods.click(driver, StockExchange_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.StockExchange.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.StockExchange.toString())));
+		ReusableMethods.moveToElement(driver, CustomerInformation_Tab);
+	}
+
+	public void public_validateCustomerInformation(ScenarioContext scenarioContext) {
+	   ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		Assert.assertEquals(ReusableMethods.GetTextData(CountryOfCorporation_Drp),
+				scenarioContext.getTestData(FieldNames.CountryOfIncorporation.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(TaxResidencyStatus_Drp),
+				scenarioContext.getTestData(FieldNames.TaxResidingStatus.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(TaxReferenceNumber_TextField,"value"),
+				scenarioContext.getTestData(FieldNames.TaxReferenceNumber.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(LegalStatus_Drp),
+				scenarioContext.getTestData(FieldNames.LegalStatus.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(BankName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.BankName.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Country_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Country.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RelationShip_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.RelationShiptype.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(StockExchange_Drp),
+				scenarioContext.getTestData(FieldNames.StockExchange.toString()));
 	}
 }

@@ -353,8 +353,22 @@ public class QueuePageSteps {
 	public void i_click_on_any_created_record_through_api() throws Exception {
 	    getQueuePage.clickDynamicRecordID(scenarioContext.getTestData(FieldNames.RecordID.toString()));
 	}
+	
 	@Then("I should validate fields count for {string} under {string} sector")
 	public void i_should_validate_fields_count_for_under_sector(String tabName, String orgnizationType) {
 		getQueuePage.validateFieldCount(tabName, orgnizationType);
+	}
+	
+	@Then("I enter all the information under {string} section")
+	public void i_enter_all_the_information_under_section(String tabName) {
+	    getQueuePage.enterFieldsData(scenarioContext, tabName);
+	}
+	@Then("I click on {string} tab in the onborading screen")
+	public void i_click_on_tab_in_the_onborading_screen(String tabName) throws InterruptedException {
+	    getQueuePage.clickTabs(tabName);;
+	}
+	@Then("I should validate data is saved under {string} section")
+	public void i_should_validate_data_is_saved_under_section(String string) {
+	   getQueuePage.public_validateCustomerInformation(scenarioContext);
 	}
 }

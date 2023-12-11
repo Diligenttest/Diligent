@@ -27,6 +27,14 @@ public enum FieldNames {
 	BankName,
 	Country,
 	RelationShiptype,
-	StockExchange
+	StockExchange,
+	Prodcution_Services,
+	IndustryType,
+	RiskProducts,
+	RiskIndustry,
+	RiskCountriesOfOperations,
+	RiskGovtOwned,
+	Risk1,
+	Risk2
 
 }

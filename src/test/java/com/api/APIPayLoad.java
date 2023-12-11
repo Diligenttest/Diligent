@@ -11,7 +11,7 @@ public class APIPayLoad {
 	private String customerName;
 	
 	public String customerName(ScenarioContext scenarioContext) {
-		customerName = ReusableMethods.generateRandomValues("alphabets", 5);
+		customerName ="QAAuto"+" "+ ReusableMethods.generateRandomValues("alphabets", 5);
 		ExtentCucumberAdapter.addTestStepLog("FirstName : " + customerName);
 		scenarioContext.addTestData(FieldNames.CustomerName.toString(), customerName);
 		System.out.println(customerName);

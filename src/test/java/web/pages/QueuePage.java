@@ -68,7 +68,7 @@ public class QueuePage {
 	public WebElement InternalInformation_Tab;
 
 	@FindBy(xpath = "//div[@class='mat-form-field-infix']")
-	public List<WebElement> Get_InternalInformation_Fields;
+	public List<WebElement> Get_Fields_Count;
 
 	@FindBy(xpath = "//input[@placeholder='Core Banking ID']")
 	public WebElement CoreBanking_ID_TextField;
@@ -180,25 +180,57 @@ public class QueuePage {
 	@FindBy(xpath = "//a[contains(text(),'Business Information')]")
 	public WebElement BussinessInformation_Link;
 
+	@FindBy(xpath = "//a[contains(text(),' Nature of Business and Business Activity ')]")
+	public WebElement BussinessInformation_Tab;
+
 	@FindBy(xpath = "//p[contains(text(),'Nature of Business')]")
 	public WebElement NatureOfBussiness_Header;
 
 	@FindBy(xpath = "//div[@class='mat-form-field-infix']//mat-select//span")
 	public List<WebElement> BussinessInformation_Dropdowns;
-	
+
 	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Industry Type')]")
 	public WebElement IndustryType_Drp;
+
+	@FindBy(xpath = "//textarea[contains(@ng-reflect-message,'Please provide brief details o')]")
+	public WebElement ProvideDetails_TextArea;
 
 	// ***********Product Information Fields************************
 
 	@FindBy(xpath = "//a[contains(text(),'Product Information')]")
-	public WebElement ProductInformation_Link;
+	public WebElement ProductInformation_Tab;
 
 	@FindBy(xpath = "//textarea[@placeholder='Purpose of Account Opening']")
 	public WebElement PurposeOfAccountOpening_TextArea;
 
 	@FindBy(xpath = "//mat-select[@aria-label='Products Required']")
 	public WebElement ProductsRequired_Dropdown;
+
+	// *****************Risk Evaluation************************************
+	@FindBy(xpath = "//a[contains(text(),'Risk Evaluation')]")
+	public WebElement RiskEvaluation_Tab;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Products')]")
+	public WebElement RiskProducts_Dropdown;
+
+	@FindBy(xpath = "//mat-select[@aria-label='Industry']")
+	public WebElement RiskIndusrtry_Dropdown;
+
+	@FindBy(xpath = "//mat-select[@aria-label='Countries of Operations']")
+	public WebElement RiskCountriesOfOPerations_Dropdown;
+
+	@FindBy(xpath = "//mat-select[@aria-label='Publicly Listed/Govt Owned']")
+	public WebElement RiskGovtOwned_Dropdown;
+
+	// *****************New Level************************************
+	@FindBy(xpath = "//a[contains(text(),'New Level')]")
+	public WebElement NewLevel_Tab;
+
+	@FindBy(xpath = "//mat-select[@aria-label='Risk 1']")
+	public WebElement Risk1_Dropdown;
+
+	@FindBy(xpath = "//mat-select[@aria-label='Risk 2']")
+	public WebElement Risk2_Dropdown;
 
 	// ***********Contact Information Fields************************
 
@@ -662,8 +694,8 @@ public class QueuePage {
 	}
 
 	public void validatePA_Fields() {
-		ReusableMethods.waitForElementToBeDisplayed(ProductInformation_Link, 10, driver);
-		ReusableMethods.click(driver, ProductInformation_Link);
+		ReusableMethods.waitForElementToBeDisplayed(ProductInformation_Tab, 10, driver);
+		ReusableMethods.click(driver, ProductInformation_Tab);
 		ReusableMethods.waitForElementToBeDisplayed(PurposeOfAccountOpening_TextArea, 10, driver);
 		Assert.assertTrue(ReusableMethods.isDisplayed(PurposeOfAccountOpening_TextArea),
 				"Purpose of account opening area is missing");
@@ -1168,9 +1200,17 @@ public class QueuePage {
 		ReusableMethods.click(driver, CustomerIdentification_Tab);
 	}
 
-	public void validateFieldCount(String tabName, String sector) {
-		if (tabName.equals("Internal Information") && (tabName.equals("Private")) || (tabName.equals("Public")))
-			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_InternalInformation_Fields), 5);
+	public void validateFieldCount(String tabName) {
+		if (tabName.equals("Public-CustomerInformation"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 8);
+		else if (tabName.equals("Public-NatureOfBussinessActivity"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
+		else if (tabName.equals("Public-Risk Evaluation"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 4);
+		else if (tabName.equals("Public-Internal Information"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 5);
+		else if (tabName.equals("Public-New Level"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
 
 	}
 
@@ -1206,6 +1246,15 @@ public class QueuePage {
 			ReusableMethods.waitForElement(driver, IndustryType_Drp);
 			Assert.assertTrue(ReusableMethods.isDisplayed(IndustryType_Drp));
 			break;
+		case "New Level":
+			ReusableMethods.waitForElement(driver, Risk1_Dropdown);
+			Assert.assertTrue(ReusableMethods.isDisplayed(Risk1_Dropdown));
+			break;
+
+		case "Beneficial Owner Identification":
+			ReusableMethods.waitForElement(driver, BeneficialOwnerIdentification_Link);
+			Assert.assertTrue(ReusableMethods.isDisplayed(BeneficialOwnerIdentification_Link));
+			break;
 		}
 	}
 
@@ -1215,36 +1264,83 @@ public class QueuePage {
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.RMName.toString()));
 	}
-	
-	public void enterFieldsData(ScenarioContext scenarioContext,String tabName)
-	{
-		switch(tabName)
-		{
-		case"Public-CustomerInformation":
-			public_CustomerInformation(scenarioContext);
+
+	public void enterFieldsData(ScenarioContext scenarioContext, String tabName) {
+		System.out.println();
+		switch (tabName) {
+		case "Public-CustomerInformation":
+			enter_Public_CustomerInformation(scenarioContext);
+			;
 			break;
-		}
-	}
-	
-	public void clickTabs(String tabName) throws InterruptedException
-	{
-		ReusableMethods.Sleep(5);
-		switch(tabName)
-		{
-		case"Customer Information":
-			ReusableMethods.waitForElementToBeClickable(driver, CustomerInformation_Tab);
-			ReusableMethods.click(driver,CustomerInformation_Tab);
+
+		case "Public-NatureOfBussinessActivity":
+			enter_Public_NaureofBussinessActivity(scenarioContext);
+			break;
+
+		case "Public-Risk Evaluation":
+			enter_Public_RiskEvaluation(scenarioContext);
+			break;
+
+		case "Public-New Level":
+			enter_Public_NewLevel(scenarioContext);
 			break;
 		}
 	}
 
-	public void public_CustomerInformation(ScenarioContext scenarioContext) {
+	public void validateFieldsData(ScenarioContext scenarioContext, String tabName) {
+		switch (tabName) {
+		case "Public-CustomerInformation":
+			validate_PublicCustomerInformation(scenarioContext);
+			break;
+
+		case "Public-NatureOfBussinessActivity":
+			validate_NaureofBussinessActivity(scenarioContext);
+			break;
+
+		case "Public-Risk Evaluation":
+			validate_RiskEvaluationData(scenarioContext);
+			break;
+
+		case "Public-New Level":
+			enter_Public_NewLevel(scenarioContext);
+			break;
+		}
+	}
+
+	public void clickTabs(String tabName) throws InterruptedException {
+		ReusableMethods.Sleep(5);
+		switch (tabName) {
+		case "Customer Information":
+			ReusableMethods.waitForElementToBeClickable(driver, CustomerInformation_Tab);
+			ReusableMethods.click(driver, CustomerInformation_Tab);
+			break;
+		case "NatureOfBussinessActivity":
+			ReusableMethods.waitForElementToBeDisplayed(BussinessInformation_Tab, 30, driver);
+			ReusableMethods.click(driver, BussinessInformation_Tab);
+			break;
+		case "ProductInformation":
+			ReusableMethods.waitForElementToBeDisplayed(ProductInformation_Tab, 30, driver);
+			ReusableMethods.click(driver, ProductInformation_Tab);
+			break;
+		case "Risk Evaluation":
+			ReusableMethods.waitForElementToBeDisplayed(RiskEvaluation_Tab, 30, driver);
+			ReusableMethods.click(driver, RiskEvaluation_Tab);
+			break;
+		case "New Level":
+			ReusableMethods.waitForElementToBeDisplayed(NewLevel_Tab, 30, driver);
+			ReusableMethods.click(driver, NewLevel_Tab);
+			break;
+		}
+
+	}
+
+	public void enter_Public_CustomerInformation(ScenarioContext scenarioContext) {
 		scenarioContext.addTestData(FieldNames.CountryOfIncorporation.toString(), "Singapore");
 		scenarioContext.addTestData(FieldNames.TaxResidingStatus.toString(), "Resident in Singapore");
 		scenarioContext.addTestData(FieldNames.LegalStatus.toString(), "Private Limited Company");
 		scenarioContext.addTestData(FieldNames.StockExchange.toString(), "The Iceland Stock Exchange");
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
-		//Country of Corporation
+		// Country of Corporation
 		ReusableMethods.click(driver, CountryOfCorporation_Drp);
 		ReusableMethods.waitForElement(driver,
 				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountryOfIncorporation.toString())));
@@ -1292,13 +1388,13 @@ public class QueuePage {
 		ReusableMethods.moveToElement(driver, CustomerInformation_Tab);
 	}
 
-	public void public_validateCustomerInformation(ScenarioContext scenarioContext) {
-	   ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+	public void validate_PublicCustomerInformation(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
 		Assert.assertEquals(ReusableMethods.GetTextData(CountryOfCorporation_Drp),
 				scenarioContext.getTestData(FieldNames.CountryOfIncorporation.toString()));
 		Assert.assertEquals(ReusableMethods.GetTextData(TaxResidencyStatus_Drp),
 				scenarioContext.getTestData(FieldNames.TaxResidingStatus.toString()));
-		Assert.assertEquals(ReusableMethods.GetValueByAttribute(TaxReferenceNumber_TextField,"value"),
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(TaxReferenceNumber_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.TaxReferenceNumber.toString()));
 		Assert.assertEquals(ReusableMethods.GetTextData(LegalStatus_Drp),
 				scenarioContext.getTestData(FieldNames.LegalStatus.toString()));
@@ -1310,5 +1406,108 @@ public class QueuePage {
 				scenarioContext.getTestData(FieldNames.RelationShiptype.toString()));
 		Assert.assertEquals(ReusableMethods.GetTextData(StockExchange_Drp),
 				scenarioContext.getTestData(FieldNames.StockExchange.toString()));
+	}
+
+	public void enter_Public_NaureofBussinessActivity(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.IndustryType.toString(), "Central Bank");
+		// Please provide brief details of Products/Services (including details of Items
+		// / Goods Manufactured or Traded, Services Provided)
+		scenarioContext.addTestData(FieldNames.Prodcution_Services.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, ProvideDetails_TextArea,
+				scenarioContext.getTestData(FieldNames.Prodcution_Services.toString()));
+		// Industry Type
+		ReusableMethods.click(driver, IndustryType_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
+		ReusableMethods.moveToElement(driver, BussinessInformation_Tab);
+	}
+
+	public void validate_NaureofBussinessActivity(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		Assert.assertEquals(ReusableMethods.GetTextData(IndustryType_Drp),
+				scenarioContext.getTestData(FieldNames.IndustryType.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ProvideDetails_TextArea, "value"),
+				scenarioContext.getTestData(FieldNames.Prodcution_Services.toString()));
+
+	}
+
+	public void enter_Public_RiskEvaluation(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.RiskProducts.toString(), "Mortgage");
+		scenarioContext.addTestData(FieldNames.RiskIndustry.toString(), "Central Bank");
+		scenarioContext.addTestData(FieldNames.RiskCountriesOfOperations.toString(), "India");
+		scenarioContext.addTestData(FieldNames.RiskGovtOwned.toString(), "Yes");
+
+		// Products
+		ReusableMethods.click(driver, RiskProducts_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskProducts.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskProducts.toString())));
+		ReusableMethods.moveToElement(driver, RiskEvaluation_Tab);
+
+		// Industry Type
+		ReusableMethods.click(driver, RiskIndusrtry_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskIndustry.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskIndustry.toString())));
+		ReusableMethods.moveToElement(driver, RiskEvaluation_Tab);
+
+		// Countries Of Operation Type
+		ReusableMethods.click(driver, RiskCountriesOfOPerations_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskCountriesOfOperations.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskCountriesOfOperations.toString())));
+		ReusableMethods.moveToElement(driver, RiskEvaluation_Tab);
+
+		// GovtOwned
+		ReusableMethods.click(driver, RiskGovtOwned_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskGovtOwned.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RiskGovtOwned.toString())));
+		ReusableMethods.moveToElement(driver, RiskEvaluation_Tab);
+	}
+
+	public void validate_RiskEvaluationData(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		Assert.assertEquals(ReusableMethods.GetTextData(RiskProducts_Dropdown),
+				scenarioContext.getTestData(FieldNames.RiskProducts.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(RiskIndusrtry_Dropdown),
+				scenarioContext.getTestData(FieldNames.RiskIndustry.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(RiskCountriesOfOPerations_Dropdown),
+				scenarioContext.getTestData(FieldNames.RiskCountriesOfOperations.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(RiskGovtOwned_Dropdown),
+				scenarioContext.getTestData(FieldNames.RiskGovtOwned.toString()));
+
+	}
+
+	public void enter_Public_NewLevel(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.Risk1.toString(), "Wealth");
+		scenarioContext.addTestData(FieldNames.Risk2.toString(), "Hold");
+
+		// Risk 1
+		ReusableMethods.click(driver, Risk1_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Risk1.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Risk1.toString())));
+		ReusableMethods.moveToElement(driver, NewLevel_Tab);
+
+		// Risk 2
+		ReusableMethods.click(driver, Risk2_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Risk2.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Risk2.toString())));
+		ReusableMethods.moveToElement(driver, NewLevel_Tab);
+	}
+	
+	public void validate__Public_NewLevel(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		Assert.assertEquals(ReusableMethods.GetTextData(Risk1_Dropdown),
+				scenarioContext.getTestData(FieldNames.Risk1.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(Risk2_Dropdown),
+				scenarioContext.getTestData(FieldNames.Risk2.toString()));
 	}
 }

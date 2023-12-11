@@ -354,9 +354,9 @@ public class QueuePageSteps {
 	    getQueuePage.clickDynamicRecordID(scenarioContext.getTestData(FieldNames.RecordID.toString()));
 	}
 	
-	@Then("I should validate fields count for {string} under {string} sector")
-	public void i_should_validate_fields_count_for_under_sector(String tabName, String orgnizationType) {
-		getQueuePage.validateFieldCount(tabName, orgnizationType);
+	@Then("I should validate fields count for {string} sector")
+	public void i_should_validate_fields_count_for_under_sector(String tabName) {
+		getQueuePage.validateFieldCount(tabName);
 	}
 	
 	@Then("I enter all the information under {string} section")
@@ -368,7 +368,7 @@ public class QueuePageSteps {
 	    getQueuePage.clickTabs(tabName);;
 	}
 	@Then("I should validate data is saved under {string} section")
-	public void i_should_validate_data_is_saved_under_section(String string) {
-	   getQueuePage.public_validateCustomerInformation(scenarioContext);
+	public void i_should_validate_data_is_saved_under_section(String tabName) {
+	   getQueuePage.validateFieldsData(scenarioContext,tabName);
 	}
 }

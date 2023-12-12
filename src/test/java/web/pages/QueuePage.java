@@ -29,6 +29,9 @@ public class QueuePage {
 
 	@FindBy(xpath = "//a[contains(@ng-reflect-router-link,'queue')]//span[text()='Corporate']")
 	public WebElement Corpoate_SubTab;
+	
+	@FindBy(xpath = "//div[@class='mat-tab-labels']//a")
+	public List<WebElement> EntityInformation_Tabs;
 
 	@FindBy(xpath = "//div[@class='mat-tab-label-content']")
 	public List<WebElement> CorporateQueue_Tabs;
@@ -199,6 +202,36 @@ public class QueuePage {
 
 	@FindBy(xpath = "//a[contains(text(),'Product Information')]")
 	public WebElement ProductInformation_Tab;
+
+	@FindBy(xpath = "//mat-select[@ng-reflect-message='Inflows in the Account']")
+	public WebElement InflowsInAccount_Dropdown;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Number of Transactions per month')]")
+	public WebElement NumberOFTransaction_TextField;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Currency')]")
+	public WebElement Currency_Dropdown;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Annual Turnover')]")
+	public WebElement AnnualTurnOver_TextField;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Avg Monthly Credits')]")
+	public WebElement AvgMontlyCredits_TextField;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Avg Monthly Debits')]")
+	public WebElement AvgMontlyDebits_TextField;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Amount')]")
+	public WebElement Amount_TextField;
+
+	@FindBy(xpath = "//input[contains(@placeholder,'Years')]")
+	public WebElement Years_TextField;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Months')]")
+	public WebElement Month_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Days')]")
+	public WebElement Days_Dropdown;
 
 	@FindBy(xpath = "//textarea[@placeholder='Purpose of Account Opening']")
 	public WebElement PurposeOfAccountOpening_TextArea;
@@ -1205,6 +1238,8 @@ public class QueuePage {
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 8);
 		else if (tabName.equals("Public-NatureOfBussinessActivity"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
+		else if (tabName.equals("Public-ProductInformation"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 10);
 		else if (tabName.equals("Public-Risk Evaluation"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 4);
 		else if (tabName.equals("Public-Internal Information"))
@@ -1246,6 +1281,12 @@ public class QueuePage {
 			ReusableMethods.waitForElement(driver, IndustryType_Drp);
 			Assert.assertTrue(ReusableMethods.isDisplayed(IndustryType_Drp));
 			break;
+			
+		case "Risk Evaluation":
+			ReusableMethods.waitForElement(driver, RiskGovtOwned_Dropdown);
+			Assert.assertTrue(ReusableMethods.isDisplayed(RiskGovtOwned_Dropdown));
+			break;
+			
 		case "New Level":
 			ReusableMethods.waitForElement(driver, Risk1_Dropdown);
 			Assert.assertTrue(ReusableMethods.isDisplayed(Risk1_Dropdown));
@@ -1270,17 +1311,16 @@ public class QueuePage {
 		switch (tabName) {
 		case "Public-CustomerInformation":
 			enter_Public_CustomerInformation(scenarioContext);
-			;
 			break;
-
 		case "Public-NatureOfBussinessActivity":
 			enter_Public_NaureofBussinessActivity(scenarioContext);
 			break;
-
+		case "Public-ProductInformation":
+			enter_Public_ProductInformation(scenarioContext);
+			break;
 		case "Public-Risk Evaluation":
 			enter_Public_RiskEvaluation(scenarioContext);
 			break;
-
 		case "Public-New Level":
 			enter_Public_NewLevel(scenarioContext);
 			break;
@@ -1296,6 +1336,10 @@ public class QueuePage {
 		case "Public-NatureOfBussinessActivity":
 			validate_NaureofBussinessActivity(scenarioContext);
 			break;
+			
+		case "Public-ProductInformation":
+			validate_Public_ProductInformation(scenarioContext);
+			break;
 
 		case "Public-Risk Evaluation":
 			validate_RiskEvaluationData(scenarioContext);
@@ -1305,6 +1349,15 @@ public class QueuePage {
 			enter_Public_NewLevel(scenarioContext);
 			break;
 		}
+	}
+	
+	public void validateEntityTabsBasedOnSector(String sector) throws Exception
+	{
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		if(sector.equals("Public"))
+			Assert.assertEquals(Constant.PUBLIC_ENTITYINFORMATION_TABS, ReusableMethods.getListofElements(EntityInformation_Tabs));
+		else
+			Assert.assertEquals(Constant.PUBLIC_ENTITYINFORMATION_TABS, ReusableMethods.getListofElements(EntityInformation_Tabs));
 	}
 
 	public void clickTabs(String tabName) throws InterruptedException {
@@ -1318,7 +1371,7 @@ public class QueuePage {
 			ReusableMethods.waitForElementToBeDisplayed(BussinessInformation_Tab, 30, driver);
 			ReusableMethods.click(driver, BussinessInformation_Tab);
 			break;
-		case "ProductInformation":
+		case "Product Information":
 			ReusableMethods.waitForElementToBeDisplayed(ProductInformation_Tab, 30, driver);
 			ReusableMethods.click(driver, ProductInformation_Tab);
 			break;
@@ -1502,12 +1555,106 @@ public class QueuePage {
 		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Risk2.toString())));
 		ReusableMethods.moveToElement(driver, NewLevel_Tab);
 	}
-	
+
 	public void validate__Public_NewLevel(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
 		Assert.assertEquals(ReusableMethods.GetTextData(Risk1_Dropdown),
 				scenarioContext.getTestData(FieldNames.Risk1.toString()));
 		Assert.assertEquals(ReusableMethods.GetTextData(Risk2_Dropdown),
 				scenarioContext.getTestData(FieldNames.Risk2.toString()));
+	}
+
+	public void enter_Public_ProductInformation(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.InflowsAccount.toString(), "Cheques");
+		scenarioContext.addTestData(FieldNames.Currency.toString(), "HKD");
+		scenarioContext.addTestData(FieldNames.Months.toString(), "8");
+		scenarioContext.addTestData(FieldNames.Days.toString(), "8");
+
+		// Inflows Account
+		ReusableMethods.click(driver, InflowsInAccount_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.InflowsAccount.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.InflowsAccount.toString())));
+		ReusableMethods.moveToElement(driver, ProductInformation_Tab);
+
+		// Number of Transactions
+		scenarioContext.addTestData(FieldNames.NumberOfTransactions.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, NumberOFTransaction_TextField,
+				scenarioContext.getTestData(FieldNames.NumberOfTransactions.toString()));
+
+		// Currency
+		ReusableMethods.click(driver, Currency_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Currency.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Currency.toString())));
+		ReusableMethods.moveToElement(driver, ProductInformation_Tab);
+
+		// Annual Turn Over
+		scenarioContext.addTestData(FieldNames.AnnualTurnOver.toString(),
+				ReusableMethods.generateRandomValues("numbers", 10));
+		ReusableMethods.ClearAndEnterValue(driver, AnnualTurnOver_TextField,
+				scenarioContext.getTestData(FieldNames.AnnualTurnOver.toString()));
+
+		// Avg Monthly Credits
+		scenarioContext.addTestData(FieldNames.AvgMontlyCredits.toString(),
+				ReusableMethods.generateRandomValues("numbers", 10));
+		ReusableMethods.ClearAndEnterValue(driver, AvgMontlyCredits_TextField,
+				scenarioContext.getTestData(FieldNames.AvgMontlyCredits.toString()));
+
+		// Avg Monthly Debits
+		scenarioContext.addTestData(FieldNames.AvgMonthlyDebits.toString(),
+				ReusableMethods.generateRandomValues("numbers", 10));
+		ReusableMethods.ClearAndEnterValue(driver, AvgMontlyDebits_TextField,
+				scenarioContext.getTestData(FieldNames.AvgMonthlyDebits.toString()));
+
+		// Amount Text Field
+		scenarioContext.addTestData(FieldNames.Amount.toString(), ReusableMethods.generateRandomValues("numbers", 10));
+		ReusableMethods.ClearAndEnterValue(driver, Amount_TextField,
+				scenarioContext.getTestData(FieldNames.Amount.toString()));
+
+		// Years Text Field
+		scenarioContext.addTestData(FieldNames.Years.toString(), ReusableMethods.generateRandomValues("numbers", 4));
+		ReusableMethods.ClearAndEnterValue(driver, Years_TextField,
+				scenarioContext.getTestData(FieldNames.Years.toString()));
+
+		// Months
+		ReusableMethods.click(driver, Month_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Months.toString())));
+		ReusableMethods.click_javaScript(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Months.toString())));
+		ReusableMethods.moveToElement(driver, ProductInformation_Tab);
+
+		// Days
+		ReusableMethods.click(driver, Days_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Days.toString())));
+		ReusableMethods.click_javaScript(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Days.toString())));
+		ReusableMethods.moveToElement(driver, ProductInformation_Tab);
+	}
+
+	public void validate_Public_ProductInformation(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		Assert.assertEquals(ReusableMethods.GetTextData(InflowsInAccount_Dropdown),
+				scenarioContext.getTestData(FieldNames.InflowsAccount.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(NumberOFTransaction_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.NumberOfTransactions.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(Currency_Dropdown),
+				scenarioContext.getTestData(FieldNames.Currency.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(AnnualTurnOver_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.AnnualTurnOver.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(AvgMontlyCredits_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.AvgMontlyCredits.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(AvgMontlyDebits_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.AvgMonthlyDebits.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Amount_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Amount.toString()));
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Years_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Years.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(Month_Dropdown),
+				scenarioContext.getTestData(FieldNames.Months.toString()));
+		Assert.assertEquals(ReusableMethods.GetTextData(Days_Dropdown),
+				scenarioContext.getTestData(FieldNames.Days.toString()));
 	}
 }

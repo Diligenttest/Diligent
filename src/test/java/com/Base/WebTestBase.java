@@ -10,6 +10,8 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
+
+import com.TestContext.ScenarioContext;
 import com.TestContext.WebTestContext;
 import genericFunctions.ReusableMethods;
 

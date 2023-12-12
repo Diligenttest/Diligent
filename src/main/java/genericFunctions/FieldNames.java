@@ -35,6 +35,16 @@ public enum FieldNames {
 	RiskCountriesOfOperations,
 	RiskGovtOwned,
 	Risk1,
-	Risk2
+	Risk2,
+	InflowsAccount,
+	NumberOfTransactions,
+	Currency,
+	AnnualTurnOver,
+	AvgMontlyCredits,
+	AvgMonthlyDebits,
+	Amount,
+	Years,
+	Months,
+	Days
 
 }

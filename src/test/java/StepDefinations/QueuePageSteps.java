@@ -10,6 +10,7 @@ import com.aventstack.extentreports.gson.GsonExtentTypeAdapterBuilder;
 import genericFunctions.FieldNames;
 import genericFunctions.ReusableMethods;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import web.pages.LoginPage;
@@ -370,5 +371,10 @@ public class QueuePageSteps {
 	@Then("I should validate data is saved under {string} section")
 	public void i_should_validate_data_is_saved_under_section(String tabName) {
 	   getQueuePage.validateFieldsData(scenarioContext,tabName);
+	}
+	
+	@Then("I should validate Entity Informations tabs for {string} Sectors")
+	public void i_should_validate_entity_informations_tabs_for_sectors(String sector) throws Exception {
+	    getQueuePage.validateEntityTabsBasedOnSector(sector);;
 	}
 }

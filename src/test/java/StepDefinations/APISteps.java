@@ -36,7 +36,7 @@ public class APISteps {
 	
 	@Given("I Should create a record for {string} record")
 	public void i_should_create_a_record_for_record(String requestType) {
-		RestAssured.baseURI = EndPoints.baseURI_REST ;
+		RestAssured.baseURI = EndPoints.baseURI_REST+"create" ;
 		httpRequest = RestAssured.given().log().all().headers(Headers.createRecordHeader());
 		if(requestType.equals("Private"))
 		res = httpRequest.body(apiPayLoad.post_PrivateBody(scenarioContext)).post();

@@ -18,4 +18,5 @@ public class Constant {
 	public static List<String> 	PROFILEDETAILS_LABELS=Arrays.asList("Diligent Application ID:", "Onboarding Date:", "Next Review Date:", "Waiver Applied:");
 	public static List<String> 	PROFILEDETAILS_TABLEINFO=Arrays.asList("Customer Details", "Customer Name", "Country of Incorporation", "Testing 01", "India", "Relationship Details", "Risk Rating", "Booking Location(s)", "Relationship Type", "Entity Type", "Sub Entity Type", "Medium", "Australia, Hong Kong,","Privately Owned", "Private Company", "Regulated FI", "Industries Risk", "Countries Risk");
 	public static List<String> 	PROFILEHISTORY_TABLEHEADER=Arrays.asList("Version", "Customer Name", "Process", "Profile Status", "Date Initiated", "Date Completed", "Risk Rating", "Booking Location(s)", "Products", "Download");
+	public static List<String> 	PUBLIC_ENTITYINFORMATION_TABS=Arrays.asList("Customer Information", "Nature of Business and Business Activity", "Product Information", "Risk Evaluation", "New Level");
 }

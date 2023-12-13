@@ -45,6 +45,15 @@ public enum FieldNames {
 	Amount,
 	Years,
 	Months,
-	Days
+	Days,
+	FullOperatingStreet,
+	FullOperatingCity,
+	FullOperatingPincode,
+	FullOperatingArea,
+	OfficeTelephoneNumber,
+	RegistrationNumber,
+	IssuingAuthority,
+	DateOfIncorporation,
+	RegisterAddressCountry
 
 }

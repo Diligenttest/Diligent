@@ -335,7 +335,7 @@ public class QueuePageSteps {
 	
 	@When("I enter all the information under <Entity Information> section")
 	public void i_enter_all_the_information_under_entity_information_section() {
-	   getQueuePage.enterCustomerIdentificationInformation(scenarioContext);
+	   getQueuePage.enter_CustomerInformation(scenarioContext,"Public");
 	}
 	@Then("I should validate page is navigated to <Bussiness Information> tab screen")
 	public void i_should_validate_page_is_navigated_to_bussiness_information_tab_screen() {
@@ -347,7 +347,7 @@ public class QueuePageSteps {
 	}
 	@Then("I should validate data is saved in Customer Identification section")
 	public void i_should_validate_data_is_saved_in_customer_identification_section() {
-	   getQueuePage.validateCIformationInfo(scenarioContext);
+	   getQueuePage.validatePrivateCIformationInfo(scenarioContext);
 	}
 	
 	@When("I click on any created record through API")
@@ -356,7 +356,7 @@ public class QueuePageSteps {
 	}
 	
 	@Then("I should validate fields count for {string} sector")
-	public void i_should_validate_fields_count_for_under_sector(String tabName) {
+	public void i_should_validate_fields_count_for_under_sector(String tabName) throws InterruptedException {
 		getQueuePage.validateFieldCount(tabName);
 	}
 	

@@ -132,7 +132,7 @@ Feature: Validate Dyanamic fields section for public
     Then I should validate data is saved under "Public-New Level" section
     When I Close the browser
 
-  @regression @test
+  @regression 
   Scenario: Validate Entity Information for Public Nature of Entity Information Tabs
     Given I Should create a record for "Public" record
     Then I should capture patient user id

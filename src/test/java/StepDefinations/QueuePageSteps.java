@@ -347,7 +347,7 @@ public class QueuePageSteps {
 	}
 	@Then("I should validate data is saved in Customer Identification section")
 	public void i_should_validate_data_is_saved_in_customer_identification_section() {
-	   getQueuePage.validatePrivateCIformationInfo(scenarioContext);
+	   getQueuePage.validate_PrivateCIformationInfo(scenarioContext);
 	}
 	
 	@When("I click on any created record through API")

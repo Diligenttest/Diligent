@@ -29,7 +29,7 @@ public class QueuePage {
 
 	@FindBy(xpath = "//a[contains(@ng-reflect-router-link,'queue')]//span[text()='Corporate']")
 	public WebElement Corpoate_SubTab;
-	
+
 	@FindBy(xpath = "//div[@class='mat-tab-labels']//a")
 	public List<WebElement> EntityInformation_Tabs;
 
@@ -143,37 +143,37 @@ public class QueuePage {
 
 	@FindBy(xpath = "//input[@placeholder='City']")
 	public WebElement CI_City_TextFIeld;
-	
+
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Country')]")
 	public WebElement CI_COuntry_Dropdown;
 
 	@FindBy(xpath = "//input[@placeholder='Pincode']")
 	public WebElement CI_Pincode_TextFIeld;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Full Operating address')]//textarea[@placeholder='Street']")
 	public WebElement CI_FullOperating_Street_TextFIeld;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Full Operating address')]//input[@placeholder='City']")
 	public WebElement CI_FullOperating_City_TextFIeld;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Full Operating address')]//input[@placeholder='Pincode']")
 	public WebElement CI_FullOperating_Pincode_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Area']")
 	public WebElement CI_FullOperating_Area_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Office Telephone Number ']")
 	public WebElement CI_OfficeTelephone_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Registration Number']")
 	public WebElement CI_RegistrationNumber_TextFIeld;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Reg. No. Issuing Authority']")
 	public WebElement CI_IssuingAuthority_TextFIeld;
 
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Country of Incorporation')]")
 	public WebElement CountryOfCorporation_Drp;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Date of Incorporation']")
 	public WebElement CI_DateOfIncorporation_TextFIeld;
 
@@ -218,6 +218,36 @@ public class QueuePage {
 
 	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Industry Type')]")
 	public WebElement IndustryType_Drp;
+	
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Major Business Activity / Natu')]")
+	public WebElement NatureOfBussiness_Drp;
+	
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Countries of Business Operatio')]")
+	public WebElement CountriesOfBussinessOperation_Drp;
+	
+	@FindBy(xpath = "//div[contains(text(),'Major Customers')]//input[@placeholder='Full Name']")
+	public WebElement MajorCustomer_FullName_TextField;
+	
+	@FindBy(xpath = "//div[contains(text(),'Major Customers')]//input[@placeholder='Country ']")
+	public WebElement MajorCustomer_Country_TextField;
+	
+	@FindBy(xpath = "//div[contains(text(),'Major Customers')]//input[@placeholder='Expected Annual Volume of Business']")
+	public WebElement MajorCustomer_EAVB_TextField;
+	
+	@FindBy(xpath = "//div[contains(text(),'Major Suppliers')]//input[@placeholder='Full Name']")
+	public WebElement MajorSuppliers_FullName_TextField;
+	
+	@FindBy(xpath = "//div[contains(text(),'Major Suppliers')]//input[@placeholder='Country ']")
+	public WebElement MajorSuppliers_Country_TextField;
+	
+	@FindBy(xpath = "//div[contains(text(),'Major Suppliers')]//input[@placeholder='Expected Annual Volume of Business']")
+	public WebElement MajorSuppliers_EAVB_TextField;
+	
+	@FindBy(xpath = "//input[@placeholder='Paid Up Capital (S$)']")
+	public WebElement PaidUpCapital_TextField;
+	
+	@FindBy(xpath = "//input[@placeholder='Sales / Turnover / Receipts (S$)']")
+	public WebElement TurnOver_TextField;
 
 	@FindBy(xpath = "//textarea[contains(@ng-reflect-message,'Please provide brief details o')]")
 	public WebElement ProvideDetails_TextArea;
@@ -266,6 +296,9 @@ public class QueuePage {
 	// *****************Risk Evaluation************************************
 	@FindBy(xpath = "//a[contains(text(),'Risk Evaluation')]")
 	public WebElement RiskEvaluation_Tab;
+	
+	@FindBy(xpath = "(//div[@class='mat-tab-header-pagination-chevron'])[4]")
+	public WebElement Pagination_After;
 
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Products')]")
 	public WebElement RiskProducts_Dropdown;
@@ -288,6 +321,53 @@ public class QueuePage {
 
 	@FindBy(xpath = "//mat-select[@aria-label='Risk 2']")
 	public WebElement Risk2_Dropdown;
+
+	// ***********Contact Details Fields************************
+
+	@FindBy(xpath = "//a[contains(text(),'Contact Detail')]")
+	public WebElement ContactDetails_Tab;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//mat-select")
+	public WebElement PCP_Saluation_Dropdown;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//input[@placeholder='Full Name']")
+	public WebElement PCP_FullName_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//input[@placeholder='Designation']")
+	public WebElement PCP_Designation_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//input[@placeholder='Mobile Number']")
+	public WebElement PCP_MobileNumber_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//input[@placeholder='Office Number']")
+	public WebElement PCP_OfficeNumber_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//input[@placeholder='Fax Number']")
+	public WebElement PCP_FaxNumber_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]//input[@placeholder='Email Address']")
+	public WebElement PCP_EmailAddress_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//mat-select")
+	public WebElement ACP_Saluation_Dropdown;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//input[@placeholder='Full Name']")
+	public WebElement ACP_FullName_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//input[@placeholder='Designation']")
+	public WebElement ACP_Designation_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//input[@placeholder='Mobile Number']")
+	public WebElement ACP_MobileNumber_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//input[@placeholder='Office Number']")
+	public WebElement ACP_OfficeNumber_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//input[@placeholder='Fax Number']")
+	public WebElement ACP_FaxNumber_TextField;
+
+	@FindBy(xpath = "//div[contains(text(),'Alternate Contact Person')]//input[@placeholder='Email Address']")
+	public WebElement ACP_EmailAddress_TextField;
 
 	// ***********Contact Information Fields************************
 
@@ -351,13 +431,11 @@ public class QueuePage {
 
 	@FindBy(xpath = "//div[@class='mat-tab-label-content']//a[contains(text(),'Non-Individual')]")
 	public WebElement NonIndividual_Tab;
-	
+
 	// **************************CONTACT DETAILS****************************
 
-		@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]")
-		public WebElement PrimaryContactPerson_Label;
-
-
+	@FindBy(xpath = "//div[contains(text(),'Primary Contact Person')]")
+	public WebElement PrimaryContactPerson_Label;
 
 	// **************************Customer Tab Field****************************
 
@@ -1189,8 +1267,6 @@ public class QueuePage {
 		}
 	}
 
-	
-
 	public void validatePageNavigatedTOBI() {
 		ReusableMethods.waitForElementToBeDisplayed(NatureOfBussiness_Header, 10, driver);
 		Assert.assertTrue(ReusableMethods.isDisplayed(NatureOfBussiness_Header));
@@ -1212,14 +1288,19 @@ public class QueuePage {
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
 		else if (tabName.equals("Public-ProductInformation"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 10);
-		else if (tabName.equals("Public-Risk Evaluation"))
+		else if (tabName.equals("Public-Risk Evaluation")|| tabName.equals("Private-Risk Evaluation"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 4);
-		else if (tabName.equals("Public-Internal Information")|| tabName.equals("Private-Internal Information"))
+		else if (tabName.equals("Public-Internal Information") || tabName.equals("Private-Internal Information"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 5);
 		else if (tabName.equals("Public-New Level"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
 		else if (tabName.equals("Private-CustomerInformation"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 24);
+		else if (tabName.equals("Private-Contact Details"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 14);
+		else if (tabName.equals("Private-NatureOfBussinessActivity"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 12);
+
 	}
 
 	public void enterDynamicInternalInformationSectionInfo(ScenarioContext scenarioContext) {
@@ -1254,12 +1335,12 @@ public class QueuePage {
 			ReusableMethods.waitForElement(driver, IndustryType_Drp);
 			Assert.assertTrue(ReusableMethods.isDisplayed(IndustryType_Drp));
 			break;
-			
+
 		case "Risk Evaluation":
 			ReusableMethods.waitForElement(driver, RiskGovtOwned_Dropdown);
 			Assert.assertTrue(ReusableMethods.isDisplayed(RiskGovtOwned_Dropdown));
 			break;
-			
+
 		case "New Level":
 			ReusableMethods.waitForElement(driver, Risk1_Dropdown);
 			Assert.assertTrue(ReusableMethods.isDisplayed(Risk1_Dropdown));
@@ -1269,7 +1350,7 @@ public class QueuePage {
 			ReusableMethods.waitForElement(driver, BeneficialOwnerIdentification_Link);
 			Assert.assertTrue(ReusableMethods.isDisplayed(BeneficialOwnerIdentification_Link));
 			break;
-			
+
 		case "Contact Details":
 			ReusableMethods.waitForElement(driver, PrimaryContactPerson_Label);
 			Assert.assertTrue(ReusableMethods.isDisplayed(PrimaryContactPerson_Label));
@@ -1288,7 +1369,7 @@ public class QueuePage {
 		System.out.println();
 		switch (tabName) {
 		case "Public-CustomerInformation":
-			enter_CustomerInformation(scenarioContext,"Public");
+			enter_CustomerInformation(scenarioContext, "Public");
 			break;
 		case "Public-NatureOfBussinessActivity":
 			enter_Public_NaureofBussinessActivity(scenarioContext);
@@ -1297,7 +1378,7 @@ public class QueuePage {
 			enter_Public_ProductInformation(scenarioContext);
 			break;
 		case "Public-Risk Evaluation":
-			enter_Public_RiskEvaluation(scenarioContext);
+			enter_RiskEvaluation(scenarioContext);
 			break;
 		case "Public-New Level":
 			enter_Public_NewLevel(scenarioContext);
@@ -1305,21 +1386,33 @@ public class QueuePage {
 		case "Private-CustomerInformation":
 			enter_Private_CI_RegisteredAddress(scenarioContext);
 			enter_Private_CI_FullOperatingAddress(scenarioContext);
-			enter_CustomerInformation(scenarioContext,"Private");
+			enter_CustomerInformation(scenarioContext, "Private");
 			break;
+		case "Private-Contact Details":
+			enter_Private_PrimaryContactDetails(scenarioContext);
+			enter_Private_AlternateContactDetails(scenarioContext);
+			break;
+
+		case "Private-NatureOfBussinessActivity":
+             enter_Private_NaureofBussinessActivity(scenarioContext);
+			break;
+		case "Private-Risk Evaluation":
+			enter_RiskEvaluation(scenarioContext);
+			break;
+
 		}
 	}
 
 	public void validateFieldsData(ScenarioContext scenarioContext, String tabName) {
 		switch (tabName) {
 		case "Public-CustomerInformation":
-			validate_CustomerInformation(scenarioContext,"Public");
+			validate_CustomerInformation(scenarioContext, "Public");
 			break;
 
 		case "Public-NatureOfBussinessActivity":
 			validate_NaureofBussinessActivity(scenarioContext);
 			break;
-			
+
 		case "Public-ProductInformation":
 			validate_Public_ProductInformation(scenarioContext);
 			break;
@@ -1331,24 +1424,38 @@ public class QueuePage {
 		case "Public-New Level":
 			enter_Public_NewLevel(scenarioContext);
 			break;
-			
+
 		case "Private-CustomerInformation":
-			validatePrivateCIformationInfo(scenarioContext);
-			validate_CustomerInformation(scenarioContext,"Private");
+			validate_PrivateCIformationInfo(scenarioContext);
+			validate_CustomerInformation(scenarioContext, "Private");
+
+		case "Private-Contact Details":
+			validate_PrivateContactDetails(scenarioContext);
+			break;
+			
+		case "Private-NatureOfBussinessActivity":
+            validate_PrivateNatureofBussinessActivity(scenarioContext);
+			break;
+			
+		case "Private-Risk Evaluation":
+			validate_RiskEvaluationData(scenarioContext);
+			break;
+
 		}
 	}
-	
-	public void validateEntityTabsBasedOnSector(String sector) throws Exception
-	{
+
+	public void validateEntityTabsBasedOnSector(String sector) throws Exception {
 		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
-		if(sector.equals("Public"))
-			Assert.assertEquals(Constant.PUBLIC_ENTITYINFORMATION_TABS, ReusableMethods.getListofElements(EntityInformation_Tabs));
+		if (sector.equals("Public"))
+			Assert.assertEquals(Constant.PUBLIC_ENTITYINFORMATION_TABS,
+					ReusableMethods.getListofElements(EntityInformation_Tabs));
 		else
-			Assert.assertEquals(Constant.PUBLIC_ENTITYINFORMATION_TABS, ReusableMethods.getListofElements(EntityInformation_Tabs));
+			Assert.assertEquals(Constant.PUBLIC_ENTITYINFORMATION_TABS,
+					ReusableMethods.getListofElements(EntityInformation_Tabs));
 	}
 
 	public void clickTabs(String tabName) throws InterruptedException {
-		ReusableMethods.Sleep(5);
+		ReusableMethods.Sleep(10);
 		switch (tabName) {
 		case "Customer Information":
 			ReusableMethods.waitForElementToBeClickable(driver, CustomerInformation_Tab);
@@ -1370,11 +1477,23 @@ public class QueuePage {
 			ReusableMethods.waitForElementToBeDisplayed(NewLevel_Tab, 30, driver);
 			ReusableMethods.click(driver, NewLevel_Tab);
 			break;
+
+		case "Contact Details":
+			ReusableMethods.waitForElementToBeDisplayed(ContactDetails_Tab, 30, driver);
+			ReusableMethods.click(driver, ContactDetails_Tab);
+			break;
+			
+		case "Private Risk Evaluation":
+			ReusableMethods.waitForElement(driver, Pagination_After);
+			ReusableMethods.moveToElement(driver, Pagination_After);
+			ReusableMethods.click_javaScript(driver, Pagination_After);
+			ReusableMethods.waitForElementToBeDisplayed(RiskEvaluation_Tab, 30, driver);
+			ReusableMethods.click(driver, RiskEvaluation_Tab);
 		}
 
 	}
 
-	public void enter_CustomerInformation(ScenarioContext scenarioContext,String sectorType) {
+	public void enter_CustomerInformation(ScenarioContext scenarioContext, String sectorType) {
 		scenarioContext.addTestData(FieldNames.CountryOfIncorporation.toString(), "Singapore");
 		scenarioContext.addTestData(FieldNames.TaxResidingStatus.toString(), "Resident in Singapore");
 		scenarioContext.addTestData(FieldNames.LegalStatus.toString(), "Private Limited Company");
@@ -1419,39 +1538,37 @@ public class QueuePage {
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, RelationShip_TextField,
 				scenarioContext.getTestData(FieldNames.RelationShiptype.toString()));
-		if(sectorType.equals("Public"))
-		{
-		// StockExchange
-		ReusableMethods.click(driver, StockExchange_Drp);
-		ReusableMethods.waitForElement(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.StockExchange.toString())));
-		ReusableMethods.click(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.StockExchange.toString())));
-		ReusableMethods.moveToElement(driver, CustomerInformation_Tab);
+		if (sectorType.equals("Public")) {
+			// StockExchange
+			ReusableMethods.click(driver, StockExchange_Drp);
+			ReusableMethods.waitForElement(driver,
+					GenericDropdwon(scenarioContext.getTestData(FieldNames.StockExchange.toString())));
+			ReusableMethods.click(driver,
+					GenericDropdwon(scenarioContext.getTestData(FieldNames.StockExchange.toString())));
+			ReusableMethods.moveToElement(driver, CustomerInformation_Tab);
 		}
-		
-		if(sectorType.equals("Private"))
-		{
-			//RegistratioNumber
+
+		if (sectorType.equals("Private")) {
+			// RegistratioNumber
 			scenarioContext.addTestData(FieldNames.RegistrationNumber.toString(),
 					ReusableMethods.generateRandomValues("alphaNumeric", 10));
 			ReusableMethods.ClearAndEnterValue(driver, Registration_TextField,
 					scenarioContext.getTestData(FieldNames.RegistrationNumber.toString()));
-			
-			//Issuing Authority
+
+			// Issuing Authority
 			scenarioContext.addTestData(FieldNames.IssuingAuthority.toString(),
 					ReusableMethods.generateRandomValues("alphaNumeric", 10));
 			ReusableMethods.ClearAndEnterValue(driver, CI_IssuingAuthority_TextFIeld,
 					scenarioContext.getTestData(FieldNames.IssuingAuthority.toString()));
-			
-			//Issuing Authority
-			scenarioContext.addTestData(FieldNames.DateOfIncorporation.toString(),"11 Jan 2024");
+
+			// Issuing Authority
+			scenarioContext.addTestData(FieldNames.DateOfIncorporation.toString(), "11 Jan 2024");
 			ReusableMethods.ClearAndEnterValue(driver, DateOfIncorporation_TextField,
 					scenarioContext.getTestData(FieldNames.DateOfIncorporation.toString()));
 		}
 	}
 
-	public void validate_CustomerInformation(ScenarioContext scenarioContext,String SectorType) {
+	public void validate_CustomerInformation(ScenarioContext scenarioContext, String SectorType) {
 		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
 		ReusableMethods.ScrollToElement(driver, TaxReferenceNumber_TextField);
 		Assert.assertEquals(ReusableMethods.GetTextData(CountryOfCorporation_Drp),
@@ -1468,9 +1585,9 @@ public class QueuePage {
 				scenarioContext.getTestData(FieldNames.Country.toString()));
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RelationShip_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.RelationShiptype.toString()));
-		if(SectorType.equals("Public"))
-		Assert.assertEquals(ReusableMethods.GetTextData(StockExchange_Drp),
-				scenarioContext.getTestData(FieldNames.StockExchange.toString()));
+		if (SectorType.equals("Public"))
+			Assert.assertEquals(ReusableMethods.GetTextData(StockExchange_Drp),
+					scenarioContext.getTestData(FieldNames.StockExchange.toString()));
 	}
 
 	public void enter_Public_NaureofBussinessActivity(ScenarioContext scenarioContext) {
@@ -1499,7 +1616,7 @@ public class QueuePage {
 
 	}
 
-	public void enter_Public_RiskEvaluation(ScenarioContext scenarioContext) {
+	public void enter_RiskEvaluation(ScenarioContext scenarioContext) {
 		scenarioContext.addTestData(FieldNames.RiskProducts.toString(), "Mortgage");
 		scenarioContext.addTestData(FieldNames.RiskIndustry.toString(), "Central Bank");
 		scenarioContext.addTestData(FieldNames.RiskCountriesOfOperations.toString(), "India");
@@ -1635,14 +1752,16 @@ public class QueuePage {
 		ReusableMethods.click(driver, Month_Dropdown);
 		ReusableMethods.waitForElement(driver,
 				GenericDropdwon(scenarioContext.getTestData(FieldNames.Months.toString())));
-		ReusableMethods.click_javaScript(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Months.toString())));
+		ReusableMethods.click_javaScript(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Months.toString())));
 		ReusableMethods.moveToElement(driver, ProductInformation_Tab);
 
 		// Days
 		ReusableMethods.click(driver, Days_Dropdown);
 		ReusableMethods.waitForElement(driver,
 				GenericDropdwon(scenarioContext.getTestData(FieldNames.Days.toString())));
-		ReusableMethods.click_javaScript(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.Days.toString())));
+		ReusableMethods.click_javaScript(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.Days.toString())));
 		ReusableMethods.moveToElement(driver, ProductInformation_Tab);
 	}
 
@@ -1669,11 +1788,11 @@ public class QueuePage {
 		Assert.assertEquals(ReusableMethods.GetTextData(Days_Dropdown),
 				scenarioContext.getTestData(FieldNames.Days.toString()));
 	}
-	
+
 	public void enter_Private_CI_RegisteredAddress(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(CI_FullOperating_Area_TextFIeld, 30, driver);
 		scenarioContext.addTestData(FieldNames.RegisterAddressCountry.toString(), "India");
-		
+
 		scenarioContext.addTestData(FieldNames.LegalName.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, LegalName_TextField,
@@ -1698,17 +1817,17 @@ public class QueuePage {
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_City_TextFIeld,
 				scenarioContext.getTestData(FieldNames.City.toString()));
-		
+
 		ReusableMethods.click(driver, CI_COuntry_Dropdown);
-		ReusableMethods.click(driver,GenericDropdwon(scenarioContext.getTestData(FieldNames.RegisterAddressCountry.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.RegisterAddressCountry.toString())));
 		ReusableMethods.moveToElement(driver, CI_Pincode_TextFIeld);
 
-		scenarioContext.addTestData(FieldNames.Pincode.toString(),
-				ReusableMethods.generateRandomValues("numbers", 9));
+		scenarioContext.addTestData(FieldNames.Pincode.toString(), ReusableMethods.generateRandomValues("numbers", 9));
 		ReusableMethods.ClearAndEnterValue(driver, CI_Pincode_TextFIeld,
 				scenarioContext.getTestData(FieldNames.Pincode.toString()));
 	}
-	
+
 	public void enter_Private_CI_FullOperatingAddress(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(CI_FullOperating_Area_TextFIeld, 30, driver);
 
@@ -1726,20 +1845,20 @@ public class QueuePage {
 				ReusableMethods.generateRandomValues("numbers", 9));
 		ReusableMethods.ClearAndEnterValue(driver, CI_FullOperating_Pincode_TextFIeld,
 				scenarioContext.getTestData(FieldNames.FullOperatingPincode.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.FullOperatingArea.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_FullOperating_Area_TextFIeld,
 				scenarioContext.getTestData(FieldNames.FullOperatingArea.toString()));
-		
-		ReusableMethods.ScrollToElement(driver,CI_OfficeTelephone_TextFIeld);
+
+		ReusableMethods.ScrollToElement(driver, CI_OfficeTelephone_TextFIeld);
 		scenarioContext.addTestData(FieldNames.OfficeTelephoneNumber.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, CI_OfficeTelephone_TextFIeld,
 				scenarioContext.getTestData(FieldNames.OfficeTelephoneNumber.toString()));
 	}
 
-	public void validatePrivateCIformationInfo(ScenarioContext scenarioContext) {
+	public void validate_PrivateCIformationInfo(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(LegalName_TextField, 30, driver);
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(LegalName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.LegalName.toString()));
@@ -1755,25 +1874,273 @@ public class QueuePage {
 
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_City_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.City.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetTextData(CI_COuntry_Dropdown),
 				scenarioContext.getTestData(FieldNames.RegisterAddressCountry.toString()));
 
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_Pincode_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.Pincode.toString()));
-		
+
 		ReusableMethods.ScrollToElement_JavScript(driver, CI_FullOperating_Street_TextFIeld);
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_FullOperating_Street_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.FullOperatingStreet.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_FullOperating_City_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.FullOperatingCity.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_FullOperating_Pincode_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.FullOperatingPincode.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CI_FullOperating_Area_TextFIeld, "value"),
 				scenarioContext.getTestData(FieldNames.FullOperatingArea.toString()));
+	}
+
+	public void enter_Private_PrimaryContactDetails(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElementToBeDisplayed(ACP_EmailAddress_TextField, 30, driver);
+		scenarioContext.addTestData(FieldNames.PCP_Saluation.toString(), "Mr.");
+
+		ReusableMethods.click(driver, PCP_Saluation_Dropdown);
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.PCP_Saluation.toString())));
+		ReusableMethods.moveToElement(driver, PCP_FullName_TextField);
+
+		scenarioContext.addTestData(FieldNames.PCP_FullName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, PCP_FullName_TextField,
+				scenarioContext.getTestData(FieldNames.PCP_FullName.toString()));
+
+		scenarioContext.addTestData(FieldNames.PCP_Designation.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, PCP_Designation_TextField,
+				scenarioContext.getTestData(FieldNames.PCP_Designation.toString()));
+
+		scenarioContext.addTestData(FieldNames.PCP_MobileNumber.toString(),
+				ReusableMethods.generateRandomValues("numbers", 9));
+		ReusableMethods.ClearAndEnterValue(driver, PCP_MobileNumber_TextField,
+				scenarioContext.getTestData(FieldNames.PCP_MobileNumber.toString()));
+
+		scenarioContext.addTestData(FieldNames.PCP_OfficeNumber.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, PCP_OfficeNumber_TextField,
+				scenarioContext.getTestData(FieldNames.PCP_OfficeNumber.toString()));
+
+		scenarioContext.addTestData(FieldNames.PCP_FaxNumber.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, PCP_FaxNumber_TextField,
+				scenarioContext.getTestData(FieldNames.PCP_FaxNumber.toString()));
+
+		scenarioContext.addTestData(FieldNames.PCP_EmailAddress.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 5) + "@yopmail.com");
+		ReusableMethods.ClearAndEnterValue(driver, PCP_EmailAddress_TextField,
+				scenarioContext.getTestData(FieldNames.PCP_EmailAddress.toString()));
+
+	}
+
+	public void enter_Private_AlternateContactDetails(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElementToBeDisplayed(ACP_EmailAddress_TextField, 30, driver);
+
+		scenarioContext.addTestData(FieldNames.ACP_Saluation.toString(), "Mr.");
+
+		ReusableMethods.click(driver, ACP_Saluation_Dropdown);
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.ACP_Saluation.toString())));
+		ReusableMethods.moveToElement(driver, ACP_FullName_TextField);
+
+		scenarioContext.addTestData(FieldNames.ACP_FullName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, ACP_FullName_TextField,
+				scenarioContext.getTestData(FieldNames.ACP_FullName.toString()));
+
+		scenarioContext.addTestData(FieldNames.ACP_Designation.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, ACP_Designation_TextField,
+				scenarioContext.getTestData(FieldNames.ACP_Designation.toString()));
+
+		scenarioContext.addTestData(FieldNames.ACP_MobileNumber.toString(),
+				ReusableMethods.generateRandomValues("numbers", 9));
+		ReusableMethods.ClearAndEnterValue(driver, ACP_MobileNumber_TextField,
+				scenarioContext.getTestData(FieldNames.ACP_MobileNumber.toString()));
+
+		scenarioContext.addTestData(FieldNames.ACP_OfficeNumber.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, ACP_OfficeNumber_TextField,
+				scenarioContext.getTestData(FieldNames.ACP_OfficeNumber.toString()));
+
+		scenarioContext.addTestData(FieldNames.ACP_FaxNumber.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, ACP_FaxNumber_TextField,
+				scenarioContext.getTestData(FieldNames.ACP_FaxNumber.toString()));
+
+		scenarioContext.addTestData(FieldNames.ACP_EmailAddress.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 5) + "@yopmail.com");
+		ReusableMethods.ClearAndEnterValue(driver, ACP_EmailAddress_TextField,
+				scenarioContext.getTestData(FieldNames.ACP_EmailAddress.toString()));
+
+	}
+
+	public void validate_PrivateContactDetails(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElementToBeDisplayed(PCP_EmailAddress_TextField, 30, driver);
+
+		Assert.assertEquals(ReusableMethods.GetTextData(PCP_Saluation_Dropdown),
+				scenarioContext.getTestData(FieldNames.PCP_Saluation.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_FullName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_FullName.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_Designation_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_Designation.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_MobileNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_MobileNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_FaxNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_FaxNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_OfficeNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_OfficeNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_OfficeNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_OfficeNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(PCP_EmailAddress_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.PCP_EmailAddress.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(ACP_Saluation_Dropdown),
+				scenarioContext.getTestData(FieldNames.ACP_Saluation.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_FullName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_FullName.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_Designation_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_Designation.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_MobileNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_MobileNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_FaxNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_FaxNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_OfficeNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_OfficeNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_OfficeNumber_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_OfficeNumber.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_EmailAddress_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.ACP_EmailAddress.toString()));
+	}
+	
+	public void enter_Private_NaureofBussinessActivity(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.IndustryType.toString(), "Central Bank");
+		scenarioContext.addTestData(FieldNames.NatureOfBussiness.toString(), "Trading");
+		scenarioContext.addTestData(FieldNames.CountriesOfBussinessOperations.toString(), "India");
+
+		// NatureOfBussiness
+				ReusableMethods.click(driver, NatureOfBussiness_Drp);
+				ReusableMethods.waitForElement(driver,
+						GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
+				ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
+				ReusableMethods.moveToElement(driver, ProvideDetails_TextArea);
+		
+		// Please provide brief details of Products/Services (including details of Items
+		// / Goods Manufactured or Traded, Services Provided)
+		scenarioContext.addTestData(FieldNames.Prodcution_Services.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, ProvideDetails_TextArea,
+				scenarioContext.getTestData(FieldNames.Prodcution_Services.toString()));
+		// Industry Type
+		ReusableMethods.click(driver, IndustryType_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
+		ReusableMethods.moveToElement(driver, BussinessInformation_Tab);
+		
+		//Countries of Bussiness Operation
+		ReusableMethods.click(driver, CountriesOfBussinessOperation_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
+		ReusableMethods.moveToElement(driver, MajorCustomer_Country_TextField);
+		
+		scenarioContext.addTestData(FieldNames.MajorCustomer_FullName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_FullName_TextField,
+				scenarioContext.getTestData(FieldNames.MajorCustomer_FullName.toString()));
+		
+		scenarioContext.addTestData(FieldNames.MajorCustomer_Country.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_Country_TextField,
+				scenarioContext.getTestData(FieldNames.MajorCustomer_Country.toString()));
+		
+		scenarioContext.addTestData(FieldNames.MajorCustomer_EAVB.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_EAVB_TextField,
+				scenarioContext.getTestData(FieldNames.MajorCustomer_EAVB.toString()));
+		
+		ReusableMethods.ScrollToElement_JavScript(driver, MajorSuppliers_FullName_TextField);
+		
+		scenarioContext.addTestData(FieldNames.MajorSuppliers_FullName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_FullName_TextField,
+				scenarioContext.getTestData(FieldNames.MajorSuppliers_FullName.toString()));
+		
+		scenarioContext.addTestData(FieldNames.MajorSuppliers_Country.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_Country_TextField,
+				scenarioContext.getTestData(FieldNames.MajorSuppliers_Country.toString()));
+		
+		scenarioContext.addTestData(FieldNames.MajorSuppliers_EAVB.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_EAVB_TextField,
+				scenarioContext.getTestData(FieldNames.MajorSuppliers_EAVB.toString()));
+			
+		scenarioContext.addTestData(FieldNames.PaidCapital.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, PaidUpCapital_TextField,
+				scenarioContext.getTestData(FieldNames.PaidCapital.toString()));
+		
+		scenarioContext.addTestData(FieldNames.TurnOver.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, TurnOver_TextField,
+				scenarioContext.getTestData(FieldNames.TurnOver.toString()));
+		
+	}
+
+	public void validate_PrivateNatureofBussinessActivity(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, NatureOfBussiness_Drp);
+		
+		Assert.assertEquals(ReusableMethods.GetTextData(NatureOfBussiness_Drp),
+				scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetTextData(IndustryType_Drp),
+				scenarioContext.getTestData(FieldNames.IndustryType.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ProvideDetails_TextArea, "value"),
+				scenarioContext.getTestData(FieldNames.Prodcution_Services.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetTextData(CountriesOfBussinessOperation_Drp),
+				scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorCustomer_FullName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.MajorCustomer_FullName.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorCustomer_Country_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.MajorCustomer_Country.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorCustomer_EAVB_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.MajorCustomer_EAVB.toString()));
+		
+		ReusableMethods.ScrollToElement_JavScript(driver, MajorSuppliers_FullName_TextField);
+		
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorSuppliers_FullName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.MajorSuppliers_FullName.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorSuppliers_Country_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.MajorSuppliers_Country.toString()));
+		
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorSuppliers_EAVB_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.MajorSuppliers_EAVB.toString()));
+
 	}
 }

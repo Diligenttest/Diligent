@@ -87,7 +87,75 @@ Feature: Validate Dyanamic fields section for private and public
     Then I should validate data is saved under "Private-NatureOfBussinessActivity" section
     When I Close the browser
     
+    
     @regression @test
+  Scenario: Validate Entity Information for Private Product Information
+    Given I Should create a record for "Private" record
+    Then I should capture patient user id
+    Given Open the Web Browser
+    When I launch the Diligent application
+    And I enter "Maker" credentials
+    And I click on Sign In button
+    And I click on Agree button
+    And I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any created record through API
+    And I click on <Entity Information> tab in the onborading screen
+    And I click on "Private Product Information" tab in the onborading screen
+    Then I should validate fields count for "Private-Product Information" sector
+    And I enter all the information under "Private-Product Information" section
+    And I click on Save & Proceed button
+    Then I should validate page is navigated to "Declaration for Holding without Tax Purposes" screen
+    And I click on "Private-Product Information" tab in the onborading screen
+    Then I should validate data is saved under "Private-Product Information" section
+    When I Close the browser
+    
+    @regression
+  Scenario: Validate Entity Information for Private Declaration for Holding without Tax Purposes
+    Given I Should create a record for "Private" record
+    Then I should capture patient user id
+    Given Open the Web Browser
+    When I launch the Diligent application
+    And I enter "Maker" credentials
+    And I click on Sign In button
+    And I click on Agree button
+    And I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any created record through API
+    And I click on <Entity Information> tab in the onborading screen
+    And I click on "Declaration for Holding without Tax Purposes" tab in the onborading screen
+    Then I should validate fields count for "Declaration for Holding without Tax Purposes" sector
+    And I enter all the information under "Declaration for Holding without Tax Purposes" section
+    And I click on Save & Proceed button
+    Then I should validate page is navigated to "Declaration of Beneficial Ownership" screen
+    And I click on "Declaration for Holding without Tax Purposes" tab in the onborading screen
+    Then I should validate data is saved under "Declaration for Holding without Tax Purposes" section
+    When I Close the browser
+    
+    
+     @regression
+  Scenario: Validate Entity Information for Private Declaration Beneficial Ownership
+    Given I Should create a record for "Private" record
+    Then I should capture patient user id
+    Given Open the Web Browser
+    When I launch the Diligent application
+    And I enter "Maker" credentials
+    And I click on Sign In button
+    And I click on Agree button
+    And I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any created record through API
+    And I click on <Entity Information> tab in the onborading screen
+    And I click on "Declaration of Beneficial Ownership" tab in the onborading screen
+    Then I should validate fields count for "Declaration of Beneficial Ownership" sector
+    And I enter all the information under "Declaration of Beneficial Ownership" section
+    And I click on Save & Proceed button
+    Then I should validate page is navigated to "Agreement" screen
+    And I click on "Declaration of Beneficial Ownership" tab in the onborading screen
+    Then I should validate data is saved under "Declaration of Beneficial Ownership" section
+    When I Close the browser
+    
+    @regression 
   Scenario: Validate Entity Information for Private Nature of Risk Evaluation
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -109,3 +177,5 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Private Risk Evaluation" tab in the onborading screen
     Then I should validate data is saved under "Private-Risk Evaluation" section
     When I Close the browser
+    
+    

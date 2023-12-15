@@ -78,5 +78,25 @@ public enum FieldNames {
 	MajorSuppliers_Country,
 	MajorSuppliers_EAVB,
 	PaidCapital,
-	TurnOver
+	TurnOver,
+	EntityIncorporated,
+	EitherDropdown,
+	DeclarationFullName,
+	DeclarationPassport,
+	DeclarationPostionHeld,
+	Private_Currency,
+	Private_PurposeOfAccountOpening_1,
+	Private_PurposeOfAccountOpening_2,
+	Private_SourceInitialFunds,
+	Private_VolumeTransaction_1,
+	Private_VolumeTransaction_2,
+	Private_NumberOfTransaction_1,
+	Private_NumberOfTransaction_2,
+	Private_CountriesOfFundsOrigin,
+	Private_OutflowsAccount,
+	Private_CountriesInvolvedForOutlflow,
+	Private_SourceOfFunds,
+	Private_CountryOfFundsOrigin,
+	Private_FundingVia
+	
 }

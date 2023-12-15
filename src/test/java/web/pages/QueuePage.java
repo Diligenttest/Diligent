@@ -218,34 +218,34 @@ public class QueuePage {
 
 	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Industry Type')]")
 	public WebElement IndustryType_Drp;
-	
+
 	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Major Business Activity / Natu')]")
 	public WebElement NatureOfBussiness_Drp;
-	
+
 	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Countries of Business Operatio')]")
 	public WebElement CountriesOfBussinessOperation_Drp;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Major Customers')]//input[@placeholder='Full Name']")
 	public WebElement MajorCustomer_FullName_TextField;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Major Customers')]//input[@placeholder='Country ']")
 	public WebElement MajorCustomer_Country_TextField;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Major Customers')]//input[@placeholder='Expected Annual Volume of Business']")
 	public WebElement MajorCustomer_EAVB_TextField;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Major Suppliers')]//input[@placeholder='Full Name']")
 	public WebElement MajorSuppliers_FullName_TextField;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Major Suppliers')]//input[@placeholder='Country ']")
 	public WebElement MajorSuppliers_Country_TextField;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'Major Suppliers')]//input[@placeholder='Expected Annual Volume of Business']")
 	public WebElement MajorSuppliers_EAVB_TextField;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Paid Up Capital (S$)']")
 	public WebElement PaidUpCapital_TextField;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Sales / Turnover / Receipts (S$)']")
 	public WebElement TurnOver_TextField;
 
@@ -263,8 +263,26 @@ public class QueuePage {
 	@FindBy(xpath = "//input[contains(@placeholder,'Number of Transactions per month')]")
 	public WebElement NumberOFTransaction_TextField;
 
+	@FindBy(xpath = "(//input[contains(@placeholder,'Number of Transactions per month')])[2]")
+	public WebElement Private_NumberOFTransaction_TextField;
+
+	@FindBy(xpath = "(//mat-select[contains(@ng-reflect-message,'Currency')])[1]")
+	public WebElement Private_Currency_Dropdown;
+
+	@FindBy(xpath = "(//mat-select[contains(@ng-reflect-message,'Purpose of Account Opening')])[1]")
+	public WebElement Private_PurposeOfAccountOpening1_Dropdown;
+
+	@FindBy(xpath = "(//mat-select[contains(@ng-reflect-message,'Purpose of Account Opening')])[2]")
+	public WebElement Private_PurposeOfAccountOpening2_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Source of Initial Funds (in re')']")
+	public WebElement Private_SourceOFInitialFunds_Dropdown;
+
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Currency')]")
 	public WebElement Currency_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Purpose of Account Opening ')]")
+	public WebElement PurposeOfAccountOpening_Dropdown;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Annual Turnover')]")
 	public WebElement AnnualTurnOver_TextField;
@@ -274,6 +292,21 @@ public class QueuePage {
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Avg Monthly Debits')]")
 	public WebElement AvgMontlyDebits_TextField;
+
+	@FindBy(xpath = "(//input[contains(@placeholder,'Volume of Transactions per month S$')])[1]")
+	public WebElement Private_VolumeOfTransaction1_TextField;
+
+	@FindBy(xpath = "(//input[contains(@placeholder,'Volume of Transactions per month S$')])[2]")
+	public WebElement Private_VolumeOfTransaction2_TextField;
+
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Countries of Funds Origin')]")
+	public WebElement Private_CountriesOfOrgin_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Outflows from the Account')]")
+	public WebElement Private_OutflowsAccount_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Countries Involved for outflow')]")
+	public WebElement Private_CountriesInvolvedOutflow_Dropdown;
 
 	@FindBy(xpath = "//input[contains(@placeholder,'Amount')]")
 	public WebElement Amount_TextField;
@@ -290,13 +323,48 @@ public class QueuePage {
 	@FindBy(xpath = "//textarea[@placeholder='Purpose of Account Opening']")
 	public WebElement PurposeOfAccountOpening_TextArea;
 
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Source of Funds')]")
+	public WebElement Private_SourceFunds_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Country of Funds Origin')]")
+	public WebElement Private_CountryOfFundsOrigin_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-message,'Funding via')]")
+	public WebElement Private_Fundingvia_Dropdown;
+
 	@FindBy(xpath = "//mat-select[@aria-label='Products Required']")
 	public WebElement ProductsRequired_Dropdown;
+
+	// *****************Declaration for Tax without holding
+	// tax************************************
+	@FindBy(xpath = "//a[contains(text(),'DECLARATION FOR WITHHOLDING TAX PURPOSES')]")
+	public WebElement DeclarationForWithHoldingTax_Tab;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Is the entity incorporated in Singapore?')]")
+	public WebElement EntityIncorporated_Dropdown;
+
+	@FindBy(xpath = "//mat-select[contains(@aria-label,'Please select EITHER one of the following:')]")
+	public WebElement SelectEither_Dropdown;
+
+	// *****************Declaration Beneficial
+	// Ownership************************************
+
+	@FindBy(xpath = "//a[contains(text(),' Declaration of Beneficial Ownership ')]")
+	public WebElement DeclarationBeneficial_Tab;
+
+	@FindBy(xpath = "//input[@placeholder='Full Name']")
+	public WebElement Declaration_FullName_TextField;
+
+	@FindBy(xpath = "//input[@placeholder='NRIC or Passport Number']")
+	public WebElement Declaration_Passport_TextField;
+
+	@FindBy(xpath = "//input[@placeholder='Position Held or Relationship to the Account Holder']")
+	public WebElement Declaration_PositionHeld_TextField;
 
 	// *****************Risk Evaluation************************************
 	@FindBy(xpath = "//a[contains(text(),'Risk Evaluation')]")
 	public WebElement RiskEvaluation_Tab;
-	
+
 	@FindBy(xpath = "(//div[@class='mat-tab-header-pagination-chevron'])[4]")
 	public WebElement Pagination_After;
 
@@ -1288,7 +1356,7 @@ public class QueuePage {
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
 		else if (tabName.equals("Public-ProductInformation"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 10);
-		else if (tabName.equals("Public-Risk Evaluation")|| tabName.equals("Private-Risk Evaluation"))
+		else if (tabName.equals("Public-Risk Evaluation") || tabName.equals("Private-Risk Evaluation"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 4);
 		else if (tabName.equals("Public-Internal Information") || tabName.equals("Private-Internal Information"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 5);
@@ -1300,6 +1368,12 @@ public class QueuePage {
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 14);
 		else if (tabName.equals("Private-NatureOfBussinessActivity"))
 			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 12);
+		else if (tabName.equals("Declaration for Holding without Tax Purposes"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 2);
+		else if (tabName.equals("Declaration of Beneficial Ownership"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 3);
+		else if (tabName.equals("Private-Product Information"))
+			Assert.assertEquals(ReusableMethods.getListofElementsCount(Get_Fields_Count), 23);
 
 	}
 
@@ -1394,12 +1468,23 @@ public class QueuePage {
 			break;
 
 		case "Private-NatureOfBussinessActivity":
-             enter_Private_NaureofBussinessActivity(scenarioContext);
+			enter_Private_NaureofBussinessActivity(scenarioContext);
 			break;
 		case "Private-Risk Evaluation":
 			enter_RiskEvaluation(scenarioContext);
 			break;
 
+		case "Declaration for Holding without Tax Purposes":
+			enter_DeclarationTaxPurposes(scenarioContext);
+			break;
+
+		case "Declaration of Beneficial Ownership":
+			enter_DeclarationBeneficialOwnership(scenarioContext);
+			break;
+			
+		case "Private-Product Information":
+			enter_Private_ProductInformation(scenarioContext);
+			break;
 		}
 	}
 
@@ -1432,15 +1517,26 @@ public class QueuePage {
 		case "Private-Contact Details":
 			validate_PrivateContactDetails(scenarioContext);
 			break;
-			
+
 		case "Private-NatureOfBussinessActivity":
-            validate_PrivateNatureofBussinessActivity(scenarioContext);
+			validate_PrivateNatureofBussinessActivity(scenarioContext);
 			break;
-			
+
 		case "Private-Risk Evaluation":
 			validate_RiskEvaluationData(scenarioContext);
 			break;
 
+		case "Declaration for Holding without Tax Purposes":
+			Validate_DeclarationTaxPurposes(scenarioContext);
+			break;
+
+		case "Declaration of Beneficial Ownership":
+			validate_DeclarationBeneficialOwnership(scenarioContext);
+			break;
+			
+		case "Private-Product Information":
+			validate_Private_ProductInformation(scenarioContext);
+			break;
 		}
 	}
 
@@ -1482,13 +1578,31 @@ public class QueuePage {
 			ReusableMethods.waitForElementToBeDisplayed(ContactDetails_Tab, 30, driver);
 			ReusableMethods.click(driver, ContactDetails_Tab);
 			break;
-			
+
+		case "Private Product Information":
+			ReusableMethods.waitForElementToBeDisplayed(ProductInformation_Tab, 30, driver);
+			ReusableMethods.click(driver, ProductInformation_Tab);
+
 		case "Private Risk Evaluation":
 			ReusableMethods.waitForElement(driver, Pagination_After);
 			ReusableMethods.moveToElement(driver, Pagination_After);
 			ReusableMethods.click_javaScript(driver, Pagination_After);
 			ReusableMethods.waitForElementToBeDisplayed(RiskEvaluation_Tab, 30, driver);
 			ReusableMethods.click(driver, RiskEvaluation_Tab);
+
+		case "Declaration for Holding without Tax Purposes":
+			ReusableMethods.waitForElementToBeDisplayed(DeclarationForWithHoldingTax_Tab, 30, driver);
+			ReusableMethods.click(driver, DeclarationForWithHoldingTax_Tab);
+			break;
+
+		case "Declaration of Beneficial Ownership":
+			ReusableMethods.waitForElement(driver, Pagination_After);
+			ReusableMethods.moveToElement(driver, Pagination_After);
+			ReusableMethods.click_javaScript(driver, Pagination_After);
+			ReusableMethods.waitForElementToBeDisplayed(DeclarationBeneficial_Tab, 30, driver);
+			ReusableMethods.click(driver, DeclarationBeneficial_Tab);
+			break;
+
 		}
 
 	}
@@ -2030,19 +2144,20 @@ public class QueuePage {
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ACP_EmailAddress_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.ACP_EmailAddress.toString()));
 	}
-	
+
 	public void enter_Private_NaureofBussinessActivity(ScenarioContext scenarioContext) {
 		scenarioContext.addTestData(FieldNames.IndustryType.toString(), "Central Bank");
 		scenarioContext.addTestData(FieldNames.NatureOfBussiness.toString(), "Trading");
 		scenarioContext.addTestData(FieldNames.CountriesOfBussinessOperations.toString(), "India");
 
 		// NatureOfBussiness
-				ReusableMethods.click(driver, NatureOfBussiness_Drp);
-				ReusableMethods.waitForElement(driver,
-						GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
-				ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
-				ReusableMethods.moveToElement(driver, ProvideDetails_TextArea);
-		
+		ReusableMethods.click(driver, NatureOfBussiness_Drp);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
+		ReusableMethods.moveToElement(driver, ProvideDetails_TextArea);
+
 		// Please provide brief details of Products/Services (including details of Items
 		// / Goods Manufactured or Traded, Services Provided)
 		scenarioContext.addTestData(FieldNames.Prodcution_Services.toString(),
@@ -2055,92 +2170,319 @@ public class QueuePage {
 				GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
 		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
 		ReusableMethods.moveToElement(driver, BussinessInformation_Tab);
-		
-		//Countries of Bussiness Operation
+
+		// Countries of Bussiness Operation
 		ReusableMethods.click(driver, CountriesOfBussinessOperation_Drp);
 		ReusableMethods.waitForElement(driver,
 				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
-		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
 		ReusableMethods.moveToElement(driver, MajorCustomer_Country_TextField);
-		
+
 		scenarioContext.addTestData(FieldNames.MajorCustomer_FullName.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_FullName_TextField,
 				scenarioContext.getTestData(FieldNames.MajorCustomer_FullName.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.MajorCustomer_Country.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_Country_TextField,
 				scenarioContext.getTestData(FieldNames.MajorCustomer_Country.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.MajorCustomer_EAVB.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_EAVB_TextField,
 				scenarioContext.getTestData(FieldNames.MajorCustomer_EAVB.toString()));
-		
+
 		ReusableMethods.ScrollToElement_JavScript(driver, MajorSuppliers_FullName_TextField);
-		
+
 		scenarioContext.addTestData(FieldNames.MajorSuppliers_FullName.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_FullName_TextField,
 				scenarioContext.getTestData(FieldNames.MajorSuppliers_FullName.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.MajorSuppliers_Country.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_Country_TextField,
 				scenarioContext.getTestData(FieldNames.MajorSuppliers_Country.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.MajorSuppliers_EAVB.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_EAVB_TextField,
 				scenarioContext.getTestData(FieldNames.MajorSuppliers_EAVB.toString()));
-			
+
 		scenarioContext.addTestData(FieldNames.PaidCapital.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, PaidUpCapital_TextField,
 				scenarioContext.getTestData(FieldNames.PaidCapital.toString()));
-		
+
 		scenarioContext.addTestData(FieldNames.TurnOver.toString(),
 				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, TurnOver_TextField,
 				scenarioContext.getTestData(FieldNames.TurnOver.toString()));
-		
+
 	}
 
 	public void validate_PrivateNatureofBussinessActivity(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElement(driver, NatureOfBussiness_Drp);
-		
+
 		Assert.assertEquals(ReusableMethods.GetTextData(NatureOfBussiness_Drp),
 				scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetTextData(IndustryType_Drp),
 				scenarioContext.getTestData(FieldNames.IndustryType.toString()));
 
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(ProvideDetails_TextArea, "value"),
 				scenarioContext.getTestData(FieldNames.Prodcution_Services.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetTextData(CountriesOfBussinessOperation_Drp),
 				scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorCustomer_FullName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.MajorCustomer_FullName.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorCustomer_Country_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.MajorCustomer_Country.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorCustomer_EAVB_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.MajorCustomer_EAVB.toString()));
-		
+
 		ReusableMethods.ScrollToElement_JavScript(driver, MajorSuppliers_FullName_TextField);
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorSuppliers_FullName_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.MajorSuppliers_FullName.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorSuppliers_Country_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.MajorSuppliers_Country.toString()));
-		
+
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(MajorSuppliers_EAVB_TextField, "value"),
 				scenarioContext.getTestData(FieldNames.MajorSuppliers_EAVB.toString()));
 
 	}
+
+	public void enter_DeclarationTaxPurposes(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+		scenarioContext.addTestData(FieldNames.EntityIncorporated.toString(), "Yes");
+		scenarioContext.addTestData(FieldNames.EitherDropdown.toString(),
+				"The control and management of the Company’s business is exercised in Singapore.  ");
+
+		ReusableMethods.click(driver, EntityIncorporated_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.EntityIncorporated.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.EntityIncorporated.toString())));
+		ReusableMethods.moveToElement(driver, SelectEither_Dropdown);
+
+		ReusableMethods.click(driver, SelectEither_Dropdown);
+		ReusableMethods.waitForElement(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.EitherDropdown.toString())));
+		ReusableMethods.click(driver,
+				GenericDropdwon(scenarioContext.getTestData(FieldNames.EitherDropdown.toString())));
+		ReusableMethods.moveToElement(driver, DeclarationForWithHoldingTax_Tab);
+
+	}
+
+	public void Validate_DeclarationTaxPurposes(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+
+		Assert.assertEquals(ReusableMethods.GetTextData(EntityIncorporated_Dropdown),
+				scenarioContext.getTestData(FieldNames.EntityIncorporated.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(SelectEither_Dropdown),
+				scenarioContext.getTestData(FieldNames.EitherDropdown.toString()));
+
+	}
+
+	public void enter_DeclarationBeneficialOwnership(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+
+		scenarioContext.addTestData(FieldNames.DeclarationFullName.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, Declaration_FullName_TextField,
+				scenarioContext.getTestData(FieldNames.DeclarationFullName.toString()));
+
+		scenarioContext.addTestData(FieldNames.DeclarationPassport.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, Declaration_Passport_TextField,
+				scenarioContext.getTestData(FieldNames.DeclarationPassport.toString()));
+
+		scenarioContext.addTestData(FieldNames.DeclarationPostionHeld.toString(),
+				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, Declaration_PositionHeld_TextField,
+				scenarioContext.getTestData(FieldNames.DeclarationPostionHeld.toString()));
+
+	}
+
+	public void validate_DeclarationBeneficialOwnership(ScenarioContext scenarioContext) {
+		ReusableMethods.waitForElement(driver, Save_Proceed_Button);
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Declaration_FullName_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.DeclarationFullName.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Declaration_Passport_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.DeclarationPassport.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Declaration_PositionHeld_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.DeclarationPostionHeld.toString()));
+
+	}
+
+	public void selectDropdownData(WebElement element1, String Key, WebElement element2) {
+		ReusableMethods.click(driver, element1);
+		ReusableMethods.waitForElement(driver, GenericDropdwon(Key));
+		ReusableMethods.click(driver, GenericDropdwon(Key));
+		ReusableMethods.moveToElement(driver, element2);
+	}
+
+	public void enterTestData(ScenarioContext scenarioContext, String fieldName, WebElement element) {
+		scenarioContext.addTestData(fieldName, ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		ReusableMethods.ClearAndEnterValue(driver, element, scenarioContext.getTestData(fieldName));
+	}
+
+	public void enter_Private_ProductInformation(ScenarioContext scenarioContext) {
+		scenarioContext.addTestData(FieldNames.Currency.toString(), "INR");
+		scenarioContext.addTestData(FieldNames.Private_PurposeOfAccountOpening_1.toString(), "Investment");
+		scenarioContext.addTestData(FieldNames.Private_SourceInitialFunds.toString(), "Capital");
+		scenarioContext.addTestData(FieldNames.InflowsAccount.toString(), "Cash");
+		scenarioContext.addTestData(FieldNames.Private_Currency.toString(), "AUD");
+		scenarioContext.addTestData(FieldNames.Private_CountriesOfFundsOrigin.toString(), "India");
+		scenarioContext.addTestData(FieldNames.Private_OutflowsAccount.toString(), "Cheques");
+		scenarioContext.addTestData(FieldNames.Private_CountriesInvolvedForOutlflow.toString(), "India");
+		scenarioContext.addTestData(FieldNames.Months.toString(), "4");
+		scenarioContext.addTestData(FieldNames.Days.toString(), "6");
+		scenarioContext.addTestData(FieldNames.Private_PurposeOfAccountOpening_2.toString(), "Loan Repayment");
+		scenarioContext.addTestData(FieldNames.Private_SourceOfFunds.toString(), "Business Proceeds");
+		scenarioContext.addTestData(FieldNames.Private_CountryOfFundsOrigin.toString(), "Singapore");
+		scenarioContext.addTestData(FieldNames.Private_FundingVia.toString(), "Cash");
+
+		selectDropdownData(Currency_Dropdown, scenarioContext.getTestData(FieldNames.Currency.toString()),
+				ProductInformation_Tab);
+		selectDropdownData(Private_PurposeOfAccountOpening1_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_PurposeOfAccountOpening_1.toString()),
+				ProductInformation_Tab);
+		selectDropdownData(Private_SourceOFInitialFunds_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_SourceInitialFunds.toString()), ProductInformation_Tab);
+		selectDropdownData(InflowsInAccount_Dropdown, scenarioContext.getTestData(FieldNames.InflowsAccount.toString()),
+				ProductInformation_Tab);
+
+		ReusableMethods.ScrollToElement_JavScript(driver, NumberOFTransaction_TextField);
+
+		enterTestData(scenarioContext, FieldNames.Private_NumberOfTransaction_1.toString(),
+				NumberOFTransaction_TextField);
+		selectDropdownData(Private_Currency_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_Currency.toString()), AnnualTurnOver_TextField);
+		enterTestData(scenarioContext, FieldNames.AnnualTurnOver.toString(), AnnualTurnOver_TextField);
+		enterTestData(scenarioContext, FieldNames.AvgMonthlyDebits.toString(), AvgMontlyDebits_TextField);
+		enterTestData(scenarioContext, FieldNames.AvgMontlyCredits.toString(), AvgMontlyCredits_TextField);
+		enterTestData(scenarioContext, FieldNames.Private_VolumeTransaction_1.toString(),
+				Private_VolumeOfTransaction1_TextField);
+		selectDropdownData(Private_CountriesOfOrgin_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_CountriesOfFundsOrigin.toString()),
+				Private_VolumeOfTransaction2_TextField);
+		selectDropdownData(Private_OutflowsAccount_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_OutflowsAccount.toString()),
+				Private_VolumeOfTransaction2_TextField);
+		enterTestData(scenarioContext, FieldNames.Private_NumberOfTransaction_2.toString(),
+				Private_NumberOFTransaction_TextField);
+		enterTestData(scenarioContext, FieldNames.Private_VolumeTransaction_2.toString(),
+				Private_VolumeOfTransaction2_TextField);
+
+		ReusableMethods.ScrollToElement_JavScript(driver, Private_CountriesInvolvedOutflow_Dropdown);
+
+		selectDropdownData(Private_CountriesInvolvedOutflow_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_CountriesInvolvedForOutlflow.toString()),
+				Month_Dropdown);
+		enterTestData(scenarioContext, FieldNames.Amount.toString(), Amount_TextField);
+		enterTestData(scenarioContext, FieldNames.Years.toString(), Years_TextField);
+		selectDropdownData(Month_Dropdown, scenarioContext.getTestData(FieldNames.Months.toString()), Amount_TextField);
+		selectDropdownData(Days_Dropdown, scenarioContext.getTestData(FieldNames.Days.toString()), Amount_TextField);
+		selectDropdownData(Private_PurposeOfAccountOpening2_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_PurposeOfAccountOpening_2.toString()), Amount_TextField);
+		ReusableMethods.ScrollToElement_JavScript(driver, Private_SourceFunds_Dropdown);
+
+		selectDropdownData(Private_SourceFunds_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_SourceOfFunds.toString()), Amount_TextField);
+		selectDropdownData(Private_CountryOfFundsOrigin_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_CountryOfFundsOrigin.toString()), Amount_TextField);
+		selectDropdownData(Private_Fundingvia_Dropdown,
+				scenarioContext.getTestData(FieldNames.Private_FundingVia.toString()), Amount_TextField);
+
+	}
+
+	public void validate_Private_ProductInformation(ScenarioContext scenarioContext) {
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Currency_Dropdown),
+				scenarioContext.getTestData(FieldNames.Currency.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_PurposeOfAccountOpening1_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_PurposeOfAccountOpening_1.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Currency_Dropdown),
+				scenarioContext.getTestData(FieldNames.Currency.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_SourceOFInitialFunds_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_SourceInitialFunds.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(InflowsInAccount_Dropdown),
+				scenarioContext.getTestData(FieldNames.InflowsAccount.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(NumberOFTransaction_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Private_NumberOfTransaction_1.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_Currency_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_Currency.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(AnnualTurnOver_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.AnnualTurnOver.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(AvgMontlyCredits_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.AvgMontlyCredits.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(AvgMontlyDebits_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.AvgMonthlyDebits.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Private_VolumeOfTransaction1_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Private_VolumeTransaction_1.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_CountriesOfOrgin_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_CountriesOfFundsOrigin.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_OutflowsAccount_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_OutflowsAccount.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Private_NumberOFTransaction_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Private_NumberOfTransaction_2.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Private_VolumeOfTransaction2_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Private_NumberOfTransaction_2.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_CountriesInvolvedOutflow_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_CountriesInvolvedForOutlflow.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Amount_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Amount.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Years_TextField, "value"),
+				scenarioContext.getTestData(FieldNames.Years.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Month_Dropdown),
+				scenarioContext.getTestData(FieldNames.Months.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Days_Dropdown),
+				scenarioContext.getTestData(FieldNames.Days.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_PurposeOfAccountOpening2_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_PurposeOfAccountOpening_2.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_SourceFunds_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_SourceInitialFunds.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_CountryOfFundsOrigin_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_CountryOfFundsOrigin.toString()));
+
+		Assert.assertEquals(ReusableMethods.GetTextData(Private_Fundingvia_Dropdown),
+				scenarioContext.getTestData(FieldNames.Private_FundingVia.toString()));
+
+	}
+
 }

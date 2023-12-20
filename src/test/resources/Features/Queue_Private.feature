@@ -21,7 +21,7 @@ Feature: Validate Dyanamic fields section for private and public
     Then I should validate data is saved in dynamic internal information section
     When I Close the browser
 
-@regression 
+  @regression
   Scenario: Validate Entity Information for Private Customer Information Tab
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -41,9 +41,8 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Customer Information" tab in the onborading screen
     Then I should validate data is saved under "Private-CustomerInformation" section
     When I Close the browser
-    
-    
-    @regression
+
+  @regression
   Scenario: Validate Entity Information for Private Contact Details Tab
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -64,8 +63,8 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Contact Details" tab in the onborading screen
     Then I should validate data is saved under "Private-Contact Details" section
     When I Close the browser
-    
-     @regression 
+
+  @regression
   Scenario: Validate Entity Information for Private Nature of Bussiness Activity
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -86,9 +85,8 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "NatureOfBussinessActivity" tab in the onborading screen
     Then I should validate data is saved under "Private-NatureOfBussinessActivity" section
     When I Close the browser
-    
-    
-    @regression @test
+
+  @regression
   Scenario: Validate Entity Information for Private Product Information
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -109,8 +107,8 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Private-Product Information" tab in the onborading screen
     Then I should validate data is saved under "Private-Product Information" section
     When I Close the browser
-    
-    @regression
+
+  @regression
   Scenario: Validate Entity Information for Private Declaration for Holding without Tax Purposes
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -131,9 +129,8 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Declaration for Holding without Tax Purposes" tab in the onborading screen
     Then I should validate data is saved under "Declaration for Holding without Tax Purposes" section
     When I Close the browser
-    
-    
-     @regression
+
+  @regression
   Scenario: Validate Entity Information for Private Declaration Beneficial Ownership
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -154,8 +151,8 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Declaration of Beneficial Ownership" tab in the onborading screen
     Then I should validate data is saved under "Declaration of Beneficial Ownership" section
     When I Close the browser
-    
-    @regression 
+
+  @regression
   Scenario: Validate Entity Information for Private Nature of Risk Evaluation
     Given I Should create a record for "Private" record
     Then I should capture patient user id
@@ -177,5 +174,44 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on "Private Risk Evaluation" tab in the onborading screen
     Then I should validate data is saved under "Private-Risk Evaluation" section
     When I Close the browser
-    
-    
+
+  @regression
+  Scenario: Validate Documentation for ID&V Documentation and Saved Documents in Document Tracking for Private Sector
+    Given I Should create a record for "Private" record
+    Then I should capture patient user id
+    Given Open the Web Browser
+    When I launch the Diligent application
+    And I enter "Maker" credentials
+    And I click on Sign In button
+    And I click on Agree button
+    And I click "Queue Config" in the left pane from Dashboard
+    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on any created record through API
+    And I click on <Documentation> tab in the onborading screen
+    Then I should validation Doc Selection as No
+    And I should validate list of Documents needs to availble
+      | Audited financial report                                                                            |
+      | CRS self certification                                                                              |
+      | Original Board resolution approving opening of account and its authorised signatories               |
+      | Fax indemnity Resolution                                                                            |
+      | Deed of Indemnity                                                                                   |
+      |  Letter of Indemnity                                                                               |
+      | Crossed Cheque for Minimum Balance Amount                                                           |
+      |  Letter of Introduction from SBI Overseas Branch/existing Bankers domiciled in FATF member country |
+      | Certificate of Incorporation / Registration                                                         |
+      | Register of Directors                                                                               |
+      | Register of Shareholders                                                                            |
+      | FATCA Form                                                                                          |
+    When I select mandatory documents in customer tab
+    Then I should validation Doc Selection as Yes
+    And I click on Save & Proceed button
+    Then I should validate selected Documents should be displayed under Document Tracking Section
+      | Audited financial report                                                                            |
+      | CRS self certification                                                                              |
+      | Register of Directors                                                                               |
+      | Register of Shareholders                                                                            |
+      |  Letter of Introduction from SBI Overseas Branch/existing Bankers domiciled in FATF member country |
+      | Certificate of Incorporation / Registration                                                         |
+      | Original Board resolution approving opening of account and its authorised signatories               |
+      | FATCA Form                                                                                          |
+    When I Close the browser

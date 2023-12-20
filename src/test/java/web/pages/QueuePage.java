@@ -720,6 +720,20 @@ public class QueuePage {
 	@FindBy(xpath = "//span[@class='mat-option-text' and contains(text(),'No')]")
 	public WebElement Doc_Mandatory_Selection_Dropdown;
 
+	@FindBy(xpath = "//div[contains(@class,'status completed')]")
+	public WebElement Doc_Selection_Complete;
+
+	@FindBy(xpath = "//div[contains(@class,'status pending')]")
+	public WebElement Doc_Selection_Pending;
+
+	@FindBy(xpath = "//span[contains(text(),'*')]/../../../../preceding-sibling::td/mat-checkbox")
+	public List<WebElement> Doc_Mandatory_Selection;
+
+	@FindBy(xpath = "//td[1]//span[@class='mat-checkbox-label']")
+	public List<WebElement> Get_Documents_List;
+
+	@FindBy(xpath = "//td[1]/lib-meta-translate")
+	public List<WebElement> Get_SavedDocuments_List;
 	// ************************Risk Assessment*****************************
 
 	@FindBy(xpath = "//div[contains(text(),'Risk Assessment')]")
@@ -768,6 +782,9 @@ public class QueuePage {
 
 	@FindBy(xpath = "//span[contains(text(),'Download')]/parent::button")
 	public WebElement ProfileHistory_Download_Button;
+
+	@FindBy(xpath = "//div[contains(text(),'Document Name')]")
+	public WebElement Doc_DocumentHeader;
 
 	// ********************************************************************
 
@@ -1481,7 +1498,7 @@ public class QueuePage {
 		case "Declaration of Beneficial Ownership":
 			enter_DeclarationBeneficialOwnership(scenarioContext);
 			break;
-			
+
 		case "Private-Product Information":
 			enter_Private_ProductInformation(scenarioContext);
 			break;
@@ -1533,7 +1550,7 @@ public class QueuePage {
 		case "Declaration of Beneficial Ownership":
 			validate_DeclarationBeneficialOwnership(scenarioContext);
 			break;
-			
+
 		case "Private-Product Information":
 			validate_Private_ProductInformation(scenarioContext);
 			break;
@@ -2485,4 +2502,35 @@ public class QueuePage {
 
 	}
 
+	public void validateDocumentSelection(Boolean document) {
+
+		if (document == true) {
+			ReusableMethods.waitForElement(driver, Doc_Selection_Complete);
+			ReusableMethods.moveToElement(driver, Doc_Selection_Complete);
+			Assert.assertTrue(ReusableMethods.isDisplayed(Doc_Selection_Complete));
+			;
+		} else {
+			Assert.assertTrue(ReusableMethods.isDisplayed(Doc_Selection_Pending));
+		}
+	}
+
+	public void selectMandatoryDocs() {
+		ReusableMethods.waitForElement(driver, Doc_DocSelectionCompleted_Yes_RadioButton);
+		for (WebElement doc : Doc_Mandatory_Selection) {
+			doc.click();
+		}
+	}
+
+	public void validatePrivateDocumentsList(List<String> expectedDocuments) throws Exception {
+		ReusableMethods.ScrollToElement_JavScript(driver, Doc_ListOfDocuments_Header);
+		ReusableMethods.compareList(Get_Documents_List, expectedDocuments);
+	}
+
+	public void validateSavedPrivateDocumentsList(List<String> expectedDocuments) throws Exception {
+		ReusableMethods.Sleep(8);
+		ReusableMethods.waitForElement(driver, Doc_DocumentHeader);
+		ReusableMethods.ScrollToElement_JavScript(driver, Doc_DocumentHeader);
+		List<String> getDocSavedList=ReusableMethods.getListofElements(Get_SavedDocuments_List);
+		ReusableMethods.validateList(getDocSavedList, expectedDocuments);
+	}
 }

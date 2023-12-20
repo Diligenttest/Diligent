@@ -377,4 +377,25 @@ public class QueuePageSteps {
 	public void i_should_validate_entity_informations_tabs_for_sectors(String sector) throws Exception {
 	    getQueuePage.validateEntityTabsBasedOnSector(sector);;
 	}
+	
+	@Then("I should validation Doc Selection as No")
+	public void i_should_validation_doc_selection_as_no() {
+	    getQueuePage.validateDocumentSelection(false);
+	}
+	@Then("I should validate list of Documents needs to availble")
+	public void i_should_validate_list_of_documents_needs_to_availble(DataTable dataTable) throws Exception {
+	   getQueuePage.validatePrivateDocumentsList(dataTable.asList());
+	}
+	@When("I select mandatory documents in customer tab")
+	public void i_select_mandatory_documents_in_customer_tab() {
+	    getQueuePage.selectMandatoryDocs();
+	}
+	@Then("I should validation Doc Selection as Yes")
+	public void i_should_validation_doc_selection_as_yes() {
+		 getQueuePage.validateDocumentSelection(true);
+	}
+	@Then("I should validate selected Documents should be displayed under Document Tracking Section")
+	public void i_should_validate_selected_documents_should_be_displayed_under_document_tracking_section(DataTable dataTable) throws Exception {
+		getQueuePage.validateSavedPrivateDocumentsList(dataTable.asList());
+	}
 }

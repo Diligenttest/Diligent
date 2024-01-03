@@ -11,7 +11,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     Then I should validate fields count for "Private-Internal Information" sector
     And I enter all the information under <Dynamic Internal Information> section
@@ -22,7 +22,7 @@ Feature: Validate Dyanamic fields section for private and public
     When I Close the browser
 
   @regression
-  Scenario: Validate Entity Information for Private Customer Information Tab
+  Scenario: Validate Entity  for Private Customer Information Tab
     Given I Should create a record for "Private" record
     Then I should capture patient user id
     Given Open the Web Browser
@@ -31,7 +31,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     Then I should validate fields count for "Private-CustomerInformation" sector
@@ -52,7 +52,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Contact Details" tab in the onborading screen
@@ -74,7 +74,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "NatureOfBussinessActivity" tab in the onborading screen
@@ -96,7 +96,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Private Product Information" tab in the onborading screen
@@ -118,7 +118,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+   And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Declaration for Holding without Tax Purposes" tab in the onborading screen
@@ -140,7 +140,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Declaration of Beneficial Ownership" tab in the onborading screen
@@ -162,7 +162,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Private Risk Evaluation" tab in the onborading screen
@@ -185,7 +185,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Documentation> tab in the onborading screen
     Then I should validation Doc Selection as No

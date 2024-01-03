@@ -1,6 +1,8 @@
 package web.pages;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -41,6 +43,7 @@ public class LoginPage {
 	public void launchApplication() {
 		try {
 			ReusableMethods.launchApplication(driver, ReusableMethods.getGlobalValue("globalURL"));
+			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

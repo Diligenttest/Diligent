@@ -45,10 +45,10 @@ public class QueuePageSteps {
 	public void i_should_validate_table_headers_for_customer_under_onboard_customer() throws Exception {
 		getQueuePage.validateOnboardCustomerTableHeaders(null);
 	}
-
-	@When("I click on the {string} subtab in the left pane from Dashboard")
-	public void i_click_on_the_subtab_in_the_left_pane_from_dashboard(String string) {
-		getQueuePage.clickCorporate_Queue();
+	
+	@When("I click on the <Corporate> subtab under {string} in the left pane from Dashboard")
+	public void i_click_on_the_corporate_subtab_under_in_the_left_pane_from_dashboard(String string) {
+		getQueuePage.clickCorporate_Queue(string);
 	}
 
 	@When("I click on any existing Application ID")

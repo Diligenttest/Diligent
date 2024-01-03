@@ -40,16 +40,21 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.yaml.snakeyaml.Yaml;
+
 import java.nio.file.Files;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+import com.aventstack.extentreports.gherkin.model.Scenario;
 
 public class ReusableMethods {
-
+	
 	static WebDriverWait wait;
 	static WebElement webElement;
 	static Actions objAction;
 	static String filePath = "/src/test/resources/GlobalTestData/globaldata.properties";
 	static String filePath2 = "/src/test/resources/GlobalTestData/dynamicTestData.properties";
+	static String public_org = "/src/test/resources/GlobalTestData/publicOrg.yml";
+	static String private_Org = "/src/test/resources/GlobalTestData/privateOrg.yml";
 	static String apiFilePath = "/src/test/resources/payloads";
 
 	public static void launchApplication(WebDriver driver, String Url) {
@@ -640,6 +645,21 @@ public class ReusableMethods {
 		String str = new String(Files.readAllBytes(absolutefilePath));
 		return str;
 	}
+	public static Map<String, Object> readPrivateYamlFile() throws IOException {
+	File file = new File(System.getProperty("user.dir") + private_Org);
+	FileInputStream inputStream = new FileInputStream(file);
+	Yaml yaml = new Yaml();
+	Map<String, Object> data = yaml.load(inputStream);
+	return data;
+	}
+	
+	public static Map<String, Object> readPublicYamlFile(String key) throws IOException {
+		File file = new File(System.getProperty("user.dir") + private_Org);
+		FileInputStream inputStream = new FileInputStream(file);
+		Yaml yaml = new Yaml();
+		Map<String, Object> data = yaml.load(inputStream);
+		return data;
+		}
 
 	public static String generateRandomValues(String randomType, int lengthCount) {
 		int index;

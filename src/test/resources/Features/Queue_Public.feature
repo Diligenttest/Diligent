@@ -12,7 +12,7 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     Then I should validate fields count for "Public-Internal Information" sector
     And I enter all the information under <Dynamic Internal Information> section
@@ -32,7 +32,7 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     Then I should validate fields count for "Public-CustomerInformation" sector
@@ -53,7 +53,7 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "NatureOfBussinessActivity" tab in the onborading screen
@@ -75,7 +75,7 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Product Information" tab in the onborading screen
@@ -97,7 +97,7 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "Risk Evaluation" tab in the onborading screen
@@ -119,7 +119,7 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     And I click on "New Level" tab in the onborading screen
@@ -132,7 +132,7 @@ Feature: Validate Dyanamic fields section for public
     Then I should validate data is saved under "Public-New Level" section
     When I Close the browser
 
-  @regression 
+  @regression
   Scenario: Validate Entity Information for Public Nature of Entity Information Tabs
     Given I Should create a record for "Public" record
     Then I should capture patient user id
@@ -142,8 +142,14 @@ Feature: Validate Dyanamic fields section for public
     And I click on Sign In button
     And I click on Agree button
     And I click "Queue Config" in the left pane from Dashboard
-    And I click on the "Corporate" subtab in the left pane from Dashboard
+    And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     And I click on <Entity Information> tab in the onborading screen
     Then I should validate Entity Informations tabs for "Public" Sectors
     When I Close the browser
+    
+    
+    @regression
+  Scenario: Validate Entity Information for Public Nature of Entity Information Tabs
+    Given Open the Web Browser
+      When I launch the Diligent application

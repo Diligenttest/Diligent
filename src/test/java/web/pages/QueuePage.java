@@ -27,8 +27,7 @@ public class QueuePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//a[contains(@ng-reflect-router-link,'queue')]//span[text()='Corporate']")
-	public WebElement Corpoate_SubTab;
+	
 
 	@FindBy(xpath = "//div[@class='mat-tab-labels']//a")
 	public List<WebElement> EntityInformation_Tabs;
@@ -814,6 +813,10 @@ public class QueuePage {
 	public WebElement getFileStatusValue(String value) {
 		return driver.findElement(By.xpath("//mat-cell[contains(text(),'" + value + "')]"));
 	}
+	
+	public WebElement corporateSubTab(String value) {
+		return driver.findElement(By.xpath("//a[contains(@ng-reflect-router-link,'"+value+"')]//span[text()='Corporate']"));
+	}
 
 	// *************************Dynamic RecordID*****************************
 
@@ -835,8 +838,8 @@ public class QueuePage {
 		ReusableMethods.compareList(OnboardCustomer_TableHeaders, Constant.ONBOARDCUSTOMERHEADERS);
 	}
 
-	public void clickCorporate_Queue() {
-		ReusableMethods.click(driver, Corpoate_SubTab);
+	public void clickCorporate_Queue(String value) {
+		ReusableMethods.click(driver, corporateSubTab(value));
 	}
 
 	public void clickAnyExistingApplicationID() {

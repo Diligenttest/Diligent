@@ -653,8 +653,8 @@ public class ReusableMethods {
 	return data;
 	}
 	
-	public static Map<String, Object> readPublicYamlFile(String key) throws IOException {
-		File file = new File(System.getProperty("user.dir") + private_Org);
+	public static Map<String, Object> readPublicYamlFile() throws IOException {
+		File file = new File(System.getProperty("user.dir") + public_org);
 		FileInputStream inputStream = new FileInputStream(file);
 		Yaml yaml = new Yaml();
 		Map<String, Object> data = yaml.load(inputStream);

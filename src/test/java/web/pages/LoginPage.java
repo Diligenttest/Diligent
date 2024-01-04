@@ -97,4 +97,8 @@ public class LoginPage {
 		ReusableMethods.click(driver, leftNavigationPane(tabName));
 	}
 	
+	public void waitForPageLoad(int timeout) throws InterruptedException
+	{
+		ReusableMethods.Sleep(timeout);
+	}
 }

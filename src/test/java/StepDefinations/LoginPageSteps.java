@@ -2,6 +2,8 @@ package StepDefinations;
 
 import com.TestContext.ScenarioContext;
 import com.TestContext.WebTestContext;
+
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import web.pages.LoginPage;
 
@@ -39,5 +41,10 @@ public class LoginPageSteps {
 	@When("I click {string} in the left pane from Dashboard")
 	public void i_click_in_the_left_pane_from_dashboard(String tabName) {
 		getLoginPage.clickLeftNavigationPane(tabName);
+	}
+	
+	@Then("I should wait for {int} seconds to load the page")
+	public void i_should_wait_for_seconds_to_load_the_page(Integer timeOut) throws InterruptedException {
+	    getLoginPage.waitForPageLoad(timeOut);
 	}
 }

@@ -30,9 +30,9 @@ public class OnboardCustomerSteps {
 		
 	}
 
-	@When("I enter Corporate IDV Document Checklist Generation Fields")
-	public void i_enter_corporate_idv_document_checklist_generation_fields() throws InterruptedException {
-	    getOnboardCustomer.enterCustomerIDVChecklist(scenarioContext);
+	@When("I enter Corporate IDV Document Checklist Generation Fields for {string} sector")
+	public void i_enter_corporate_idv_document_checklist_generation_fields(String orgType) throws InterruptedException {
+	    getOnboardCustomer.enterCustomerIDVChecklist(scenarioContext,orgType);
 	}
 	@When("I click on Generate Checklist")
 	public void i_click_on_generate_checklist() {
@@ -48,18 +48,13 @@ public class OnboardCustomerSteps {
 	   getOnboardCustomer.enterIndividualInformation(scenarioContext);
 	}
 	
-	@When("I enter Non Individual information")
-	public void i_enter_non_individual_information() throws InterruptedException {
-	    getOnboardCustomer.enterNonIndividualInformation(scenarioContext);
+	@When("I enter Non Individual information for {string} sector")
+	public void i_enter_non_individual_information(String orgType) throws InterruptedException {
+	    getOnboardCustomer.enterNonIndividualInformation(scenarioContext,orgType);
 	}
 	@When("I click on Generate KYC Profice button")
 	public void i_click_on_generate_kyc_profice_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	   getOnboardCustomer.clickGenerateKYC();
 	}
-	@Then("I should wait for {int} seconds to load the page")
-	public void i_should_wait_for_seconds_to_load_the_page(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+
 }

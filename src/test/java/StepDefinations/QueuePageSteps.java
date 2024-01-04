@@ -22,7 +22,7 @@ public class QueuePageSteps {
 	private ScenarioContext scenarioContext;
 	private QueuePage getQueuePage;
 
-	public QueuePageSteps(WebTestContext webTestContext, ScenarioContext scenarioContext) {
+	public QueuePageSteps(WebTestContext webTestContext, ScenarioContext scenarioContext) throws IOException {
 		this.webTestContext = webTestContext;
 		this.scenarioContext = scenarioContext;
 		getQueuePage = this.webTestContext.getWebPageObject().getQueuePage();
@@ -108,17 +108,6 @@ public class QueuePageSteps {
 		}
 	}
 
-	@When("I enter all the information under <Internal Information> section")
-	public void i_enter_all_the_information_under_internal_information_section() {
-		getQueuePage.enterInternalInformationSectionInfo(scenarioContext);
-	}
-	
-	@When("I enter all the information under <Dynamic Internal Information> section")
-	public void i_enter_all_the_information_under_Dynamic_internal_information_section() {
-		getQueuePage.enterDynamicInternalInformationSectionInfo(scenarioContext);
-	}
-
-
 	@When("I click on Save & Proceed button")
 	public void i_click_on_save_proceed_button() {
 		getQueuePage.clickSaveAndProceedButton();
@@ -132,11 +121,6 @@ public class QueuePageSteps {
 	@Then("I should validate data is saved in internal information section")
 	public void i_should_validate_data_is_saved_in_internal_information_section() {
 		getQueuePage.validateInternalInformationInfo(scenarioContext);
-	}
-	
-	@Then("I should validate data is saved in dynamic internal information section")
-	public void i_should_validate_data_is_saved_in_dynamic_internal_information_section() {
-		getQueuePage.validateDynamicInternalInformationInfo(scenarioContext);
 	}
 
 	@When("I click on Save & Exit button")
@@ -360,9 +344,9 @@ public class QueuePageSteps {
 		getQueuePage.validateFieldCount(tabName);
 	}
 	
-	@Then("I enter all the information under {string} section")
-	public void i_enter_all_the_information_under_section(String tabName) {
-	    getQueuePage.enterFieldsData(scenarioContext, tabName);
+	@Then("I enter all the information under {string} section for {string} sector")
+	public void i_enter_all_the_information_under_section(String tabName,String sectorType) {
+	    getQueuePage.enterFieldsData(scenarioContext, tabName,sectorType);
 	}
 	@Then("I click on {string} tab in the onborading screen")
 	public void i_click_on_tab_in_the_onborading_screen(String tabName) throws InterruptedException {

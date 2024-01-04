@@ -1,8 +1,10 @@
 package web.pages;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -17,14 +19,19 @@ import com.TestContext.ScenarioContext;
 import genericFunctions.Constant;
 import genericFunctions.FieldNames;
 import genericFunctions.ReusableMethods;
+import io.cucumber.java.eo.Se;
 
 public class QueuePage {
 
 	public WebDriver driver;
+	public Map<String, Object> privateData;
+	public Map<String, Object> publicData;
 
-	public QueuePage(WebDriver driver) {
+	public QueuePage(WebDriver driver) throws IOException {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		privateData = ReusableMethods.readPrivateYamlFile();
+		publicData=ReusableMethods.readPublicYamlFile();
 	}
 
 	
@@ -75,23 +82,11 @@ public class QueuePage {
 	@FindBy(xpath = "//input[@placeholder='Core Banking ID']")
 	public WebElement CoreBanking_ID_TextField;
 
-	@FindBy(xpath = "//input[@placeholder='Customer Sourced Through']")
-	public WebElement CustomerSourcedThrough_TextField;
-
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Customer Sourced Through')]")
-	public WebElement DynamicCustomerSourcedThrough_Dropdown;
-
-	@FindBy(xpath = "//mat-option//span[contains(text(),'Direct')]")
-	public WebElement DynamicCustomerSourcedThrough_Value;
+	public WebElement CustomerSourcedThrough_Dropdown;
 
 	@FindBy(xpath = "//mat-select[contains(@aria-label,'Business Segment')]")
-	public WebElement DynamicBussinessSegment_Dropdown;
-
-	@FindBy(xpath = "//span[contains(text(),'Commercial Banking')]/..//mat-pseudo-checkbox")
-	public WebElement DynamicBussinessSegment_Value;
-
-	@FindBy(xpath = "//input[@placeholder='Business Segment']")
-	public WebElement BusinessSegment_TextField;
+	public WebElement BussinessSegment_Dropdown;
 
 	@FindBy(xpath = "//input[@placeholder='RM Name']")
 	public WebElement RMName_TextField;
@@ -99,14 +94,6 @@ public class QueuePage {
 	@FindBy(xpath = "//input[@placeholder='Date of Customer Visit']")
 	public WebElement DateofCustomerVisit_TextField;
 
-	@FindBy(xpath = "//button[@aria-label='Open calendar']")
-	public WebElement CalenderOpen_Button;
-
-	@FindBy(xpath = "//td[contains(@class,'calendar-body-active')]")
-	public WebElement SelectDate;
-
-	@FindBy(xpath = "//input[@placeholder='Transparency']")
-	public WebElement Transparency_TextField;
 
 	// ***********Entity Information Fields************************
 
@@ -199,6 +186,10 @@ public class QueuePage {
 
 	public WebElement GenericDropdwon(String value) {
 		return driver.findElement(By.xpath("//mat-option//span[contains(text(),'" + value + "')]"));
+	}
+	
+	public WebElement GenericCheckbox(Object value) {
+		return driver.findElement(By.xpath("//mat-pseudo-checkbox/..//span[contains(text(),'" + value + "')]"));
 	}
 
 	// ***********Bussiness Information Fields************************
@@ -874,13 +865,12 @@ public class QueuePage {
 	public void validateInternalInformation_Fields() {
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 10, driver);
 		Assert.assertTrue(ReusableMethods.isDisplayed(CoreBanking_ID_TextField), "Core Banking ID field is missing");
-		Assert.assertTrue(ReusableMethods.isDisplayed(CustomerSourcedThrough_TextField),
+		Assert.assertTrue(ReusableMethods.isDisplayed(CustomerSourcedThrough_Dropdown),
 				"Customer source through field is missing");
-		Assert.assertTrue(ReusableMethods.isDisplayed(BusinessSegment_TextField), "Bussiness Segment field is missing");
+		Assert.assertTrue(ReusableMethods.isDisplayed(BussinessSegment_Dropdown), "Bussiness Segment field is missing");
 		Assert.assertTrue(ReusableMethods.isDisplayed(RMName_TextField), "RM Name field is missing");
 		Assert.assertTrue(ReusableMethods.isDisplayed(DateofCustomerVisit_TextField),
 				"Date of Customer visit field is missing");
-		Assert.assertTrue(ReusableMethods.isDisplayed(Transparency_TextField), "Transparency field is missing");
 	}
 
 	public void validateOnboarding_Buttons() {
@@ -947,48 +937,41 @@ public class QueuePage {
 				"Mandatory Document Text area is missing");
 	}
 
-	public void enterInternalInformationSectionInfo(ScenarioContext scenarioContext) {
+	public void enterInternalInformationSectionInfo(ScenarioContext scenarioContext,String sectorType) {
 		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
-		scenarioContext.addTestData(FieldNames.CoreBankingID.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+		Map<String, Object> internalInformation=null;
+		if(sectorType.equals("Private"))
+			internalInformation = (Map<String, Object>) privateData.get("Internal Information");
+		else
+			internalInformation = (Map<String, Object>) publicData.get("Internal Information");
+
+			internalInformation.forEach((key, value) -> scenarioContext.addTestData(key.toString(), value.toString()));
+
 		ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField,
-				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
-		scenarioContext.addTestData(FieldNames.CustomerSourceThrough.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
-		ReusableMethods.ClearAndEnterValue(driver, CustomerSourcedThrough_TextField,
-				scenarioContext.getTestData(FieldNames.CustomerSourceThrough.toString()));
-		scenarioContext.addTestData(FieldNames.BussinessSegment.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
-		ReusableMethods.ClearAndEnterValue(driver, BusinessSegment_TextField,
-				scenarioContext.getTestData(FieldNames.BussinessSegment.toString()));
-		scenarioContext.addTestData(FieldNames.RMName.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+				scenarioContext.getTestData("Core Banking ID"));
+		ReusableMethods.click(driver, CustomerSourcedThrough_Dropdown);
+		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData("Customer Sourced Through")));
+        ReusableMethods.waitForElement(driver, BussinessSegment_Dropdown);
+        ReusableMethods.click(driver, BussinessSegment_Dropdown);
+		ReusableMethods.SelectCheckbox(GenericCheckbox(scenarioContext.getTestData("Business Segment")));
+		ReusableMethods.moveToElement(driver, RMName_TextField);
 		ReusableMethods.ClearAndEnterValue(driver, RMName_TextField,
-				scenarioContext.getTestData(FieldNames.RMName.toString()));
-		ReusableMethods.click(driver, CalenderOpen_Button);
-		ReusableMethods.click(driver, SelectDate);
-		scenarioContext.addTestData(FieldNames.DateOfCutomerVisit.toString(),
-				ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "Text"));
-		scenarioContext.addTestData(FieldNames.Tranparency.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
-		ReusableMethods.ClearAndEnterValue(driver, Transparency_TextField,
-				scenarioContext.getTestData(FieldNames.Tranparency.toString()));
+				scenarioContext.getTestData("RM Name"));
+		ReusableMethods.ClearAndEnterValue(driver, DateofCustomerVisit_TextField,
+				scenarioContext.getTestData("Date of Customer Visit"));
+
 	}
 
 	public void validateInternalInformationInfo(ScenarioContext scenarioContext) {
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
-		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CustomerSourcedThrough_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.CustomerSourceThrough.toString()));
-		Assert.assertEquals(ReusableMethods.GetValueByAttribute(BusinessSegment_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.BussinessSegment.toString()));
+				scenarioContext.getTestData("Core Banking ID"));
+		
+		Assert.assertEquals(ReusableMethods.GetTextData(CustomerSourcedThrough_Dropdown),
+				scenarioContext.getTestData("Customer Sourced Through"));
+		Assert.assertEquals(ReusableMethods.GetTextData(BussinessSegment_Dropdown),
+				scenarioContext.getTestData("Business Segment"));
 		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.RMName.toString()));
-		// Assert.assertEquals(ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField,
-		// "value"),
-		// scenarioContext.getTestData(FieldNames.DateOfCutomerVisit.toString()));
-		Assert.assertEquals(ReusableMethods.GetValueByAttribute(Transparency_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.Tranparency.toString()));
+				scenarioContext.getTestData("RM Name"));
 	}
 
 	public void clickSaveAndProceedButton() {
@@ -1314,20 +1297,10 @@ public class QueuePage {
 		switch (fieldName) {
 		case "CoreBankingID":
 			ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField, word);
-			break;
-		case "CustomerSourcedThrough":
-			ReusableMethods.ClearAndEnterValue(driver, CustomerSourcedThrough_TextField, word);
-			break;
-		case "BussinessSegment":
-			ReusableMethods.ClearAndEnterValue(driver, BusinessSegment_TextField, word);
-			break;
+			break;		
 		case "RMName":
 			ReusableMethods.ClearAndEnterValue(driver, RMName_TextField, word);
 			break;
-		case "Tranperency":
-			ReusableMethods.ClearAndEnterValue(driver, Transparency_TextField, word);
-			break;
-
 		}
 	}
 
@@ -1338,18 +1311,9 @@ public class QueuePage {
 		case "CoreBankingID":
 			Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"), expectedword);
 			break;
-		case "CustomerSourcedThrough":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(CustomerSourcedThrough_TextField, "value"),
-					expectedword);
-			break;
-		case "BussinessSegment":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(BusinessSegment_TextField, "value"), expectedword);
-			break;
+	
 		case "RMName":
 			Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"), expectedword);
-			break;
-		case "Tranperency":
-			Assert.assertEquals(ReusableMethods.GetValueByAttribute(Transparency_TextField, "value"), expectedword);
 			break;
 
 		}
@@ -1397,27 +1361,27 @@ public class QueuePage {
 
 	}
 
-	public void enterDynamicInternalInformationSectionInfo(ScenarioContext scenarioContext) {
-		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
-		scenarioContext.addTestData(FieldNames.CoreBankingID.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
-		ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField,
-				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
-		ReusableMethods.click(driver, DynamicCustomerSourcedThrough_Dropdown);
-		ReusableMethods.click(driver, DynamicCustomerSourcedThrough_Value);
-		ReusableMethods.moveToElement(driver, CoreBanking_ID_TextField);
-		ReusableMethods.click(driver, DynamicBussinessSegment_Dropdown);
-		ReusableMethods.click(driver, DynamicBussinessSegment_Value);
-		ReusableMethods.moveToElement(driver, CoreBanking_ID_TextField);
-		scenarioContext.addTestData(FieldNames.RMName.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
-		ReusableMethods.ClearAndEnterValue(driver, RMName_TextField,
-				scenarioContext.getTestData(FieldNames.RMName.toString()));
-		ReusableMethods.click(driver, CalenderOpen_Button);
-		ReusableMethods.click(driver, SelectDate);
-		scenarioContext.addTestData(FieldNames.DateOfCutomerVisit.toString(),
-				ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "Text"));
-	}
+//	public void enterInternalInformationSectionInfo(ScenarioContext scenarioContext) {
+//		ReusableMethods.waitForElementToBeDisplayed(Save_Proceed_Button, 30, driver);
+//		scenarioContext.addTestData(FieldNames.CoreBankingID.toString(),
+//				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+//		ReusableMethods.ClearAndEnterValue(driver, CoreBanking_ID_TextField,
+//				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
+//		ReusableMethods.click(driver, DynamicCustomerSourcedThrough_Dropdown);
+//		ReusableMethods.click(driver, DynamicCustomerSourcedThrough_Value);
+//		ReusableMethods.moveToElement(driver, CoreBanking_ID_TextField);
+//		ReusableMethods.click(driver, DynamicBussinessSegment_Dropdown);
+//		ReusableMethods.click(driver, DynamicBussinessSegment_Value);
+//		ReusableMethods.moveToElement(driver, CoreBanking_ID_TextField);
+//		scenarioContext.addTestData(FieldNames.RMName.toString(),
+//				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+//		ReusableMethods.ClearAndEnterValue(driver, RMName_TextField,
+//				scenarioContext.getTestData(FieldNames.RMName.toString()));
+//		ReusableMethods.click(driver, CalenderOpen_Button);
+//		ReusableMethods.click(driver, SelectDate);
+//		scenarioContext.addTestData(FieldNames.DateOfCutomerVisit.toString(),
+//				ReusableMethods.GetValueByAttribute(DateofCustomerVisit_TextField, "Text"));
+//	}
 
 	public void validatePageNavigation(String tabName) {
 		switch (tabName) {
@@ -1452,16 +1416,11 @@ public class QueuePage {
 		}
 	}
 
-	public void validateDynamicInternalInformationInfo(ScenarioContext scenarioContext) {
-		Assert.assertEquals(ReusableMethods.GetValueByAttribute(CoreBanking_ID_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.CoreBankingID.toString()));
-		Assert.assertEquals(ReusableMethods.GetValueByAttribute(RMName_TextField, "value"),
-				scenarioContext.getTestData(FieldNames.RMName.toString()));
-	}
-
-	public void enterFieldsData(ScenarioContext scenarioContext, String tabName) {
-		System.out.println();
+	public void enterFieldsData(ScenarioContext scenarioContext, String tabName,String sectorType) {
 		switch (tabName) {
+		case "Internal Information":
+			enterInternalInformationSectionInfo(scenarioContext,sectorType);
+			break;
 		case "Public-CustomerInformation":
 			enter_CustomerInformation(scenarioContext, "Public");
 			break;

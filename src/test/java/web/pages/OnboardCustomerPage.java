@@ -19,12 +19,15 @@ import genericFunctions.ReusableMethods;
 public class OnboardCustomerPage {
 
 	public WebDriver driver;
-	public Map<String, Object> data;
+	public Map<String, Object> privateData;
+	public Map<String, Object> publicData;
+	public Map<String, Object> data = null;
 
 	public OnboardCustomerPage(WebDriver driver) throws IOException {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		data = ReusableMethods.readPrivateYamlFile();
+		privateData = ReusableMethods.readPrivateYamlFile();
+		publicData = ReusableMethods.readPublicYamlFile();
 	}
 
 	// Common fields Applicable for Customer,Individual and Non Individual
@@ -106,8 +109,11 @@ public class OnboardCustomerPage {
 		return driver.findElement(By.xpath("//div[contains(text(),'" + value + "')]"));
 	}
 
-	public void commonElements(ScenarioContext scenarioContext) throws InterruptedException {
-
+	public void commonElements(ScenarioContext scenarioContext, String orgType) throws InterruptedException {		
+		if (orgType.equals("Private"))
+			data = privateData;
+		else
+			data = publicData;
 		ReusableMethods.click(driver, RelationShipType_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon(data.get("RelationShip Type")));
 		ReusableMethods.click(driver, EntityType_Dropdown);
@@ -120,36 +126,39 @@ public class OnboardCustomerPage {
 		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData("COI")));
 	}
 
-	public void enterCustomerIDVChecklist(ScenarioContext scenarioContext) throws InterruptedException {
-		System.out.println();
-		System.out.println();
+	public void enterCustomerIDVChecklist(ScenarioContext scenarioContext, String orgType) throws InterruptedException {	
+		if (orgType.equals("Private"))
+			data = privateData;
+		else
+			data = publicData;
+		
 		Map<String, Object> mandatoryRiskFields = (Map<String, Object>) data.get("Mandatory Risk Fields");
 
 		if (mandatoryRiskFields != null) {
 			mandatoryRiskFields.forEach((key, value) -> scenarioContext.addTestData(key.toString(), value.toString()));
 		}
 		String[] bookingLocations = data.get("Booking Locations").toString().split(",");
-		String[] products = scenarioContext.getTestData("products").split(",");
+		// String[] products = scenarioContext.getTestData("products").split(",");
 		ReusableMethods.Sleep(5);
 		ReusableMethods.EnterValue(driver, CustomerName_TextField,
 				ReusableMethods.generateRandomValues("alphabets", 6));
 		ReusableMethods.EnterValue(driver, CustomerEmail_TextField,
 				ReusableMethods.generateRandomValues("alphabets", 4) + "@gmail.com");
-		commonElements(scenarioContext);
+		commonElements(scenarioContext,orgType);
 		ReusableMethods.click(driver, BookingLocations_Dropdown);
 		ReusableMethods.SelectCheckbox(GenericCheckbox(bookingLocations[0]));
 		ReusableMethods.SelectCheckbox(GenericCheckbox(bookingLocations[1]));
 		ReusableMethods.moveToElement(driver, CustomerName_TextField);
-		ReusableMethods.click(driver, Products_Dropdown);
-		ReusableMethods.SelectCheckbox(GenericCheckbox(products[0]));
-		ReusableMethods.SelectCheckbox(GenericCheckbox(products[1]));
-		ReusableMethods.moveToElement(driver, CustomerName_TextField);
+//		ReusableMethods.click(driver, Products_Dropdown);
+//		ReusableMethods.SelectCheckbox(GenericCheckbox(products[0]));
+//		ReusableMethods.SelectCheckbox(GenericCheckbox(products[1]));
+//		ReusableMethods.moveToElement(driver, CustomerName_TextField);
 		ReusableMethods.Sleep(2);
 		ReusableMethods.click(driver, Industry_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData("Industry")));
-		ReusableMethods.click(driver, CountriesOfOporation_Dropdown);
-		ReusableMethods.SelectCheckbox(GenericCheckbox(scenarioContext.getTestData("COR")));
-		ReusableMethods.moveToElement(driver, CustomerName_TextField);
+//		ReusableMethods.click(driver, CountriesOfOporation_Dropdown);
+//		ReusableMethods.SelectCheckbox(GenericCheckbox(scenarioContext.getTestData("COR")));
+//		ReusableMethods.moveToElement(driver, CustomerName_TextField);
 		ReusableMethods.click(driver, IndustryStandard_Dropdown);
 		ReusableMethods.SelectCheckbox(GenericCheckbox("N/A"));
 		ReusableMethods.moveToElement(driver, CustomerName_TextField);
@@ -182,6 +191,7 @@ public class OnboardCustomerPage {
 		ReusableMethods.click(driver, Individual_Nationality_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon("India"));
 		ReusableMethods.waitForElementToBeDisplayed(Individual_Residence_Dropdown, 30, driver);
+		ReusableMethods.Sleep(2);
 		ReusableMethods.click(driver, Individual_Residence_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData("COR")));
 		ReusableMethods.waitForElementToBeDisplayed(RelationWithCustomer_Dropdown, 30, driver);
@@ -190,7 +200,7 @@ public class OnboardCustomerPage {
 		ReusableMethods.moveToElement(driver, Indivdual_Name_TextField);
 	}
 
-	public void enterNonIndividualInformation(ScenarioContext scenarioContext) throws InterruptedException {
+	public void enterNonIndividualInformation(ScenarioContext scenarioContext,String orgType) throws InterruptedException {
 		ReusableMethods.waitForElementToBeDisplayed(NonIndivdual_Name_TextField, 30, driver);
 		try {
 			ReusableMethods.Sleep(5);
@@ -199,13 +209,14 @@ public class OnboardCustomerPage {
 		}
 		ReusableMethods.EnterValue(driver, NonIndivdual_Name_TextField,
 				ReusableMethods.generateRandomValues("alphabets", 6));
-		commonElements(scenarioContext);
+		commonElements(scenarioContext,orgType);
 		ReusableMethods.click(driver, RelationWithCustomer_Dropdown);
 		ReusableMethods.SelectCheckbox(GenericCheckbox("BO (Non-Individual)"));
 		ReusableMethods.moveToElement(driver, NonIndivdual_Name_TextField);
 	}
 
 	public void clickGenerateKYC() {
+		ReusableMethods.ScrollToElement_JavScript(driver, GenerateKYC_Button);
 		ReusableMethods.waitForElementToBeClickable(driver, GenerateKYC_Button);
 		ReusableMethods.click(driver, GenerateKYC_Button);
 	}

@@ -14,6 +14,7 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on the <Corporate> subtab under "queue" in the left pane from Dashboard
     And I click on any created record through API
     Then I should validate fields count for "Private-Internal Information" sector
+    And I enter all the information under "Internal Information" section
     And I enter all the information under <Dynamic Internal Information> section
     And I click on Save & Proceed button
     Then I should validate page is navigated to "Entity Information" screen

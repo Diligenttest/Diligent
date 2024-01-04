@@ -23,7 +23,7 @@ public class WebPageObject {
 		return (getLoginPage == null) ? getLoginPage = new LoginPage(driver) : getLoginPage;
 	}
 	
-	public QueuePage getQueuePage() {
+	public QueuePage getQueuePage() throws IOException {
 		return (getQueuePage == null) ? getQueuePage = new QueuePage(driver) : getQueuePage;
 	}
 	

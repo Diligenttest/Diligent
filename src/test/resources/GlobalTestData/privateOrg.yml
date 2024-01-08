@@ -18,25 +18,49 @@ Internal Information:
 Entity Information:
    Customer Information:
       Full Legal Name: Test 26
-      Registered Address: lingampally,bhel,street 1,hyderbnad,India,508101
-      Full Operating address (if different from Registered address): street 1,secbad,508105,bachupally
+      Registered Address:
+        Line1: lingampally
+        Line2: Bhel
+        Street: Street 1
+        City: Hyderabad
+        Country: India
+        Pincode: 508101         
+      Full Operating Address:
+        FOA_Street: street 1
+        FOA_City: Secunderabad
+        FOA_Pindcode: 508105 
+        FOA_Area: bachupally  
       Office Telephone Number : 9585631023
-      Office Fax Number (Optional) : 56541815089
-      Website (optional) : diligentkyc.com
-      (please provide Country Code and Area Code for non Singapore numbers) : null
+      Office Fax Number : 56541815089
+      Website : diligentkyc.com
       Registration Number : reg678
       Reg. No. Issuing Authority : india-ind
-      Country of Incorporation : india
-      Date of Incorporation : 2023-12-11T00:00:00.000Z
+      Country of Incorporation : India
+      Date of Incorporation : 2023-12-11
       Tax Residency Status : Resident in Singapore
-      GST/Tax Reference Number: gst123
-      Constitution/Legal Status : Public Limited Company – Not Listed in Singapore
-      Other Banking Relationship(s) : icici,india,rtype
-      Kindly provide list of required documents in the document matrix tab : null
-   Contact Detail:
-      Primary Contact Person: Mr., raja, director, 5158468546, 68468646, 64646, d@diligentkyc.com
-      Alternate Contact Person: Mr., kumar, BO, 79844965256, 8654165416, 4869416841698, k@diligentkyc.com
-   Nature of Business and Business Activity:
+      GSTTax Reference Number: gst123
+      ConstitutionLegal Status : Public Limited Company – Not Listed in Singapore
+      BankName : icici
+      Country: India
+      RelationShipType: rtype
+Contact Detail:
+   Primary Contact Person: 
+      Salutation: Mr.
+      FullName: raja
+      Designation: Director
+      MobileNumber: 5158468546
+      OfficeNumber: 68468646
+      FaxNumber: 64646
+      EmailAddress: d@diligentkyc.com        
+   Alternate Contact Person:
+      Salutation: Mr.
+      FullName: kumar
+      Designation: BO
+      MobileNumber: 79844965256
+      OfficeNumber: 8654165416
+      FaxNumber: 4869416841698
+      EmailAddress: k@diligentkyc.com    
+Nature of Business and Business Activity:
       Major Business Activity / Nature of Business: Services
       Please provide brief details of Products/Services (including details of Items / Goods Manufactured or Traded, Services Provided): raja details
       Industry Type: Central Bank,Furniture Manufacturing,Defense services
@@ -44,7 +68,7 @@ Entity Information:
       Major Customers: kcr,india,56459956946949
       Major Suppliers: ktr,india,4577675864
       Financial Summary - as per latest Annual Returns: 6461653166,5595495.
-   Product Information:
+      Product Information:
       In case of more than one account requested, provide complete details for each additional  account using the product appendix in the last tab: null
       Current Account: null
       Currency: MXN
@@ -66,7 +90,7 @@ Entity Information:
       Country of Funds Origin: Singapore
       Funding Details: null
       Funding via: Cash
-   DECLARATION FOR WITHHOLDING TAX PURPOSES:
+      DECLARATION FOR WITHHOLDING TAX PURPOSES:
       Is the entity incorporated in Singapore?: Yes
       If the response to the above is Yes, kindly skip the below and proceed to the next section. Otherwise if the response is No, kindly complete the below section: null
       Please select EITHER one of the following:  control and management of the Company’s business is exercised in Singapore.
@@ -76,13 +100,13 @@ Entity Information:
       We further agree to indemnify SBIS in full against any claim, demand, action, or proceeding which may be made against SBIS and/or any damage, liability, loss and expenses (including legal costs on a full indemnity basis) which SBIS may incur or suffer directly or indirectly in acting or indirectly in acting or relying upon the above information.: null
       Beneficial owner means the natural person who ultimately owns or controls the customer or the natural person on whose behalf a transaction is conducted or business relations are established, and includes any person who exercises ultimate effective control over a legal person or legal arrangement : null
       Sole-Proprietor or Partners / Shareholders holding 25% or more shares /voting rights in the Entity / Beneficiaries of Trusts or Persons holding Executive Authority in the Company / Firm / Association / Club / Charity / Society / Trust or any other Individual(s) having effective control over the EntityName of Regulator : null
-   Declaration of Beneficial Ownership:
+      Declaration of Beneficial Ownership:
       I / We declare that the following persons ultimately own and/or control the Entity (s) (“Ultimate Beneficial Owners”): null
       (please click add if there are more than one individuals that meets the criteria): null
       Ultimate Beneficial Owners : Raja,NRCt56e4,df980
       I / We acknowledge and confirm that State Bank of India shall be entitled to rely on my / our declaration above on the identity (ies) of and information relating to the Beneficial Owners of the Account : null
       I / We undertake to inform the Bank in writing should there be any changes to the ownership/shareholding structure in the future. : null
-   Agreement:
+      Agreement:
       I/We wish to open the above stated account and have received, read, understood and agree to abide and subject to the Terms and Conditions Governing Accounts of State Bank of India, and the respective services linked to my/our account and the Bank’s Notice on Personal Data Protection Act as provided at the time of Account Opening. : null
       I/We further acknowledge receipt of the Bank’s Notice on Personal Data Protection Act and consent to the contents therein including the uses and disclosure of my/our personal data described therein. : null
       I/We hereby certify and confirm that the person (s) whose signatures appear in the Authorised Signatories section acting according to the signing condition/mandate indicated therein are authorised and have sufficient authority to draw, sign, endorse, accept or make for on my/our behalf of all cheques, bills of exchange, orders to pay and any other instruments in respect of or in connection with the Account. All transactions effected by the said person (s) shall be binding and conclusive on me/us : null

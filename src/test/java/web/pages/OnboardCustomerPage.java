@@ -114,6 +114,7 @@ public class OnboardCustomerPage {
 			data = privateData;
 		else
 			data = publicData;
+		ReusableMethods.waitForElementToBeClickable(driver, RelationShipType_Dropdown);
 		ReusableMethods.click(driver, RelationShipType_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon(data.get("RelationShip Type")));
 		ReusableMethods.click(driver, EntityType_Dropdown);
@@ -121,7 +122,7 @@ public class OnboardCustomerPage {
 		ReusableMethods.click(driver, SubEntityType_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon(data.get("SubEntity Type")));
 		ReusableMethods.moveToElement(driver, GenerateChecklist_Button);
-		ReusableMethods.Sleep(2);
+		ReusableMethods.Sleep(6);
 		ReusableMethods.click(driver, CountryOfIncorporation_Dropdown);
 		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData("COI")));
 	}
@@ -139,7 +140,9 @@ public class OnboardCustomerPage {
 		}
 		String[] bookingLocations = data.get("Booking Locations").toString().split(",");
 		// String[] products = scenarioContext.getTestData("products").split(",");
-		ReusableMethods.Sleep(5);
+		ReusableMethods.Sleep(10);
+		ReusableMethods.waitforPageLoad(driver);
+		ReusableMethods.waitForElementToBeDisplayed(RiskRating_Dropdown,60,driver);
 		ReusableMethods.EnterValue(driver, CustomerName_TextField,
 				ReusableMethods.generateRandomValues("alphabets", 6));
 		ReusableMethods.EnterValue(driver, CustomerEmail_TextField,

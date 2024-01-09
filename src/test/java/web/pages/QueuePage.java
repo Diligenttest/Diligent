@@ -31,6 +31,7 @@ public class QueuePage {
 	public Map<String, Object> registeredAddress;
 	public Map<String, Object> fullOperatingAddress;
 	public Map<String, Object> private_ContactDetail;
+	public Map<String, Object> private_NatureOfBussinessActivity;
 	
 
 	@SuppressWarnings("unchecked")
@@ -40,10 +41,9 @@ public class QueuePage {
 		privateData = ReusableMethods.readPrivateYamlFile();
 		publicData=ReusableMethods.readPublicYamlFile();
 		entityInformation=(Map<String, Object>) privateData.get("Entity Information");
-		customerInformation=(Map<String, Object>) entityInformation.get("Customer Information");
-		registeredAddress=(Map<String, Object>) customerInformation.get("Registered Address");
-		fullOperatingAddress=(Map<String, Object>) customerInformation.get("Full Operating Address");
+		customerInformation=(Map<String, Object>) entityInformation.get("Customer Information");		
 		private_ContactDetail=(Map<String, Object>) privateData.get("Contact Detail");
+		private_NatureOfBussinessActivity=(Map<String, Object>) privateData.get("Nature of Business and Business Activity");
 	}
 
 	
@@ -1889,7 +1889,7 @@ public class QueuePage {
 	public void enter_Private_CI_RegisteredAddress(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(CI_FullOperating_Area_TextFIeld, 30, driver);
 		
-
+		registeredAddress=(Map<String, Object>) customerInformation.get("Registered Address");
 		registeredAddress.forEach((key, value) -> scenarioContext.addTestData(key.toString(), value.toString()));		
 		ReusableMethods.ClearAndEnterValue(driver, LegalName_TextField,customerInformation.get("Full Legal Name").toString());
 		ReusableMethods.ClearAndEnterValue(driver, CI_Line1_TextFIeld,scenarioContext.getTestData("Line1"));
@@ -1904,6 +1904,7 @@ public class QueuePage {
 
 	public void enter_Private_CI_FullOperatingAddress(ScenarioContext scenarioContext) {
 		ReusableMethods.waitForElementToBeDisplayed(CI_FullOperating_Area_TextFIeld, 30, driver);
+		fullOperatingAddress=(Map<String, Object>) customerInformation.get("Full Operating Address");
 		fullOperatingAddress.forEach((key, value) -> scenarioContext.addTestData(key.toString(), value.toString()));	
 
 		ReusableMethods.ClearAndEnterValue(driver, CI_FullOperating_Street_TextFIeld,
@@ -2091,80 +2092,80 @@ public class QueuePage {
 	}
 
 	public void enter_Private_NaureofBussinessActivity(ScenarioContext scenarioContext) {
-		scenarioContext.addTestData(FieldNames.IndustryType.toString(), "Central Bank");
-		scenarioContext.addTestData(FieldNames.NatureOfBussiness.toString(), "Trading");
-		scenarioContext.addTestData(FieldNames.CountriesOfBussinessOperations.toString(), "India");
+		
+		String[] industryType = private_NatureOfBussinessActivity.get("Industry Type").toString().split(",");
+		String[] countriesOfBusinessOperations = private_NatureOfBussinessActivity.get("COBO").toString().split(",");
+		Map<String, Object> majorCustomers=(Map<String, Object>) private_NatureOfBussinessActivity.get("Major Customers");
+		majorCustomers.forEach((key, value) -> scenarioContext.addTestData(key.toString(), value.toString()));
+		Map<String, Object> majorSuppliers=(Map<String, Object>) private_NatureOfBussinessActivity.get("Major Suppliers");
+		majorSuppliers.forEach((key, value) -> scenarioContext.addTestData(key.toString(), value.toString()));
 
 		// NatureOfBussiness
 		ReusableMethods.click(driver, NatureOfBussiness_Drp);
 		ReusableMethods.waitForElement(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
+				GenericDropdwon(private_NatureOfBussinessActivity.get("Nature of Business").toString()));
 		ReusableMethods.click(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.NatureOfBussiness.toString())));
+				GenericDropdwon(private_NatureOfBussinessActivity.get("Nature of Business").toString()));
 		ReusableMethods.moveToElement(driver, ProvideDetails_TextArea);
 
 		// Please provide brief details of Products/Services (including details of Items
 		// / Goods Manufactured or Traded, Services Provided)
-		scenarioContext.addTestData(FieldNames.Prodcution_Services.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, ProvideDetails_TextArea,
-				scenarioContext.getTestData(FieldNames.Prodcution_Services.toString()));
+				private_NatureOfBussinessActivity.get("Services").toString());
 		// Industry Type
 		ReusableMethods.click(driver, IndustryType_Drp);
+		
 		ReusableMethods.waitForElement(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
-		ReusableMethods.click(driver, GenericDropdwon(scenarioContext.getTestData(FieldNames.IndustryType.toString())));
+				GenericDropdwon(industryType[0]));
+		for(String value: industryType)
+		{
+			ReusableMethods.click(driver, GenericDropdwon(value));
+		}
+
 		ReusableMethods.moveToElement(driver, BussinessInformation_Tab);
 
 		// Countries of Bussiness Operation
 		ReusableMethods.click(driver, CountriesOfBussinessOperation_Drp);
 		ReusableMethods.waitForElement(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
-		ReusableMethods.click(driver,
-				GenericDropdwon(scenarioContext.getTestData(FieldNames.CountriesOfBussinessOperations.toString())));
+				GenericDropdwon(countriesOfBusinessOperations[0]));
+		for(String value: countriesOfBusinessOperations)
+		{
+			ReusableMethods.click(driver, GenericDropdwon(value));
+		}	
 		ReusableMethods.moveToElement(driver, MajorCustomer_Country_TextField);
 
-		scenarioContext.addTestData(FieldNames.MajorCustomer_FullName.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+	
 		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_FullName_TextField,
-				scenarioContext.getTestData(FieldNames.MajorCustomer_FullName.toString()));
+				scenarioContext.getTestData("MCFullName"));
 
-		scenarioContext.addTestData(FieldNames.MajorCustomer_Country.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+
 		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_Country_TextField,
-				scenarioContext.getTestData(FieldNames.MajorCustomer_Country.toString()));
+				scenarioContext.getTestData("MCCountry"));
 
-		scenarioContext.addTestData(FieldNames.MajorCustomer_EAVB.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
 		ReusableMethods.ClearAndEnterValue(driver, MajorCustomer_EAVB_TextField,
-				scenarioContext.getTestData(FieldNames.MajorCustomer_EAVB.toString()));
+				scenarioContext.getTestData("MCExpectedAnnualVolume"));
 
 		ReusableMethods.ScrollToElement_JavScript(driver, MajorSuppliers_FullName_TextField);
 
-		scenarioContext.addTestData(FieldNames.MajorSuppliers_FullName.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+
 		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_FullName_TextField,
-				scenarioContext.getTestData(FieldNames.MajorSuppliers_FullName.toString()));
+				scenarioContext.getTestData("MSFullName"));
 
-		scenarioContext.addTestData(FieldNames.MajorSuppliers_Country.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+
 		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_Country_TextField,
-				scenarioContext.getTestData(FieldNames.MajorSuppliers_Country.toString()));
+				scenarioContext.getTestData("MSCountry"));
 
-		scenarioContext.addTestData(FieldNames.MajorSuppliers_EAVB.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+
 		ReusableMethods.ClearAndEnterValue(driver, MajorSuppliers_EAVB_TextField,
-				scenarioContext.getTestData(FieldNames.MajorSuppliers_EAVB.toString()));
+				scenarioContext.getTestData("MSExpectedAnnualVolume"));
 
-		scenarioContext.addTestData(FieldNames.PaidCapital.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+
 		ReusableMethods.ClearAndEnterValue(driver, PaidUpCapital_TextField,
-				scenarioContext.getTestData(FieldNames.PaidCapital.toString()));
+				private_NatureOfBussinessActivity.get("PaidUpCapital").toString());
 
-		scenarioContext.addTestData(FieldNames.TurnOver.toString(),
-				ReusableMethods.generateRandomValues("alphaNumeric", 10));
+
 		ReusableMethods.ClearAndEnterValue(driver, TurnOver_TextField,
-				scenarioContext.getTestData(FieldNames.TurnOver.toString()));
+				private_NatureOfBussinessActivity.get("SalesTurnover").toString());
 
 	}
 

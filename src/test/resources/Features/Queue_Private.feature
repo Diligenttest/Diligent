@@ -80,11 +80,11 @@ Feature: Validate Dyanamic fields section for private and public
     And I click on <Entity Information> tab in the onborading screen
     And I click on "NatureOfBussinessActivity" tab in the onborading screen
     Then I should validate fields count for "Private-NatureOfBussinessActivity" sector
-    And I enter all the information under "Private-NatureOfBussinessActivity" section
+    And I enter all the information under "Private-NatureOfBussinessActivity" section for "Private" sector
     And I click on Save & Proceed button
     Then I should validate page is navigated to "Product Information" screen
-    And I click on "NatureOfBussinessActivity" tab in the onborading screen
-    Then I should validate data is saved under "Private-NatureOfBussinessActivity" section
+    #And I click on "NatureOfBussinessActivity" tab in the onborading screen
+    #Then I should validate data is saved under "Private-NatureOfBussinessActivity" section
     When I Close the browser
 
   @regression

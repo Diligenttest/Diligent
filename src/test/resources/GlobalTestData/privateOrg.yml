@@ -61,14 +61,21 @@ Contact Detail:
       FaxNumber: 4869416841698
       EmailAddress: k@diligentkyc.com    
 Nature of Business and Business Activity:
-      Major Business Activity / Nature of Business: Services
-      Please provide brief details of Products/Services (including details of Items / Goods Manufactured or Traded, Services Provided): raja details
+      Nature of Business: Services
+      Services: raja details
       Industry Type: Central Bank,Furniture Manufacturing,Defense services
-      Countries of Business Operations: Singapore,India
-      Major Customers: kcr,india,56459956946949
-      Major Suppliers: ktr,india,4577675864
-      Financial Summary - as per latest Annual Returns: 6461653166,5595495.
-      Product Information:
+      COBO: Singapore,India
+      Major Customers: 
+        MCFullName: kcr
+        MCCountry: India
+        MCExpectedAnnualVolume: 56459956946949
+      Major Suppliers: 
+        MSFullName: kcr
+        MSCountry: India
+        MSExpectedAnnualVolume: 4577675864
+      PaidUpCapital: 6461653166
+      SalesTurnover: 5595495.
+Product Information:
       In case of more than one account requested, provide complete details for each additional  account using the product appendix in the last tab: null
       Current Account: null
       Currency: MXN

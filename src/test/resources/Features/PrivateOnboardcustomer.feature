@@ -41,7 +41,7 @@ Feature: Onboarding Customer
     #Then I should validate data is saved under "Private-CustomerInformation" section
     When I Close the browser
     
-   @regression
+   @regression 
   Scenario: Validate Entity Information for Private Contact Details Tab
     When I click on <Entity Information> tab in the onborading screen
     And I click on "Contact Details" tab in the onborading screen
@@ -51,4 +51,16 @@ Feature: Onboarding Customer
     Then I should validate page is navigated to "Nature of Business and Business Activity" screen
     #And I click on "Contact Details" tab in the onborading screen
     #Then I should validate data is saved under "Private-Contact Details" section
+    When I Close the browser
+    
+     @regression
+  Scenario: Validate Entity Information for Private Nature of Bussiness Activity
+    When I click on <Entity Information> tab in the onborading screen
+    And I click on "NatureOfBussinessActivity" tab in the onborading screen
+    Then I should validate fields count for "Private-NatureOfBussinessActivity" sector
+    And I enter all the information under "Private-NatureOfBussinessActivity" section for "Private" sector
+    And I click on Save & Proceed button
+    Then I should validate page is navigated to "Product Information" screen
+    #And I click on "NatureOfBussinessActivity" tab in the onborading screen
+    #Then I should validate data is saved under "Private-NatureOfBussinessActivity" section
     When I Close the browser
